@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC42179119232C6000B162D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179019232C6000B162D8 /* Foundation.framework */; };
+		EC42179319232C6000B162D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179219232C6000B162D8 /* CoreGraphics.framework */; };
+		EC42179519232C6000B162D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179419232C6000B162D8 /* UIKit.framework */; };
+		EC42179B19232C6000B162D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC42179919232C6000B162D8 /* InfoPlist.strings */; };
+		EC42179D19232C6000B162D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42179C19232C6000B162D8 /* main.m */; };
+		EC4217A119232C6000B162D8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4217A019232C6000B162D8 /* AppDelegate.m */; };
+		EC4217A419232C6000B162D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4217A219232C6000B162D8 /* Main.storyboard */; };
+		EC4217A719232C6000B162D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4217A619232C6000B162D8 /* ViewController.m */; };
+		EC4217A919232C6000B162D8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4217A819232C6000B162D8 /* Images.xcassets */; };
+		EC4217B019232C6000B162D8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4217AF19232C6000B162D8 /* XCTest.framework */; };
+		EC4217B119232C6000B162D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179019232C6000B162D8 /* Foundation.framework */; };
+		EC4217B219232C6000B162D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179419232C6000B162D8 /* UIKit.framework */; };
+		EC4217BA19232C6000B162D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4217B819232C6000B162D8 /* InfoPlist.strings */; };
+		EC4217BC19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4217BB19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC4217B319232C6000B162D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC42178519232C6000B162D8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC42178C19232C6000B162D8;
+			remoteInfo = "My Daily Fitness Guide";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC42178D19232C6000B162D8 /* My Daily Fitness Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Daily Fitness Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC42179019232C6000B162D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EC42179219232C6000B162D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EC42179419232C6000B162D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EC42179819232C6000B162D8 /* My Daily Fitness Guide-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "My Daily Fitness Guide-Info.plist"; sourceTree = "<group>"; };
+		EC42179A19232C6000B162D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EC42179C19232C6000B162D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EC42179E19232C6000B162D8 /* My Daily Fitness Guide-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My Daily Fitness Guide-Prefix.pch"; sourceTree = "<group>"; };
+		EC42179F19232C6000B162D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EC4217A019232C6000B162D8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EC4217A319232C6000B162D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC4217A519232C6000B162D8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EC4217A619232C6000B162D8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EC4217A819232C6000B162D8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EC4217AE19232C6000B162D8 /* My Daily Fitness GuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My Daily Fitness GuideTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC4217AF19232C6000B162D8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EC4217B719232C6000B162D8 /* My Daily Fitness GuideTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "My Daily Fitness GuideTests-Info.plist"; sourceTree = "<group>"; };
+		EC4217B919232C6000B162D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EC4217BB19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Daily_Fitness_GuideTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC42178A19232C6000B162D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC42179319232C6000B162D8 /* CoreGraphics.framework in Frameworks */,
+				EC42179519232C6000B162D8 /* UIKit.framework in Frameworks */,
+				EC42179119232C6000B162D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4217AB19232C6000B162D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4217B019232C6000B162D8 /* XCTest.framework in Frameworks */,
+				EC4217B219232C6000B162D8 /* UIKit.framework in Frameworks */,
+				EC4217B119232C6000B162D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC42178419232C6000B162D8 = {
+			isa = PBXGroup;
+			children = (
+				EC42179619232C6000B162D8 /* My Daily Fitness Guide */,
+				EC4217B519232C6000B162D8 /* My Daily Fitness GuideTests */,
+				EC42178F19232C6000B162D8 /* Frameworks */,
+				EC42178E19232C6000B162D8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC42178E19232C6000B162D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC42178D19232C6000B162D8 /* My Daily Fitness Guide.app */,
+				EC4217AE19232C6000B162D8 /* My Daily Fitness GuideTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC42178F19232C6000B162D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC42179019232C6000B162D8 /* Foundation.framework */,
+				EC42179219232C6000B162D8 /* CoreGraphics.framework */,
+				EC42179419232C6000B162D8 /* UIKit.framework */,
+				EC4217AF19232C6000B162D8 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC42179619232C6000B162D8 /* My Daily Fitness Guide */ = {
+			isa = PBXGroup;
+			children = (
+				EC42179F19232C6000B162D8 /* AppDelegate.h */,
+				EC4217A019232C6000B162D8 /* AppDelegate.m */,
+				EC4217A219232C6000B162D8 /* Main.storyboard */,
+				EC4217A519232C6000B162D8 /* ViewController.h */,
+				EC4217A619232C6000B162D8 /* ViewController.m */,
+				EC4217A819232C6000B162D8 /* Images.xcassets */,
+				EC42179719232C6000B162D8 /* Supporting Files */,
+			);
+			path = "My Daily Fitness Guide";
+			sourceTree = "<group>";
+		};
+		EC42179719232C6000B162D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC42179819232C6000B162D8 /* My Daily Fitness Guide-Info.plist */,
+				EC42179919232C6000B162D8 /* InfoPlist.strings */,
+				EC42179C19232C6000B162D8 /* main.m */,
+				EC42179E19232C6000B162D8 /* My Daily Fitness Guide-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC4217B519232C6000B162D8 /* My Daily Fitness GuideTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC4217BB19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m */,
+				EC4217B619232C6000B162D8 /* Supporting Files */,
+			);
+			path = "My Daily Fitness GuideTests";
+			sourceTree = "<group>";
+		};
+		EC4217B619232C6000B162D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC4217B719232C6000B162D8 /* My Daily Fitness GuideTests-Info.plist */,
+				EC4217B819232C6000B162D8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC42178C19232C6000B162D8 /* My Daily Fitness Guide */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC4217BF19232C6000B162D8 /* Build configuration list for PBXNativeTarget "My Daily Fitness Guide" */;
+			buildPhases = (
+				EC42178919232C6000B162D8 /* Sources */,
+				EC42178A19232C6000B162D8 /* Frameworks */,
+				EC42178B19232C6000B162D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "My Daily Fitness Guide";
+			productName = "My Daily Fitness Guide";
+			productReference = EC42178D19232C6000B162D8 /* My Daily Fitness Guide.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC4217AD19232C6000B162D8 /* My Daily Fitness GuideTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC4217C219232C6000B162D8 /* Build configuration list for PBXNativeTarget "My Daily Fitness GuideTests" */;
+			buildPhases = (
+				EC4217AA19232C6000B162D8 /* Sources */,
+				EC4217AB19232C6000B162D8 /* Frameworks */,
+				EC4217AC19232C6000B162D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC4217B419232C6000B162D8 /* PBXTargetDependency */,
+			);
+			name = "My Daily Fitness GuideTests";
+			productName = "My Daily Fitness GuideTests";
+			productReference = EC4217AE19232C6000B162D8 /* My Daily Fitness GuideTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC42178519232C6000B162D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					EC4217AD19232C6000B162D8 = {
+						TestTargetID = EC42178C19232C6000B162D8;
+					};
+				};
+			};
+			buildConfigurationList = EC42178819232C6000B162D8 /* Build configuration list for PBXProject "My Daily Fitness Guide" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC42178419232C6000B162D8;
+			productRefGroup = EC42178E19232C6000B162D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC42178C19232C6000B162D8 /* My Daily Fitness Guide */,
+				EC4217AD19232C6000B162D8 /* My Daily Fitness GuideTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC42178B19232C6000B162D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4217A919232C6000B162D8 /* Images.xcassets in Resources */,
+				EC42179B19232C6000B162D8 /* InfoPlist.strings in Resources */,
+				EC4217A419232C6000B162D8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4217AC19232C6000B162D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4217BA19232C6000B162D8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC42178919232C6000B162D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4217A719232C6000B162D8 /* ViewController.m in Sources */,
+				EC4217A119232C6000B162D8 /* AppDelegate.m in Sources */,
+				EC42179D19232C6000B162D8 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC4217AA19232C6000B162D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC4217BC19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC4217B419232C6000B162D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC42178C19232C6000B162D8 /* My Daily Fitness Guide */;
+			targetProxy = EC4217B319232C6000B162D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC42179919232C6000B162D8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC42179A19232C6000B162D8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EC4217A219232C6000B162D8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4217A319232C6000B162D8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC4217B819232C6000B162D8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4217B919232C6000B162D8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC4217BD19232C6000B162D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EC4217BE19232C6000B162D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC4217C019232C6000B162D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
+				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EC4217C119232C6000B162D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
+				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EC4217C319232C6000B162D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/My Daily Fitness Guide.app/My Daily Fitness Guide";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "My Daily Fitness GuideTests/My Daily Fitness GuideTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EC4217C419232C6000B162D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/My Daily Fitness Guide.app/My Daily Fitness Guide";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
+				INFOPLIST_FILE = "My Daily Fitness GuideTests/My Daily Fitness GuideTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC42178819232C6000B162D8 /* Build configuration list for PBXProject "My Daily Fitness Guide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4217BD19232C6000B162D8 /* Debug */,
+				EC4217BE19232C6000B162D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC4217BF19232C6000B162D8 /* Build configuration list for PBXNativeTarget "My Daily Fitness Guide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4217C019232C6000B162D8 /* Debug */,
+				EC4217C119232C6000B162D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EC4217C219232C6000B162D8 /* Build configuration list for PBXNativeTarget "My Daily Fitness GuideTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC4217C319232C6000B162D8 /* Debug */,
+				EC4217C419232C6000B162D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC42178519232C6000B162D8 /* Project object */;
+}
