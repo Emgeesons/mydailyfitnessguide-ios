@@ -12,7 +12,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //[[NSUserDefaults standardUserDefaults] setValue:NULL forKey:@"loggedIn"];
     // Override point for customization after application launch.
+    NSString *agree = [[NSUserDefaults standardUserDefaults] stringForKey:@"agree"];
+    if (agree == NULL) {
+        // do nothing and show disclaimer page
+    } else {
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"loggedIn"] == NULL || [[[NSUserDefaults standardUserDefaults] stringForKey:@"loggedIn"] isEqualToString:@"false"]) {
+            // show register page
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            
+            UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"register"];
+            
+            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            self.window.rootViewController = mainViewController;
+            [self.window makeKeyAndVisible];
+        } else {
+            
+            // show home page
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *mainViewController = [storyboard instantiateViewControllerWithIdentifier:@"home"];
+            
+            self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            self.window.rootViewController = mainViewController;
+            [self.window makeKeyAndVisible];
+        }
+    }
+    
     return YES;
 }
 							
