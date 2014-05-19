@@ -7,6 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC02DC8D1929CB1200BAD1D0 /* btn_get_started@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC831929CB1200BAD1D0 /* btn_get_started@2x.png */; };
+		EC02DC8E1929CB1200BAD1D0 /* nav_bar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC841929CB1200BAD1D0 /* nav_bar_icon@2x.png */; };
+		EC02DC8F1929CB1200BAD1D0 /* nutritionist_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC851929CB1200BAD1D0 /* nutritionist_active@2x.png */; };
+		EC02DC901929CB1200BAD1D0 /* nutritionist_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC861929CB1200BAD1D0 /* nutritionist_inactive@2x.png */; };
+		EC02DC911929CB1200BAD1D0 /* profile_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC871929CB1200BAD1D0 /* profile_active@2x.png */; };
+		EC02DC921929CB1200BAD1D0 /* profile_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC881929CB1200BAD1D0 /* profile_inactive@2x.png */; };
+		EC02DC931929CB1200BAD1D0 /* trainer_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC891929CB1200BAD1D0 /* trainer_active@2x.png */; };
+		EC02DC941929CB1200BAD1D0 /* trainer_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC8A1929CB1200BAD1D0 /* trainer_inactive@2x.png */; };
+		EC02DC951929CB1200BAD1D0 /* welcome_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC8B1929CB1200BAD1D0 /* welcome_bg@2x.png */; };
+		EC02DC961929CB1200BAD1D0 /* welcome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC8C1929CB1200BAD1D0 /* welcome@2x.png */; };
+		EC02DCA11929CB2300BAD1D0 /* btn_get_started.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC971929CB2300BAD1D0 /* btn_get_started.png */; };
+		EC02DCA21929CB2300BAD1D0 /* nav_bar_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC981929CB2300BAD1D0 /* nav_bar_icon.png */; };
+		EC02DCA31929CB2300BAD1D0 /* nutritionist_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC991929CB2300BAD1D0 /* nutritionist_active.png */; };
+		EC02DCA41929CB2300BAD1D0 /* nutritionist_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9A1929CB2300BAD1D0 /* nutritionist_inactive.png */; };
+		EC02DCA51929CB2300BAD1D0 /* profile_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9B1929CB2300BAD1D0 /* profile_active.png */; };
+		EC02DCA61929CB2300BAD1D0 /* profile_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9C1929CB2300BAD1D0 /* profile_inactive.png */; };
+		EC02DCA71929CB2300BAD1D0 /* trainer_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9D1929CB2300BAD1D0 /* trainer_active.png */; };
+		EC02DCA81929CB2300BAD1D0 /* trainer_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9E1929CB2300BAD1D0 /* trainer_inactive.png */; };
+		EC02DCA91929CB2300BAD1D0 /* welcome_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DC9F1929CB2300BAD1D0 /* welcome_bg.png */; };
+		EC02DCAA1929CB2300BAD1D0 /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCA01929CB2300BAD1D0 /* welcome.png */; };
+		EC02DCAC1929E12800BAD1D0 /* my_daily_fitness.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCAB1929E12800BAD1D0 /* my_daily_fitness.sqlite */; };
+		EC02DCAF192A015800BAD1D0 /* MedicalConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC02DCAE192A015800BAD1D0 /* MedicalConditionViewController.m */; };
+		EC02DCB2192A0DC200BAD1D0 /* BMIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC02DCB1192A0DC200BAD1D0 /* BMIViewController.m */; };
+		EC02DCB8192A0E9600BAD1D0 /* bmi.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCB3192A0E9600BAD1D0 /* bmi.png */; };
+		EC02DCB9192A0E9600BAD1D0 /* kgs_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCB4192A0E9600BAD1D0 /* kgs_active.png */; };
+		EC02DCBA192A0E9600BAD1D0 /* kgs_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCB5192A0E9600BAD1D0 /* kgs_inactive.png */; };
+		EC02DCBB192A0E9600BAD1D0 /* pounds_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCB6192A0E9600BAD1D0 /* pounds_active.png */; };
+		EC02DCBC192A0E9600BAD1D0 /* pounds_inactive.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCB7192A0E9600BAD1D0 /* pounds_inactive.png */; };
+		EC02DCC2192A0EAD00BAD1D0 /* bmi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCBD192A0EAD00BAD1D0 /* bmi@2x.png */; };
+		EC02DCC3192A0EAD00BAD1D0 /* kgs_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCBE192A0EAD00BAD1D0 /* kgs_active@2x.png */; };
+		EC02DCC4192A0EAD00BAD1D0 /* kgs_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCBF192A0EAD00BAD1D0 /* kgs_inactive@2x.png */; };
+		EC02DCC5192A0EAD00BAD1D0 /* pounds_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCC0192A0EAD00BAD1D0 /* pounds_active@2x.png */; };
+		EC02DCC6192A0EAD00BAD1D0 /* pounds_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC02DCC1192A0EAD00BAD1D0 /* pounds_inactive@2x.png */; };
 		EC086ACE192719B10094AD35 /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC086ACD192719B10094AD35 /* call@2x.png */; };
 		EC086AD0192719BA0094AD35 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = EC086ACF192719BA0094AD35 /* call.png */; };
 		EC086AD3192720B60094AD35 /* T&CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC086AD2192720B60094AD35 /* T&CViewController.m */; };
@@ -120,6 +153,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC02DC831929CB1200BAD1D0 /* btn_get_started@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_get_started@2x.png"; sourceTree = "<group>"; };
+		EC02DC841929CB1200BAD1D0 /* nav_bar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_bar_icon@2x.png"; sourceTree = "<group>"; };
+		EC02DC851929CB1200BAD1D0 /* nutritionist_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nutritionist_active@2x.png"; sourceTree = "<group>"; };
+		EC02DC861929CB1200BAD1D0 /* nutritionist_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nutritionist_inactive@2x.png"; sourceTree = "<group>"; };
+		EC02DC871929CB1200BAD1D0 /* profile_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_active@2x.png"; sourceTree = "<group>"; };
+		EC02DC881929CB1200BAD1D0 /* profile_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_inactive@2x.png"; sourceTree = "<group>"; };
+		EC02DC891929CB1200BAD1D0 /* trainer_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trainer_active@2x.png"; sourceTree = "<group>"; };
+		EC02DC8A1929CB1200BAD1D0 /* trainer_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trainer_inactive@2x.png"; sourceTree = "<group>"; };
+		EC02DC8B1929CB1200BAD1D0 /* welcome_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome_bg@2x.png"; sourceTree = "<group>"; };
+		EC02DC8C1929CB1200BAD1D0 /* welcome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcome@2x.png"; sourceTree = "<group>"; };
+		EC02DC971929CB2300BAD1D0 /* btn_get_started.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_get_started.png; sourceTree = "<group>"; };
+		EC02DC981929CB2300BAD1D0 /* nav_bar_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_bar_icon.png; sourceTree = "<group>"; };
+		EC02DC991929CB2300BAD1D0 /* nutritionist_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nutritionist_active.png; sourceTree = "<group>"; };
+		EC02DC9A1929CB2300BAD1D0 /* nutritionist_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nutritionist_inactive.png; sourceTree = "<group>"; };
+		EC02DC9B1929CB2300BAD1D0 /* profile_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_active.png; sourceTree = "<group>"; };
+		EC02DC9C1929CB2300BAD1D0 /* profile_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_inactive.png; sourceTree = "<group>"; };
+		EC02DC9D1929CB2300BAD1D0 /* trainer_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trainer_active.png; sourceTree = "<group>"; };
+		EC02DC9E1929CB2300BAD1D0 /* trainer_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trainer_inactive.png; sourceTree = "<group>"; };
+		EC02DC9F1929CB2300BAD1D0 /* welcome_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_bg.png; sourceTree = "<group>"; };
+		EC02DCA01929CB2300BAD1D0 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
+		EC02DCAB1929E12800BAD1D0 /* my_daily_fitness.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = my_daily_fitness.sqlite; sourceTree = "<group>"; };
+		EC02DCAD192A015800BAD1D0 /* MedicalConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalConditionViewController.h; sourceTree = "<group>"; };
+		EC02DCAE192A015800BAD1D0 /* MedicalConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalConditionViewController.m; sourceTree = "<group>"; };
+		EC02DCB0192A0DC200BAD1D0 /* BMIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMIViewController.h; sourceTree = "<group>"; };
+		EC02DCB1192A0DC200BAD1D0 /* BMIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMIViewController.m; sourceTree = "<group>"; };
+		EC02DCB3192A0E9600BAD1D0 /* bmi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bmi.png; sourceTree = "<group>"; };
+		EC02DCB4192A0E9600BAD1D0 /* kgs_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kgs_active.png; sourceTree = "<group>"; };
+		EC02DCB5192A0E9600BAD1D0 /* kgs_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kgs_inactive.png; sourceTree = "<group>"; };
+		EC02DCB6192A0E9600BAD1D0 /* pounds_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pounds_active.png; sourceTree = "<group>"; };
+		EC02DCB7192A0E9600BAD1D0 /* pounds_inactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pounds_inactive.png; sourceTree = "<group>"; };
+		EC02DCBD192A0EAD00BAD1D0 /* bmi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bmi@2x.png"; sourceTree = "<group>"; };
+		EC02DCBE192A0EAD00BAD1D0 /* kgs_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kgs_active@2x.png"; sourceTree = "<group>"; };
+		EC02DCBF192A0EAD00BAD1D0 /* kgs_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kgs_inactive@2x.png"; sourceTree = "<group>"; };
+		EC02DCC0192A0EAD00BAD1D0 /* pounds_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pounds_active@2x.png"; sourceTree = "<group>"; };
+		EC02DCC1192A0EAD00BAD1D0 /* pounds_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pounds_inactive@2x.png"; sourceTree = "<group>"; };
 		EC086ACD192719B10094AD35 /* call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call@2x.png"; sourceTree = "<group>"; };
 		EC086ACF192719BA0094AD35 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		EC086AD1192720B60094AD35 /* T&CViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "T&CViewController.h"; sourceTree = "<group>"; };
@@ -351,6 +419,7 @@
 			children = (
 				ECEA11611923794800823952 /* images */,
 				EC42179819232C6000B162D8 /* My Daily Fitness Guide-Info.plist */,
+				EC02DCAB1929E12800BAD1D0 /* my_daily_fitness.sqlite */,
 				EC42179919232C6000B162D8 /* InfoPlist.strings */,
 				EC42179C19232C6000B162D8 /* main.m */,
 				EC42179E19232C6000B162D8 /* My Daily Fitness Guide-Prefix.pch */,
@@ -390,6 +459,10 @@
 			children = (
 				EC7D406419247E4B001338E4 /* FirstTabViewController.h */,
 				EC7D406519247E4B001338E4 /* FirstTabViewController.m */,
+				EC02DCAD192A015800BAD1D0 /* MedicalConditionViewController.h */,
+				EC02DCAE192A015800BAD1D0 /* MedicalConditionViewController.m */,
+				EC02DCB0192A0DC200BAD1D0 /* BMIViewController.h */,
+				EC02DCB1192A0DC200BAD1D0 /* BMIViewController.m */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -560,8 +633,23 @@
 		ECEA11621923795600823952 /* icons@1x */ = {
 			isa = PBXGroup;
 			children = (
+				EC02DCB3192A0E9600BAD1D0 /* bmi.png */,
+				EC02DCB4192A0E9600BAD1D0 /* kgs_active.png */,
+				EC02DCB5192A0E9600BAD1D0 /* kgs_inactive.png */,
+				EC02DCB6192A0E9600BAD1D0 /* pounds_active.png */,
+				EC02DCB7192A0E9600BAD1D0 /* pounds_inactive.png */,
 				EC7D408819248D52001338E4 /* navigation1x */,
 				EC7D406719247F65001338E4 /* navigation.png */,
+				EC02DC971929CB2300BAD1D0 /* btn_get_started.png */,
+				EC02DC981929CB2300BAD1D0 /* nav_bar_icon.png */,
+				EC02DC991929CB2300BAD1D0 /* nutritionist_active.png */,
+				EC02DC9A1929CB2300BAD1D0 /* nutritionist_inactive.png */,
+				EC02DC9B1929CB2300BAD1D0 /* profile_active.png */,
+				EC02DC9C1929CB2300BAD1D0 /* profile_inactive.png */,
+				EC02DC9D1929CB2300BAD1D0 /* trainer_active.png */,
+				EC02DC9E1929CB2300BAD1D0 /* trainer_inactive.png */,
+				EC02DC9F1929CB2300BAD1D0 /* welcome_bg.png */,
+				EC02DCA01929CB2300BAD1D0 /* welcome.png */,
 				ECCA453F192623D4002F19AE /* im_boundary.png */,
 				EC086ACF192719BA0094AD35 /* call.png */,
 				ECCA45311925DB12002F19AE /* google_map.png */,
@@ -577,8 +665,23 @@
 		ECEA11671923795600823952 /* icons@2x */ = {
 			isa = PBXGroup;
 			children = (
+				EC02DCBD192A0EAD00BAD1D0 /* bmi@2x.png */,
+				EC02DCBE192A0EAD00BAD1D0 /* kgs_active@2x.png */,
+				EC02DCBF192A0EAD00BAD1D0 /* kgs_inactive@2x.png */,
+				EC02DCC0192A0EAD00BAD1D0 /* pounds_active@2x.png */,
+				EC02DCC1192A0EAD00BAD1D0 /* pounds_inactive@2x.png */,
 				EC7D406F19248D48001338E4 /* navigation2x */,
 				EC7D406919247F71001338E4 /* navigation@2x.png */,
+				EC02DC831929CB1200BAD1D0 /* btn_get_started@2x.png */,
+				EC02DC841929CB1200BAD1D0 /* nav_bar_icon@2x.png */,
+				EC02DC851929CB1200BAD1D0 /* nutritionist_active@2x.png */,
+				EC02DC861929CB1200BAD1D0 /* nutritionist_inactive@2x.png */,
+				EC02DC871929CB1200BAD1D0 /* profile_active@2x.png */,
+				EC02DC881929CB1200BAD1D0 /* profile_inactive@2x.png */,
+				EC02DC891929CB1200BAD1D0 /* trainer_active@2x.png */,
+				EC02DC8A1929CB1200BAD1D0 /* trainer_inactive@2x.png */,
+				EC02DC8B1929CB1200BAD1D0 /* welcome_bg@2x.png */,
+				EC02DC8C1929CB1200BAD1D0 /* welcome@2x.png */,
 				ECCA45331925DB1A002F19AE /* google_map@2x.png */,
 				EC086ACD192719B10094AD35 /* call@2x.png */,
 				EC49E75319262BBD00D87337 /* default_offers_events@2x.png */,
@@ -718,51 +821,82 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECCA45341925DB1A002F19AE /* google_map@2x.png in Resources */,
+				EC02DC8E1929CB1200BAD1D0 /* nav_bar_icon@2x.png in Resources */,
 				EC7D409A19248D52001338E4 /* ic_nav_metrics_setting.png in Resources */,
 				EC7D409E19248D52001338E4 /* ic_nav_share_app.png in Resources */,
+				EC02DCC4192A0EAD00BAD1D0 /* kgs_inactive@2x.png in Resources */,
+				EC02DC951929CB1200BAD1D0 /* welcome_bg@2x.png in Resources */,
+				EC02DCBB192A0E9600BAD1D0 /* pounds_active.png in Resources */,
 				EC4217A919232C6000B162D8 /* Images.xcassets in Resources */,
 				EC7D408419248D48001338E4 /* ic_nav_reset_body_stats@2x.png in Resources */,
+				EC02DCC2192A0EAD00BAD1D0 /* bmi@2x.png in Resources */,
+				EC02DC931929CB1200BAD1D0 /* trainer_active@2x.png in Resources */,
 				EC42179B19232C6000B162D8 /* InfoPlist.strings in Resources */,
 				EC7D408019248D48001338E4 /* ic_nav_home@2x.png in Resources */,
 				EC7D408619248D48001338E4 /* ic_nav_t_and_c@2x.png in Resources */,
 				ECEA11731923795600823952 /* male_inactive@2x.png in Resources */,
 				ECEA116D1923795600823952 /* female_inactive.png in Resources */,
+				EC02DC921929CB1200BAD1D0 /* profile_inactive@2x.png in Resources */,
 				EC7D409719248D52001338E4 /* ic_nav_going_on_vacation.png in Resources */,
+				EC02DCC6192A0EAD00BAD1D0 /* pounds_inactive@2x.png in Resources */,
 				ECCA4540192623D4002F19AE /* im_boundary.png in Resources */,
+				EC02DCB8192A0E9600BAD1D0 /* bmi.png in Resources */,
+				EC02DCA41929CB2300BAD1D0 /* nutritionist_inactive.png in Resources */,
 				EC7D409B19248D52001338E4 /* ic_nav_offers.png in Resources */,
 				ECCA45321925DB12002F19AE /* google_map.png in Resources */,
 				EC7D407E19248D48001338E4 /* ic_nav_going_on_vacation@2x.png in Resources */,
+				EC02DCB9192A0E9600BAD1D0 /* kgs_active.png in Resources */,
 				ECCA453E192623CC002F19AE /* im_boundary@2x.png in Resources */,
 				EC7D409619248D52001338E4 /* ic_nav_events.png in Resources */,
+				EC02DCAA1929CB2300BAD1D0 /* welcome.png in Resources */,
 				EC7D407F19248D48001338E4 /* ic_nav_gym_locator@2x.png in Resources */,
 				ECEA11711923795600823952 /* female_inactive@2x.png in Resources */,
 				ECDB8AC819234B0B00CA2137 /* splashscreen_320x480.png in Resources */,
+				EC02DCC3192A0EAD00BAD1D0 /* kgs_active@2x.png in Resources */,
 				EC7D407C19248D48001338E4 /* ic_nav_buy_membership@2x.png in Resources */,
 				EC49E75419262BBD00D87337 /* default_offers_events@2x.png in Resources */,
+				EC02DCA51929CB2300BAD1D0 /* profile_active.png in Resources */,
 				EC7D409919248D52001338E4 /* ic_nav_home.png in Resources */,
 				EC086AD0192719BA0094AD35 /* call.png in Resources */,
 				ECDB8ACA19234B0B00CA2137 /* Default-568h@2x.png in Resources */,
 				EC7D409519248D52001338E4 /* ic_nav_buy_membership.png in Resources */,
 				EC7D409D19248D52001338E4 /* ic_nav_reset_body_stats.png in Resources */,
+				EC02DCBC192A0E9600BAD1D0 /* pounds_inactive.png in Resources */,
 				ECEA116E1923795600823952 /* male_active.png in Resources */,
+				EC02DCA21929CB2300BAD1D0 /* nav_bar_icon.png in Resources */,
 				EC7D408219248D48001338E4 /* ic_nav_offers@2x.png in Resources */,
 				ECEA11721923795600823952 /* male_active@2x.png in Resources */,
 				ECDB8AC919234B0B00CA2137 /* Default.png in Resources */,
 				ECEA116C1923795600823952 /* female_active.png in Resources */,
+				EC02DCBA192A0E9600BAD1D0 /* kgs_inactive.png in Resources */,
 				EC4217A419232C6000B162D8 /* Main.storyboard in Resources */,
 				EC7D408519248D48001338E4 /* ic_nav_share_app@2x.png in Resources */,
+				EC02DC901929CB1200BAD1D0 /* nutritionist_inactive@2x.png in Resources */,
+				EC02DCA61929CB2300BAD1D0 /* profile_inactive.png in Resources */,
 				EC086ACE192719B10094AD35 /* call@2x.png in Resources */,
+				EC02DC8F1929CB1200BAD1D0 /* nutritionist_active@2x.png in Resources */,
+				EC02DC961929CB1200BAD1D0 /* welcome@2x.png in Resources */,
 				EC7D407D19248D48001338E4 /* ic_nav_events@2x.png in Resources */,
 				EC7D409819248D52001338E4 /* ic_nav_gym_locator.png in Resources */,
+				EC02DCC5192A0EAD00BAD1D0 /* pounds_active@2x.png in Resources */,
 				EC7D408119248D48001338E4 /* ic_nav_metrics_setting@2x.png in Resources */,
+				EC02DC941929CB1200BAD1D0 /* trainer_inactive@2x.png in Resources */,
 				EC7D40A019248D52001338E4 /* ic_nav_vip_guest_pass.png in Resources */,
 				ECEA116F1923795600823952 /* male_inactive.png in Resources */,
+				EC02DCA91929CB2300BAD1D0 /* welcome_bg.png in Resources */,
 				EC7D408319248D48001338E4 /* ic_nav_rate_us@2x.png in Resources */,
+				EC02DCAC1929E12800BAD1D0 /* my_daily_fitness.sqlite in Resources */,
+				EC02DCA71929CB2300BAD1D0 /* trainer_active.png in Resources */,
 				EC49E75619262BCB00D87337 /* default_offers_events.png in Resources */,
+				EC02DCA31929CB2300BAD1D0 /* nutritionist_active.png in Resources */,
+				EC02DCA81929CB2300BAD1D0 /* trainer_inactive.png in Resources */,
+				EC02DC911929CB1200BAD1D0 /* profile_active@2x.png in Resources */,
 				EC7D408719248D48001338E4 /* ic_nav_vip_guest_pass@2x.png in Resources */,
+				EC02DCA11929CB2300BAD1D0 /* btn_get_started.png in Resources */,
 				EC7D406819247F65001338E4 /* navigation.png in Resources */,
 				EC7D409F19248D52001338E4 /* ic_nav_t_and_c.png in Resources */,
 				EC7D406A19247F71001338E4 /* navigation@2x.png in Resources */,
+				EC02DC8D1929CB1200BAD1D0 /* btn_get_started@2x.png in Resources */,
 				ECEA11701923795600823952 /* female_active@2x.png in Resources */,
 				EC7D409C19248D52001338E4 /* ic_nav_rate_us.png in Resources */,
 			);
@@ -805,10 +939,12 @@
 				ECDB8AC11923434C00CA2137 /* FMResultSet.m in Sources */,
 				ECEA11A3192386BC00823952 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				ECEA119E192386BC00823952 /* AFSecurityPolicy.m in Sources */,
+				EC02DCB2192A0DC200BAD1D0 /* BMIViewController.m in Sources */,
 				EC49E75919262E1200D87337 /* EventsViewController.m in Sources */,
 				ECDB8AA8192341DC00CA2137 /* DatabaseExtra.m in Sources */,
 				ECCA453C1925F5ED002F19AE /* OffersViewController.m in Sources */,
 				ECEA11A7192386BC00823952 /* UIImageView+AFNetworking.m in Sources */,
+				EC02DCAF192A015800BAD1D0 /* MedicalConditionViewController.m in Sources */,
 				ECEA119D192386BC00823952 /* AFNetworkReachabilityManager.m in Sources */,
 				ECEA11A2192386BC00823952 /* AFURLSessionManager.m in Sources */,
 				ECDB8ABF1923434C00CA2137 /* FMDatabasePool.m in Sources */,

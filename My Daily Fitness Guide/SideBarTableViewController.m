@@ -85,12 +85,12 @@
                  UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Successfully Shared" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                  [objalert show];
                  objalert = nil;
-             } else
+             }/* else
              {
                  UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Unable To Share" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                  [objalert show];
                  objalert = nil;
-             }
+             }*/
          }];
     }
 }

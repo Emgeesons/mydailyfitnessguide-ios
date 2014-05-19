@@ -119,7 +119,7 @@
 {
     if (textView == self.txtAge) {
         
-        //[self resignTextField];
+        [self resignTextbox];
         
         sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
         
@@ -302,6 +302,11 @@
                 NSLog(@"%@", [response objectForKey:@"userId"]);
                 
                 [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"loggedIn"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.txtName.text forKey:@"name"];
+                [[NSUserDefaults standardUserDefaults] setObject:dob forKey:@"dob"];
+                [[NSUserDefaults standardUserDefaults] setObject:gender forKey:@"gender"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
                 nextClick = NO;
                 
                 UIViewController *v = [self.storyboard instantiateViewControllerWithIdentifier:@"home"];
@@ -361,5 +366,12 @@
 - (IBAction)femaleClicked:(id)sender {
     [self.btnFemale setAlpha:1.0f];
     [self.btnMale setAlpha:0.5f];
+}
+
+-(void)resignTextbox {
+    [self.txtName resignFirstResponder];
+    [self.txtEmail resignFirstResponder];
+    [self.txtContact resignFirstResponder];
+    [self.txtArea resignFirstResponder];
 }
 @end

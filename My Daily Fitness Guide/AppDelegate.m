@@ -12,8 +12,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[[NSUserDefaults standardUserDefaults] setValue:NULL forKey:@"loggedIn"];
     // Override point for customization after application launch.
+    
+    [self createCopyOfDatabaseIfNeeded];
+    
     NSString *agree = [[NSUserDefaults standardUserDefaults] stringForKey:@"agree"];
     if (agree == NULL) {
         // do nothing and show disclaimer page
@@ -40,6 +42,27 @@
     }
     
     return YES;
+}
+
+- (void)createCopyOfDatabaseIfNeeded {
+    // First, test for existence.
+    BOOL success;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // Database filename can have extension db/sqlite.
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *appDBPath = [documentsDirectory stringByAppendingPathComponent:@"my_daily_fitness.sqlite"];
+    success = [fileManager fileExistsAtPath:appDBPath];
+    if (success){
+        return;
+    }
+    // The writable database does not exist, so copy the default to the appropriate location.
+    NSString *defaultDBPath = [[NSBundle mainBundle] pathForResource:@"my_daily_fitness" ofType:@"sqlite"];
+    success = [fileManager copyItemAtPath:defaultDBPath toPath:appDBPath error:&error];
+    if (!success) {
+        NSLog(@"Failed to create writable database file with message '%@'.", [error userInfo]);
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

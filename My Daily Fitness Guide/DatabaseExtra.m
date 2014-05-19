@@ -13,7 +13,7 @@
 +(NSString *)dbPath {
     NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [docPaths objectAtIndex:0];
-    return [documentsDir   stringByAppendingPathComponent:@"hinduja.sqlite"];
+    return [documentsDir stringByAppendingPathComponent:@"my_daily_fitness.sqlite"];
 }
 
 + (NSString *) md5:(NSString *) input
