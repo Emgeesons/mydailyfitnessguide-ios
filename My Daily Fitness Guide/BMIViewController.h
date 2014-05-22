@@ -13,6 +13,7 @@
     UIPickerView *pickerView;
 }
 @property (weak, nonatomic) IBOutlet UILabel *lblResult;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *txtHeight;

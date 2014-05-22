@@ -38,4 +38,6 @@
 + (void)errorInConnection;
 + (NSString *)getDeviceName;
 
++ (NSInteger) numberOfDaysBetween:(NSString *)startDate and:(NSString *)endDate;
+
 @end

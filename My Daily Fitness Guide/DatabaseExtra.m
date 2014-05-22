@@ -212,4 +212,18 @@
                               encoding:NSUTF8StringEncoding];
 }
 
++ (NSInteger) numberOfDaysBetween:(NSString *)start and:(NSString *)end {
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    NSDate *startDate = [f dateFromString:start];
+    NSDate *endDate = [f dateFromString:end];
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                                                        fromDate:startDate
+                                                          toDate:endDate
+                                                         options:0];
+    return ([components day] + 1);
+}
+
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9BA82B91-14CA-4A1C-A61B-20BD317E5888</string>
+	<key>IDESourceControlProjectName</key>
+	<string>My Daily Fitness Guide</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</key>
+		<string>https://github.com/Emgeesons/mydailyfitnessguide-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>My Daily Fitness Guide.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Emgeesons/mydailyfitnessguide-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>My Daily Fitness Guide</string>
+		</dict>
+	</array>
+</dict>
+</plist>

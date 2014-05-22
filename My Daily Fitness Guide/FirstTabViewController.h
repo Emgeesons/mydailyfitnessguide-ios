@@ -10,8 +10,12 @@
 
 @interface FirstTabViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *viewStart;
+@property (weak, nonatomic) IBOutlet UIView *viewBegin;
 
 
+- (IBAction)btnBeginClicked:(id)sender;
+
+// properties for tab view
 @property (weak, nonatomic) IBOutlet UIView *btnTrainer;
 @property (weak, nonatomic) IBOutlet UIView *btnNutritionist;
 @property (weak, nonatomic) IBOutlet UIView *btnProfile;

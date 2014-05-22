@@ -8,6 +8,7 @@
 
 #import "FirstTabViewController.h"
 #import "SWRevealViewController.h"
+#import "DietPlan.h"
 
 @interface FirstTabViewController () {
     FMDatabase *database;
@@ -67,6 +68,16 @@
     // set background image for viewStart
     [self.viewStart setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"welcome_bg.png"]]];
     
+    [self hideAllViews];
+    [self positionViewbelow];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self hideAllViews];
+    [self positionViewbelow];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
     [self positionViewbelow];
     
     // load startScreen based on value present in database
@@ -77,6 +88,7 @@
     CGRect frame = self.viewStart.frame;
     frame.origin.y = 200;
     self.viewStart.frame = frame;
+    self.viewBegin.frame = frame;
 }
 
 -(void)loadStartView {
@@ -88,15 +100,32 @@
         result = [results stringForColumn:@"value"];
     }
     
+    // For goal is Undefined
     if ([result isEqualToString:@"Undefined"]) {
         CGRect newFrame = self.viewStart.frame;
         newFrame.origin.y = 68;
+        self.viewStart.hidden = NO;
         
         [UIView animateWithDuration:0.7f
                               delay:0.0f
                             options: UIViewAnimationOptionTransitionCrossDissolve
                          animations:^{
                              self.viewStart.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
+    // For goal is Set
+    else if ([result isEqualToString:@"Set"]) {
+        CGRect newFrame = self.viewBegin.frame;
+        newFrame.origin.y = 68;
+        self.viewBegin.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewBegin.frame = newFrame;
                          }
                          completion:nil];
     }
@@ -162,4 +191,30 @@
     self.btnLabelProfile.titleLabel.textColor = [UIColor yellowColor];
 }
 
+-(void)hideAllViews {
+    self.viewStart.hidden = YES;
+    self.viewBegin.hidden = YES;
+}
+
+- (IBAction)btnBeginClicked:(id)sender {
+    
+    //format date
+    /*NSDateFormatter *FormatDate = [[NSDateFormatter alloc] init];
+    [FormatDate setLocale: [NSLocale currentLocale]];
+    
+    //set date format
+    [FormatDate setDateFormat:@"YYYY-MM-dd"];
+    NSString *start_date = [FormatDate stringFromDate:[NSDate date]];
+    
+    
+    [database open];
+    [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Begun", @"goal"];
+    [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", start_date, @"start_date"];
+    [database close];*/
+    
+    // Now show nutritionist tab with current week's diet plan.
+    
+    DietPlan *dietPlan = [[DietPlan alloc] initialize];
+    [dietPlan getDiet];
+}
 @end

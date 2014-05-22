@@ -2180,7 +2180,7 @@ Cg
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome.png" id="tTs-tk-WhH">
-                                        <rect key="frame" x="20" y="20" width="260" height="228"/>
+                                        <rect key="frame" x="28" y="20" width="245" height="228"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j1N-CR-r8v">
@@ -2194,6 +2194,34 @@ Cg
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's see what you are really made of!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LAr-je-26F">
+                                        <rect key="frame" x="20" y="270" width="260" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="x5p-8D-v2z">
+                                <rect key="frame" x="10" y="68" width="300" height="437"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start.png" id="cel-zF-NlP">
+                                        <rect key="frame" x="28" y="20" width="245" height="228"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zfl-ou-zU2">
+                                        <rect key="frame" x="89" y="395" width="122" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <state key="normal" backgroundImage="btn_lets_begin.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnBeginClicked:" destination="uNM-UB-rtA" eventType="touchUpInside" id="pxs-pz-et8"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's see what you are really made of!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hnb-uz-wfl">
                                         <rect key="frame" x="20" y="270" width="260" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -2217,6 +2245,7 @@ Cg
                         <outlet property="btnNutritionist" destination="6ZP-Oa-YYt" id="d5e-y0-iK3"/>
                         <outlet property="btnProfile" destination="TPj-AO-VZZ" id="1Hl-sg-p6u"/>
                         <outlet property="btnTrainer" destination="o0N-Rt-1Fv" id="Su9-8O-CP5"/>
+                        <outlet property="viewBegin" destination="x5p-8D-v2z" id="4xH-Gv-hKF"/>
                         <outlet property="viewStart" destination="dla-7r-BcM" id="aGk-CH-tYj"/>
                     </connections>
                 </viewController>
@@ -2377,6 +2406,7 @@ Cg
                         <outlet property="btnKgs" destination="M8i-SZ-a5b" id="dja-JQ-J7I"/>
                         <outlet property="btnPound" destination="JE4-Bz-pKm" id="UCQ-wa-7Ux"/>
                         <outlet property="lblResult" destination="CRU-27-DXI" id="e21-SV-IVM"/>
+                        <outlet property="progressView" destination="GE5-iO-FvL" id="97S-E4-Bwj"/>
                         <outlet property="txtHeight" destination="Yws-f3-HV2" id="L1c-o2-dLh"/>
                         <outlet property="txtWeight" destination="amz-Ma-IVb" id="umq-dr-BsM"/>
                     </connections>
@@ -2384,6 +2414,309 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iqL-Sn-acm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="158" y="998"/>
+        </scene>
+        <!--Diet Recall View Controller-->
+        <scene sceneID="MQv-bN-ZcQ">
+            <objects>
+                <viewController storyboardIdentifier="dietRecall" id="s4m-fx-iZH" customClass="DietRecallViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cQG-hL-Ms2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dgr-Qx-gww">
+                                <rect key="frame" x="0.0" y="107" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AtJ-gb-zqY">
+                                <rect key="frame" x="20" y="70" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tell us about your Average daily Meal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you a Vegetarian?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UtZ-G1-er9">
+                                <rect key="frame" x="20" y="125" width="154" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="qs2-UY-3uk">
+                                <rect key="frame" x="251" y="120" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchClicked:" destination="s4m-fx-iZH" eventType="valueChanged" id="aHi-y2-2z0"/>
+                                </connections>
+                            </switch>
+                            <view contentMode="scaleToFill" id="z3o-xz-dXb">
+                                <rect key="frame" x="0.0" y="183" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breakfast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H9V-h4-7Gk">
+                                        <rect key="frame" x="20" y="16" width="77" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RWh-L0-tjE">
+                                        <rect key="frame" x="270" y="12" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="btn_add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="K73-mk-Mmm" kind="push" identifier="breakfast" id="yuW-D3-6Lz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="wNS-BO-CpQ">
+                                <rect key="frame" x="0.0" y="240" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lunch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fPo-On-Opn">
+                                        <rect key="frame" x="20" y="16" width="77" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="58m-sD-ogf">
+                                        <rect key="frame" x="270" y="12" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="btn_add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="K73-mk-Mmm" kind="push" identifier="lunch" id="bNo-fD-JIu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="KMN-jF-0Ba">
+                                <rect key="frame" x="0.0" y="297" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snacks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jn9-xK-6mC">
+                                        <rect key="frame" x="20" y="16" width="77" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qvF-Yg-PVB">
+                                        <rect key="frame" x="270" y="12" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="btn_add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="K73-mk-Mmm" kind="push" identifier="snacks" id="agL-wI-sYq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="UfJ-j2-elH">
+                                <rect key="frame" x="0.0" y="354" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dinner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AGH-Pt-epB">
+                                        <rect key="frame" x="20" y="16" width="77" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jOf-FI-Zlm">
+                                        <rect key="frame" x="270" y="12" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="btn_add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="K73-mk-Mmm" kind="push" identifier="dinner" id="nf6-Uo-nqo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="hrm-bD-ioS">
+                                <rect key="frame" x="0.0" y="411" width="320" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bedtime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0PR-OO-bJd">
+                                        <rect key="frame" x="20" y="16" width="77" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sd0-Ao-Gz8">
+                                        <rect key="frame" x="270" y="12" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="btn_add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="K73-mk-Mmm" kind="push" identifier="bedtime" id="cL1-4l-TGi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P59-Tu-9PR">
+                                <rect key="frame" x="0.0" y="165" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="Snacks" destination="qvF-Yg-PVB" id="q48-VN-yZH"/>
+                        <outlet property="btnBedtime" destination="Sd0-Ao-Gz8" id="GXR-8o-NKB"/>
+                        <outlet property="btnBreakfast" destination="RWh-L0-tjE" id="Uf0-fP-H1w"/>
+                        <outlet property="btnDinner" destination="jOf-FI-Zlm" id="8zT-SR-wau"/>
+                        <outlet property="btnlunch" destination="58m-sD-ogf" id="mBF-rz-Sze"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJR-Fn-mQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="502" y="998"/>
+        </scene>
+        <!--Diet Table View Controller-->
+        <scene sceneID="fof-qA-tFA">
+            <objects>
+                <tableViewController id="K73-mk-Mmm" customClass="DietTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rY8-IM-aol">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="5hv-fu-rtc">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5hv-fu-rtc" id="ZQF-av-d0R">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="K73-mk-Mmm" id="pti-bF-3kb"/>
+                            <outlet property="delegate" destination="K73-mk-Mmm" id="Bwe-ll-tH4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="sBX-Nu-Ehe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zh9-QR-w6d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="998"/>
+        </scene>
+        <!--Diet Result View Controller-->
+        <scene sceneID="Cwi-gM-grj">
+            <objects>
+                <viewController storyboardIdentifier="dietResult" id="9uC-UY-4Ua" customClass="DietResultViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IjG-OZ-KaH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="182-ru-TBt">
+                                <rect key="frame" x="5" y="68" width="310" height="495"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diet Result" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qx8-Oe-4rU">
+                                        <rect key="frame" x="20" y="13" width="87" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KZ4-zO-XUj">
+                                        <rect key="frame" x="0.0" y="44" width="310" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xab-Mb-kvN">
+                                        <rect key="frame" x="20" y="59" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OKI-Vb-fSl">
+                                        <rect key="frame" x="50" y="97" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8xB-9r-pQq">
+                                        <rect key="frame" x="50" y="127" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QD1-r7-RUb">
+                                        <rect key="frame" x="50" y="157" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mms-CZ-AQ2">
+                                        <rect key="frame" x="50" y="187" width="109" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bullet.png" id="Rkm-c7-vD6">
+                                        <rect key="frame" x="32" y="106" width="4" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bullet.png" id="Gsq-bd-gbJ">
+                                        <rect key="frame" x="32" y="136" width="4" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bullet.png" id="yGa-mv-sML">
+                                        <rect key="frame" x="32" y="166" width="4" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bullet.png" id="jnf-X5-Rzt">
+                                        <rect key="frame" x="32" y="196" width="4" height="4"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do not keep a gap of more than 3-4 hrs between meals as it could affect your metabolism rate." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zhJ-eh-PfJ">
+                                        <rect key="frame" x="20" y="398" width="270" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.36919982169999999" green="0.65445805199999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_boundary.png" id="cMt-i2-sXA">
+                                        <rect key="frame" x="0.0" y="449" width="310" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="lblCarbohydrates" destination="OKI-Vb-fSl" id="mcc-IR-O2Z"/>
+                        <outlet property="lblFats" destination="QD1-r7-RUb" id="iQq-vD-LSJ"/>
+                        <outlet property="lblFibre" destination="mms-CZ-AQ2" id="lfv-A3-fIb"/>
+                        <outlet property="lblProtiens" destination="8xB-9r-pQq" id="yFA-i5-l26"/>
+                        <outlet property="viewBack" destination="182-ru-TBt" id="WpS-HX-e0J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CMd-wx-R4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320" y="998"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rbD-cA-nTK">
@@ -2565,7 +2898,10 @@ Cg
     </scenes>
     <resources>
         <image name="bmi.png" width="300" height="63"/>
+        <image name="btn_add.png" width="24" height="24"/>
         <image name="btn_get_started.png" width="135" height="34"/>
+        <image name="btn_lets_begin.png" width="135" height="34"/>
+        <image name="bullet.png" width="4" height="4"/>
         <image name="call.png" width="18" height="18"/>
         <image name="female_active.png" width="35" height="32"/>
         <image name="google_map.png" width="18" height="18"/>
@@ -2581,11 +2917,13 @@ Cg
         <image name="ic_nav_share_app.png" width="16" height="16"/>
         <image name="ic_nav_t_and_c.png" width="32" height="32"/>
         <image name="ic_nav_vip_guest_pass.png" width="16" height="16"/>
+        <image name="im_boundary.png" width="300" height="21"/>
         <image name="kgs_active.png" width="57" height="36"/>
         <image name="male_active.png" width="35" height="32"/>
         <image name="nutritionist_inactive.png" width="41" height="24"/>
         <image name="pounds_active.png" width="57" height="36"/>
         <image name="profile_inactive.png" width="41" height="24"/>
+        <image name="start.png" width="245" height="245"/>
         <image name="trainer_active.png" width="41" height="24"/>
         <image name="welcome.png" width="245" height="245"/>
     </resources>
@@ -2596,5 +2934,6 @@ Cg
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="UFJ-h6-1OJ"/>
+        <segue reference="cL1-4l-TGi"/>
     </inferredMetricsTieBreakers>
 </document>
