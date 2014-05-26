@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DosAndDontsViewController : UIViewController
+@interface DosAndDontsViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, strong) NSString *screenType;
 

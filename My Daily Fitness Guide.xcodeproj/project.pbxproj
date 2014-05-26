@@ -171,6 +171,8 @@
 		ECEA11A9192386BC00823952 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA1197192386BC00823952 /* UIRefreshControl+AFNetworking.m */; };
 		ECEA11AA192386BC00823952 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEA1199192386BC00823952 /* UIWebView+AFNetworking.m */; };
 		ECF5EC4419330FBC009EDFA6 /* dietTips.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC4319330FBC009EDFA6 /* dietTips.plist */; };
+		ECF5EC461933472D009EDFA6 /* quotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC451933472D009EDFA6 /* quotes@2x.png */; };
+		ECF5EC4819334738009EDFA6 /* quotes.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC4719334738009EDFA6 /* quotes.png */; };
 		ECFD7938192C6CBC00464EE4 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD791D192C6CBC00464EE4 /* MASCompositeConstraint.m */; };
 		ECFD7939192C6CBC00464EE4 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7920192C6CBC00464EE4 /* MASConstraint.m */; };
 		ECFD793A192C6CBC00464EE4 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7922192C6CBC00464EE4 /* MASConstraintMaker.m */; };
@@ -416,6 +418,8 @@
 		ECEA1198192386BC00823952 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		ECEA1199192386BC00823952 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		ECF5EC4319330FBC009EDFA6 /* dietTips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dietTips.plist; sourceTree = "<group>"; };
+		ECF5EC451933472D009EDFA6 /* quotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quotes@2x.png"; sourceTree = "<group>"; };
+		ECF5EC4719334738009EDFA6 /* quotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quotes.png; sourceTree = "<group>"; };
 		ECFD791C192C6CBC00464EE4 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		ECFD791D192C6CBC00464EE4 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		ECFD791E192C6CBC00464EE4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -766,6 +770,7 @@
 			children = (
 				ECAE3199192F27810095A40F /* n_m_1.jpg */,
 				EC19B3A21932F58800C5BE54 /* btn_full_body_pics.png */,
+				ECF5EC4719334738009EDFA6 /* quotes.png */,
 				EC19B39E1932F3D400C5BE54 /* default_profile.png */,
 				ECAE319A192F27810095A40F /* n_m_2.jpg */,
 				ECAE319B192F27810095A40F /* n_m_3.jpg */,
@@ -810,6 +815,7 @@
 			children = (
 				ECAE31A1192F278C0095A40F /* n_m_1@2x.jpg */,
 				EC19B3A01932F3E300C5BE54 /* default_profile@2x.png */,
+				ECF5EC451933472D009EDFA6 /* quotes@2x.png */,
 				EC19B3A41932F59300C5BE54 /* btn_full_body_pics@2x.png */,
 				ECAE31A2192F278C0095A40F /* n_m_2@2x.jpg */,
 				ECAE31A3192F278C0095A40F /* n_m_3@2x.jpg */,
@@ -1030,6 +1036,7 @@
 				EC42179B19232C6000B162D8 /* InfoPlist.strings in Resources */,
 				EC7D408019248D48001338E4 /* ic_nav_home@2x.png in Resources */,
 				EC7D408619248D48001338E4 /* ic_nav_t_and_c@2x.png in Resources */,
+				ECF5EC461933472D009EDFA6 /* quotes@2x.png in Resources */,
 				ECEA11731923795600823952 /* male_inactive@2x.png in Resources */,
 				ECAE31A5192F278C0095A40F /* n_m_1@2x.jpg in Resources */,
 				ECEA116D1923795600823952 /* female_inactive.png in Resources */,
@@ -1053,6 +1060,7 @@
 				ECAE3198192F1F190095A40F /* ic_guidelines@2x.png in Resources */,
 				EC19B39F1932F3D400C5BE54 /* default_profile.png in Resources */,
 				ECAE31A6192F278C0095A40F /* n_m_2@2x.jpg in Resources */,
+				ECF5EC4819334738009EDFA6 /* quotes.png in Resources */,
 				ECEA11711923795600823952 /* female_inactive@2x.png in Resources */,
 				ECDB8AC819234B0B00CA2137 /* splashscreen_320x480.png in Resources */,
 				EC02DCC3192A0EAD00BAD1D0 /* kgs_active@2x.png in Resources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FirstTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewStart;
 
 @property (weak, nonatomic) IBOutlet UIView *viewBegin;

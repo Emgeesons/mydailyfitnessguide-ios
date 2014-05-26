@@ -32,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //self.webView.delegate = self;
+    
     [self.navBar setBounds:CGRectMake(0, 0, 320, 81)];
     [self.navBar setBarTintColor:[UIColor blackColor]];
     
@@ -39,8 +41,8 @@
     
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     htmlString = [[NSMutableString alloc] init];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"welcome_bg" ofType:@"png"];
-    [htmlString appendFormat:@"<html><head><style>ul {padding-left: 20px; margin-left: 10px;} h4 { text-align: center;} div {background-image:url('file://%@'); background-repeat:no-repeat;}</style></head><body>", path];
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"welcome_bg" ofType:@"png"];
+    [htmlString appendFormat:@"<html><head><style>ul {padding-left: 20px; margin-top: 2px; margin-left: 10px;} h5 { margin-bottom: 2px; padding-left: 5px; margin-left:5px;} h4 { margin-top: -6px; margin-bottom: -12px; text-align: center;} div {background: -webkit-linear-gradient(top, #e8e8e8, #ffffff);}</style></head><body>"];
     //NSLog(@"%@", htmlString);
     
     [database open];
@@ -65,9 +67,7 @@
     [htmlString appendString:@"</body></html>"];
     
     [_webView loadHTMLString:htmlString baseURL:nil];
-    [self longPress:_webView];
-    
-    
+    [self longPress:self.webView];
 }
 
 - (void)longPress:(UIView *)webView {
@@ -105,7 +105,7 @@
 -(void)initializeStrings {
     heart = @"<div id='Heart'><br/><h4>Blood Pressure - Hypertension</h4><h5>Do's</h5><ul><li>Have lot of vegetables and fruits.</li><li>Use low fat dairy products.</li><li>Consume whole grains and lean meat, fish and poultry.</li><li>Limit fast foods, canned foods or foods that are bought prepared.</li></ul><h5>Don'ts</h5><ul><li>Avoid Saturated fats and Trans Fats.</li><li>Restrict the intake of table salt.</li><li>Avoid Alcohol and Smoking.</li></ul></div><div id='Heart'><br/><h4>Blood Pressure - Hypotension</h4><h5>Do's</h5><ul><li>Include more salt in your diet.</li><li>Eating smaller meals, more often.</li></ul><h5>Don'ts</h5><ul><li>Avoid caffeine at night.</li><li>Limit alcohol intake.</li></ul></div>";
     
-    diabetes = @"<div id='Diabetes'><br/><h4>Diabetes </h4><h5>Do's</h5>Include the following in your diet regularly<ul><li>Fenugreek (methi)- 1-2tspn/day</li><li>Indian blackberry (jamun)- 8-10/day</li><li>Garlic- 2-3 cloves/day</li><li>Flaxseed- 1-2tspn/day </li><li>Fibre- 25-30gms/day </li></ul><h5>Don'ts</h5>Use the following foods in moderation<ul><li>Salt </li><li>Sugar </li><li>Fat </li><li>Whole milk and products </li><li>Tea and coffee</li><li>White flour and its products</li><li>Foods with a high glycemic index.</li></ul></div>";
+    diabetes = @"<div id='Diabetes'><br/><h4>Diabetes </h4><h5>Do's</h5><p>Include the following in your diet regularly</p><ul><li>Fenugreek (methi)- 1-2tspn/day</li><li>Indian blackberry (jamun)- 8-10/day</li><li>Garlic- 2-3 cloves/day</li><li>Flaxseed- 1-2tspn/day </li><li>Fibre- 25-30gms/day </li></ul><h5>Don'ts</h5><p>Use the following foods in moderation</p><ul><li>Salt </li><li>Sugar </li><li>Fat </li><li>Whole milk and products </li><li>Tea and coffee</li><li>White flour and its products</li><li>Foods with a high glycemic index.</li></ul></div>";
     
     pregnancy = @"<div id='Pregnancy'><br/><h4>Pregnancy</h4><h5>Do's</h5><ul><li>Eat plenty of calcium (milk, cheese, yoghurt).</li><li>Include protein (lean meat, chicken and fish, eggs and pulses) in your diet.</li><li>Eat iron rich foods(fortified cereals, red meat, pulses, bread, green veg).</li></ul><h5>Don'ts</h5><ul><li>Avoid caffeine intake.</li><li>Do not consume liver or liver products.</li><li>Avoid raw shellfish.</li></ul></div>";
     

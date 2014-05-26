@@ -22,6 +22,8 @@
     int max, min, numberOfRowsNutritionistTableView;
     BOOL bTrainer, bNutritionist, bProfile;
     NSArray *dietTips;
+    float webViewHeight;
+    UIWebView *webView;
 }
 
 @end
@@ -315,6 +317,14 @@
                          completion:nil];
         DietPlan *dietPlan = [[DietPlan alloc] initialize];
         weeklyDiet = [dietPlan getDiet];
+        
+        webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        
+        webView.scrollView.scrollEnabled = NO;
+        webView.backgroundColor = [UIColor clearColor];
+        webView.delegate = self;
+        
+        [webView loadHTMLString:weeklyDiet baseURL:nil];
         [self.tvWeeklyDiet reloadData];
     }
 }
@@ -506,21 +516,22 @@
                 imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"n_m_4.jpg"]];
             }
             
+            UIImageView *quoteImageView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 3, 20, 18)];
+            quoteImageView.image = [UIImage imageNamed:@"quotes.png"];
+            
             UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(95, 20, 203, 90)];
             lblTips.text = tips;
             lblTips.numberOfLines = 0;
             lblTips.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
             
-            [yellowView addSubview:lblTips];
             [yellowView addSubview:imageView];
+            [yellowView addSubview:quoteImageView];
+            [yellowView addSubview:lblTips];
+            
             [cell.contentView addSubview:yellowView];
         } else if (indexPath.row == 2) {
-            UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-            [webView loadHTMLString:weeklyDiet baseURL:nil];
-            webView.scrollView.scrollEnabled = NO;
-            webView.backgroundColor = [UIColor clearColor];
-            
-            double lessHeight;
+
+            /*double lessHeight;
             if (weeklyDiet.length > 2400 &&  weeklyDiet.length < 2600) {
                 lessHeight = 275;
             } else if (weeklyDiet.length > 2600 &&  weeklyDiet.length < 3000) {
@@ -539,15 +550,16 @@
                                                  options:NSStringDrawingUsesLineFragmentOrigin
                                               attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:FONT_SIZE]}
                                                  context:nil];
-            CGSize size = textRect.size;
+            CGSize size = textRect.size;*/
             
             // call function for disabling long press on uiwebview
             [self longPress:webView];
             
             //removing extra spacing
-            [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, MAX((size.height - lessHeight), 44.0f))];
+            //[webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, MAX((size.height - lessHeight), 44.0f))];
+            [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, webViewHeight)];
             
-            cell.backgroundColor = [UIColor grayColor];
+            //cell.backgroundColor = [UIColor grayColor];
             [cell.contentView addSubview:webView];
             
         } else if (indexPath.row == 4) {
@@ -595,7 +607,9 @@
             CGSize size = textRect.size;
             //removing extra spacing
             CGFloat height = MAX((size.height - lessHeight), 44.0f);
-            return height;
+
+            //CGFloat height = MAX((webView.scrollView.contentSize.height), 44.0f);
+            return webViewHeight;
         } else if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 5) {
             return 20;
         }
@@ -605,14 +619,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.tvWeeklyDiet) {
-        if (indexPath.row == 2) {
+        if (indexPath.row == 4) {
             // open Guidelines
             GuidelinesViewController *viewController = (GuidelinesViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"guidelinesViewController"];
             viewController.screenType = @"nutritionist";
             viewController.modalPresentationStyle = UIModalPresentationPageSheet;
             viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:viewController animated:YES completion:nil];
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 6) {
             // open do's and don't
             DosAndDontsViewController *viewController = (DosAndDontsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"dosAndDontsViewController"];
             viewController.screenType = @"nutritionist";
@@ -645,6 +659,19 @@
 // I just need this for the selector in the gesture recognizer.
 - (void)handleLongPress {
     
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
+{
+    CGRect frame = aWebView.frame;
+    frame.size.height = 1;
+    aWebView.frame = frame;
+    CGSize fittingSize = [aWebView sizeThatFits:CGSizeZero];
+    frame.size = fittingSize;
+    aWebView.frame = frame;
+    webViewHeight = fittingSize.height;
+    [self.tvWeeklyDiet reloadData];
+    NSLog(@"size: %f, %f", fittingSize.width, fittingSize.height);
 }
 
 @end
