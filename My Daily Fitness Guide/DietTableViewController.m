@@ -262,19 +262,19 @@
     if (selectedNumber == NSNotFound) {
         selectedNumber = 0;
     }
-    double energy = 0.0, cholestrol = 0.0, protiens = 0.0, fats = 0.0, fibre = 0.0;
+    double energy = 0.0, carbohydrates = 0.0, protiens = 0.0, fats = 0.0, fibre = 0.0;
     
     number = servings[selectedNumber];
     [selectedFood setObject:number forKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
 
-    // calculate energy, cholestrol, protiens, fats, fibre
+    // calculate energy, carbohydrates, protiens, fats, fibre
     [database open];
     NSInteger oldValue = 0;
     FMResultSet *r = [database executeQuery:[NSString stringWithFormat:@"SELECT energy, cho, protiens, fats, fibre, calcValue FROM dietaryRecall WHERE id = %d", (selectedIndexPath.row + 1)]];
     while([r next]) {
         oldValue = [[r stringForColumn:@"calcValue"] integerValue];
         energy = [[r stringForColumn:@"energy"] doubleValue];
-        cholestrol = [[r stringForColumn:@"cho"] doubleValue];
+        carbohydrates = [[r stringForColumn:@"cho"] doubleValue];
         protiens = [[r stringForColumn:@"protiens"] doubleValue];
         fats = [[r stringForColumn:@"fats"] doubleValue];
         fibre = [[r stringForColumn:@"fibre"] doubleValue];
@@ -286,21 +286,21 @@
     if (tmp != NULL) {
         // increment values
         double oldEnergy = [tmp doubleValue];
-        double oldCholestrol = [[[NSUserDefaults standardUserDefaults] objectForKey:@"cholestrol"] doubleValue];
+        double oldCarbohydrates = [[[NSUserDefaults standardUserDefaults] objectForKey:@"carbohydrates"] doubleValue];
         double oldProtiens = [[[NSUserDefaults standardUserDefaults] objectForKey:@"protiens"] doubleValue];
         double oldFats = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fats"] doubleValue];
         double oldFibre = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fibre"] doubleValue];
         
         // decrement old values data of curent food
         oldEnergy = (oldEnergy - (energy * oldValue)) + (energy * [number intValue]);
-        oldCholestrol = (oldCholestrol - (cholestrol * oldValue)) + (cholestrol * [number intValue]);
+        oldCarbohydrates = (oldCarbohydrates - (carbohydrates * oldValue)) + (carbohydrates * [number intValue]);
         oldProtiens = (oldProtiens - (protiens * oldValue)) + (protiens * [number intValue]);
         oldFats = (oldFats - (fats * oldValue)) + (fats * [number intValue]);
         oldFibre = (oldFibre - (fibre * oldValue)) + (fibre * [number intValue]);
         
         // store these values in NSUserdefaults
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldEnergy] forKey:@"energy"];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldCholestrol] forKey:@"cholestrol"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldCarbohydrates] forKey:@"carbohydrates"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldProtiens] forKey:@"protiens"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldFats] forKey:@"fats"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", oldFibre] forKey:@"fibre"];
@@ -310,14 +310,14 @@
         // initial value
         // calculate new values
         energy = energy * [number intValue];
-        cholestrol = cholestrol * [number intValue];
+        carbohydrates = carbohydrates * [number intValue];
         protiens = protiens * [number intValue];
         fats = fats * [number intValue];
         fibre = fibre * [number intValue];
         
         // store these values in NSUserdefaults
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", energy] forKey:@"energy"];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", cholestrol] forKey:@"cholestrol"];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", carbohydrates] forKey:@"carbohydrates"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", protiens] forKey:@"protiens"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", fats] forKey:@"fats"];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", fibre] forKey:@"fibre"];

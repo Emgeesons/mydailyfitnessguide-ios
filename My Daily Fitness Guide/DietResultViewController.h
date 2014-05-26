@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DietResultViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UIView *viewBack;
 @property (weak, nonatomic) IBOutlet UILabel *lblCarbohydrates;
 @property (weak, nonatomic) IBOutlet UILabel *lblProtiens;

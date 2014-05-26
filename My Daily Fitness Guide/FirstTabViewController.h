@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstTabViewController : UIViewController
+@interface FirstTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewStart;
+
 @property (weak, nonatomic) IBOutlet UIView *viewBegin;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *lblBegin;
 - (IBAction)btnBeginClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIView *viewWeeklyDiet;
+@property (weak, nonatomic) IBOutlet UITableView *tvWeeklyDiet;
+
+@property (weak, nonatomic) IBOutlet UIView *vwProfile;
 
 // properties for tab view
 @property (weak, nonatomic) IBOutlet UIView *btnTrainer;

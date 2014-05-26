@@ -42,6 +42,55 @@
     UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextClicked)];
     
     self.navigationItem.rightBarButtonItem = nextButton;
+    
+    double oldCarbohydrates = [[[NSUserDefaults standardUserDefaults] objectForKey:@"carbohydrates"] doubleValue];
+    double oldProtiens = [[[NSUserDefaults standardUserDefaults] objectForKey:@"protiens"] doubleValue];
+    double oldFats = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fats"] doubleValue];
+    double oldFibre = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fibre"] doubleValue];
+    
+    double total = oldCarbohydrates + oldProtiens + oldFats;
+    double perCarbohydrates, perProtiens, perFats, perFibre;
+    
+    perCarbohydrates = (oldCarbohydrates * 100)/ total;
+    perProtiens = (oldProtiens * 100)/ total;
+    perFats = (oldFats * 100)/ total;
+    perFibre = (14 * total) / 1000;
+    
+    // For carbohydrates
+    if (perCarbohydrates > 60) {
+        self.lblCarbohydrates.text = @"High Intake of Carbohydrates";
+    } else if (perCarbohydrates == 60) {
+        self.lblCarbohydrates.text = @"Normal Intake of Carbohydrates";
+    } else {
+        self.lblCarbohydrates.text = @"Less Intake of Carbohydrates";
+    }
+    
+    // For Protiens
+    if (perProtiens > 30) {
+        self.lblProtiens.text = @"High Intake of Protien";
+    } else if (perProtiens >= 25 && perProtiens <= 30) {
+        self.lblProtiens.text = @"Normal Intake of Protien";
+    } else {
+        self.lblProtiens.text = @"Less Intake of Protien";
+    }
+    
+    // For Fats
+    if (perFats > 15) {
+        self.lblFats.text = @"High Intake of Fat";
+    } else if (perFats >= 10 && perFats <= 15) {
+        self.lblFats.text = @"Normal Intake of Fat";
+    } else {
+        self.lblFats.text = @"Less Intake of Fat";
+    }
+    
+    // For Fibre
+    if (perFibre < oldFibre) {
+        self.lblFibre.text = @"Good Intake of Fibre";
+    } else if (perFibre == oldFibre) {
+        self.lblFibre.text = @"Normal Intake of Fibre";
+    } else {
+        self.lblFibre.text = @"Poor Intake of Fibre";
+    }
 }
 
 -(void)setTitle:(NSString *)title {

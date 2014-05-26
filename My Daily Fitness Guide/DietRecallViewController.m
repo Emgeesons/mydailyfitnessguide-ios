@@ -142,7 +142,7 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"energy"];
-    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"cholestrol"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"carbohydrates"];
     [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"protiens"];
     [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fats"];
     [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fibre"];

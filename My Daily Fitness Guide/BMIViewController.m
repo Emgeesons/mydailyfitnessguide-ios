@@ -14,7 +14,7 @@
     NSString *gender, *programType, *heightString;
     NSDictionary *scheduleLoss, *scheduleGain;
     FMDatabase *database;
-    double bmi, newIBW, numberOfMonths, ibw;
+    double bmi, newIBW, numberOfMonths, ibw, weight;
 }
 
 @end
@@ -84,11 +84,11 @@
 }
 
 -(void)nextClicked {
-    //if (self.txtHeight.text.length != 0 && self.txtWeight.text.length != 0) {
+    if (self.txtHeight.text.length != 0 && self.txtWeight.text.length != 0) {
         // update data in table
         [database open];
         
-        /*NSString *weightType;
+        NSString *weightType;
         if (self.btnPound.alpha == 0.5) {
             // kgs is selected
             weightType = @"kgs";
@@ -97,25 +97,26 @@
             weightType = @"pounds";
         }
         
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"weightType", weightType];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"feet", [NSString stringWithFormat:@"%d", feet]];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"inches", [NSString stringWithFormat:@"%d", inches]];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"bmi", [NSString stringWithFormat:@"%f", bmi]];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"programType", programType];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"kgsLossGain", [NSString stringWithFormat:@"%f", newIBW]];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"durationInMonth", [NSString stringWithFormat:@"%f", numberOfMonths]];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"targetWeight", [NSString stringWithFormat:@"%f", ibw]];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", weightType, @"weightType"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?",[NSString stringWithFormat:@"%d", feet], @"feet"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%d", inches], @"inches"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", bmi], @"bmi"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", programType, @"programType"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", newIBW], @"kgsLossGain"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", numberOfMonths], @"durationInMonth"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", ibw], @"targetWeight"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", weight], @"weight"];
         
-        [database close];*/
+        [database close];
         
         // open diet screen
         UIViewController *v = [self.storyboard instantiateViewControllerWithIdentifier:@"dietRecall"];
         [self.navigationController pushViewController:v animated:YES];
         
-    /*} else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Don’t feel shy.. Enter your information" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Don’t feel shy.. Enter your information." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-    }*/
+    }
 }
 
 #pragma mark - TextField Delegate methods
@@ -241,7 +242,7 @@
 }
 
 -(void)doneClicked {
-    self.lblResult.text = heightString;
+    self.txtHeight.text = heightString;
     heightString = @"";
     
     [sheet dismissWithClickedButtonIndex:0 animated:YES];
@@ -265,7 +266,7 @@
 
 -(void)updateBMI {
     if (self.txtHeight.text.length > 0 && self.txtWeight.text.length > 0) {
-        double height, progressValue, weight;
+        double height, progressValue;
         NSString *weightType;
         
         height = (((feet * 12) + inches)*2.54)/100;

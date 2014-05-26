@@ -2108,7 +2108,7 @@ Cg
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1LN-bd-aW4">
-                                                <rect key="frame" x="12" y="4" width="70" height="25"/>
+                                                <rect key="frame" x="19" y="11" width="51" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="trainer_active.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2131,7 +2131,7 @@ Cg
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EBp-mv-n6L">
-                                                <rect key="frame" x="11" y="4" width="70" height="25"/>
+                                                <rect key="frame" x="19" y="11" width="51" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="nutritionist_inactive.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2154,7 +2154,7 @@ Cg
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H7n-Gk-tOh">
-                                                <rect key="frame" x="11" y="4" width="70" height="25"/>
+                                                <rect key="frame" x="21" y="11" width="51" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="profile_inactive.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2175,7 +2175,7 @@ Cg
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="dla-7r-BcM">
+                            <view hidden="YES" contentMode="scaleToFill" id="dla-7r-BcM">
                                 <rect key="frame" x="10" y="68" width="300" height="437"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -2203,7 +2203,69 @@ Cg
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="x5p-8D-v2z">
+                            <view contentMode="scaleToFill" id="xRE-aW-QyF">
+                                <rect key="frame" x="10" y="66" width="300" height="437"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="HVv-bD-Y2J">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="437"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mbQ-a2-EOy">
+                                                <rect key="frame" x="5" y="5" width="84" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="default_profile.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="md3-Ly-0ac">
+                                                <rect key="frame" x="95" y="10" width="202" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 yrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hPh-QU-Uz4">
+                                                <rect key="frame" x="95" y="30" width="51" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 ft 10 in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dFX-H9-bFi">
+                                                <rect key="frame" x="149" y="30" width="70" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1uw-Cj-Jxy">
+                                                <rect key="frame" x="95" y="56" width="110" height="26"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="btn_full_body_pics.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="b8N-W2-3co">
+                                <rect key="frame" x="10" y="66" width="300" height="437"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="D7V-uc-CCW">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="437"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="uNM-UB-rtA" id="YKc-ll-yzB"/>
+                                            <outlet property="delegate" destination="uNM-UB-rtA" id="6XX-R8-CEV"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="x5p-8D-v2z">
                                 <rect key="frame" x="10" y="68" width="300" height="437"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -2245,13 +2307,106 @@ Cg
                         <outlet property="btnNutritionist" destination="6ZP-Oa-YYt" id="d5e-y0-iK3"/>
                         <outlet property="btnProfile" destination="TPj-AO-VZZ" id="1Hl-sg-p6u"/>
                         <outlet property="btnTrainer" destination="o0N-Rt-1Fv" id="Su9-8O-CP5"/>
+                        <outlet property="lblBegin" destination="hnb-uz-wfl" id="pnd-Oi-69H"/>
+                        <outlet property="tvWeeklyDiet" destination="D7V-uc-CCW" id="A43-Q0-38K"/>
                         <outlet property="viewBegin" destination="x5p-8D-v2z" id="4xH-Gv-hKF"/>
                         <outlet property="viewStart" destination="dla-7r-BcM" id="aGk-CH-tYj"/>
+                        <outlet property="viewWeeklyDiet" destination="b8N-W2-3co" id="HO6-Vk-Ixe"/>
+                        <outlet property="vwProfile" destination="xRE-aW-QyF" id="XIt-2P-q9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8AF-mr-jjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-616" y="998"/>
+        </scene>
+        <!--Guidelines View Controller-->
+        <scene sceneID="QIo-cx-2XW">
+            <objects>
+                <viewController storyboardIdentifier="guidelinesViewController" id="Goh-p9-9ND" customClass="GuidelinesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="um9-gE-Ran">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="BWs-ah-G21">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Guidelines" id="LlV-9g-hUk">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="bSh-St-Vj3">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="Goh-p9-9ND" id="nj7-mZ-gSD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" id="N5J-3z-98G">
+                                <rect key="frame" x="6" y="82" width="308" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="navBar" destination="BWs-ah-G21" id="dwn-zH-2L7"/>
+                        <outlet property="navItem" destination="LlV-9g-hUk" id="D3A-oJ-tY5"/>
+                        <outlet property="webView" destination="N5J-3z-98G" id="pTv-gl-QgB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1T5-A2-Z4N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="1684"/>
+        </scene>
+        <!--Dos And Donts View Controller-->
+        <scene sceneID="unB-il-qsk">
+            <objects>
+                <viewController storyboardIdentifier="dosAndDontsViewController" id="AuC-bK-WQX" customClass="DosAndDontsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tec-Mw-MHu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="XJI-1b-mVx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Do's and Dont's" id="ysF-Fn-Xcv">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Xw3-lZ-krB">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="AuC-bK-WQX" id="ZFo-pi-KKd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" id="qfF-wr-bcF">
+                                <rect key="frame" x="6" y="82" width="308" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="XJI-1b-mVx" id="8LU-Lc-By4"/>
+                        <outlet property="navItem" destination="ysF-Fn-Xcv" id="awk-5R-Uma"/>
+                        <outlet property="webView" destination="qfF-wr-bcF" id="b5B-8w-DLI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15I-O9-1Tc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1320" y="1684"/>
         </scene>
         <!--Medical Condition View Controller-->
         <scene sceneID="dIg-QD-gjb">
@@ -2646,28 +2801,28 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OKI-Vb-fSl">
-                                        <rect key="frame" x="50" y="97" width="109" height="21"/>
+                                        <rect key="frame" x="50" y="97" width="240" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8xB-9r-pQq">
-                                        <rect key="frame" x="50" y="127" width="109" height="21"/>
+                                        <rect key="frame" x="50" y="127" width="240" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QD1-r7-RUb">
-                                        <rect key="frame" x="50" y="157" width="109" height="21"/>
+                                        <rect key="frame" x="50" y="157" width="240" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Diet has;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mms-CZ-AQ2">
-                                        <rect key="frame" x="50" y="187" width="109" height="21"/>
+                                        <rect key="frame" x="50" y="187" width="240" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2698,7 +2853,7 @@ Cg
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_boundary.png" id="cMt-i2-sXA">
                                         <rect key="frame" x="0.0" y="449" width="310" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2899,10 +3054,12 @@ Cg
     <resources>
         <image name="bmi.png" width="300" height="63"/>
         <image name="btn_add.png" width="24" height="24"/>
+        <image name="btn_full_body_pics.png" width="105" height="24"/>
         <image name="btn_get_started.png" width="135" height="34"/>
         <image name="btn_lets_begin.png" width="135" height="34"/>
         <image name="bullet.png" width="4" height="4"/>
         <image name="call.png" width="18" height="18"/>
+        <image name="default_profile.png" width="88" height="88"/>
         <image name="female_active.png" width="35" height="32"/>
         <image name="google_map.png" width="18" height="18"/>
         <image name="ic_nav_buy_membership.png" width="16" height="16"/>

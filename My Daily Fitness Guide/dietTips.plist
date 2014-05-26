@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>tips</key>
+	<array>
+		<string>Vitamin C is good for your skin. So, remember to eat a citrus fruit every day.</string>
+		<string>Preferably have smaller meals at regular intervals rather than large meals infrequently as this can prevent wide blood sugar fluctuations.</string>
+		<string>Do not bend or lie down immediately after your meals. This could trigger an acid-peptic disease.</string>
+		<string>Too little calories can slow down the body’s metabolism, thereby decreasing the absorption of vitamins and essential nutrients too.</string>
+		<string>If you tend to overeat always, eating salads before your main course will fill you up in advance, thereby making you eat less.</string>
+		<string>Breakfast cereals can provide just the right amounts of carbohydrates, vitamins, and minerals as we start the day.</string>
+		<string>Cutting down on high calories, salt, and alcohol can help in preventing hypercholesterolemia and high blood pressure.</string>
+		<string>A diet that is low in fat, high in fiber, and mostly vegetarian, is known to prevent many diseases, including cancer.</string>
+		<string>Eating salads when outside is not a very good idea as the raw fruits or vegetables may not have been washed properly.</string>
+		<string>Readymade foods contain preservatives, sweeteners, and colorants, which could be harmful to the body.</string>
+		<string>Junk foods emphasize more on taste rather than nutrition. Hence, they are not very good for health and often give rise to problems.</string>
+		<string>Binging on junk food is one of the main reasons for hyperacidity because junk food is usually high in its fat and spice content.</string>
+		<string>Intake of fatty and sweet food items can lead to obesity. So, think twice before you give in to your temptations.</string>
+        <string>Junk food gets its wonderful taste by the lavish usage of oils, salts, and/or sugar. So, beware!.</string>
+        <string>An excess of junk food can cause major health problems. Therefore, always try to stick to home-cooked meals.</string>
+        <string>Curds and buttermilk can be used as electrolytes during diarrhoea. Probiotics present in curds can facilitate faster recovery.</string>
+        <string>Omega 3 fatty acids, present in fish, walnuts, broccoli, and spinach, are anti-inflammatory and also protect the heart.</string>
+        <string>Increasing your intake of fiber in the form of fruits, vegetables, and wholegrain cereals or pulses helps to lose weight healthily.</string>
+        <string>Vitamin supplements are meant to complement your diet and not replace certain food items missing in your meals.</string>
+        <string>A low calorie food item need not necessarily be low in fat. Hence, check out the nutrition labels before you purchase foodstuff.</string>
+        <string>Protein supplements, if taken without a planned and balanced meal, can prove fatal to the body as excess proteins can damage the kidneys.</string>
+        <string>Stress is fattening. Hence find ways to keep yourself stress-free to help your body make healthy food choices.</string>
+        <string>Diabetics should eat fruits in between meals as consuming them later can increase their blood sugar levels.</string>
+        <string>Calcium supplements during pregnancy and lactation ensure that there is no loss of bone density in lactating women.</string>
+        <string>Eliminating dietary carbohydrates deprives the body of energy, leading to energy generation from proteins, which leads to muscle loss.</string>
+        <string>Understanding food claims and food labels can help to make the right choice of healthy food. So, be a conscious customer.</string>
+	</array>
+</dict>
+</plist>
