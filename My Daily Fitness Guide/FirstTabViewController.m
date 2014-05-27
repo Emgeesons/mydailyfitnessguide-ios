@@ -11,6 +11,7 @@
 #import "DietPlan.h"
 #import "GuidelinesViewController.h"
 #import "DosAndDontsViewController.h"
+#import "WeeklySchedule.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -18,12 +19,13 @@
 
 @interface FirstTabViewController () {
     FMDatabase *database;
-    NSString *weeklyDiet;
-    int max, min, numberOfRowsNutritionistTableView;
+    NSString *weeklyDiet, *vacationDate, *goalState;
+    int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top;
     BOOL bTrainer, bNutritionist, bProfile;
-    NSArray *dietTips;
+    NSArray *dietTips, *trainerTips, *vacationTips;
     float webViewHeight;
     UIWebView *webView;
+    UITableView *scheduleTableChild;
 }
 
 @end
@@ -42,10 +44,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    // initialize max and min numbers gor random images
-    max = 4, min = 1;
+    //WeeklySchedule *w = [[WeeklySchedule alloc] initialize];
+    
+    top = 0;
     
     // database initialization
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
@@ -56,6 +58,8 @@
     // Load the file content and read the data into arrays
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:path];
     dietTips = [dict objectForKey:@"tips"];
+    trainerTips = [dict objectForKey:@"trainerTips"];
+    vacationTips = [dict objectForKey:@"vacationTips"];
     
     // code for changing Back button text color
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -103,17 +107,37 @@
             numberOfRowsNutritionistTableView = 7;
         }
     }
+    
+    FMResultSet *vacationResult = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];
+    while([vacationResult next]) {
+        if ([[vacationResult stringForColumn:@"type"] isEqualToString:@"vacationDate"]) {
+            vacationDate = [vacationResult stringForColumn:@"value"];
+        } else if ([[vacationResult stringForColumn:@"type"] isEqualToString:@"goal"]) {
+            goalState = [vacationResult stringForColumn:@"value"];
+        }
+    }
+    
     [database close];
     
     // set btrainer as YES and rest NO
     bTrainer = YES;
     bNutritionist = NO;
     bProfile = NO;
+    
+    //initialize scheduleTableChild
+    scheduleTableChild = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 280, 300)];
+    scheduleTableChild.delegate = self;
+    scheduleTableChild.dataSource = self;
+    scheduleTableChild.scrollEnabled = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [self hideAllViews];
     [self positionViewbelow];
+    
+    // generate random numbers here
+    randomTrainer = arc4random_uniform(trainerTips.count) + 0;
+    randomNutritionist = arc4random_uniform(dietTips.count) + 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -137,6 +161,7 @@
     self.viewBegin.frame = frame;
     self.viewWeeklyDiet.frame = frame;
     self.vwProfile.frame = frame;
+    self.vwTrainerWeeklySchedule.frame = frame;
 }
 
 -(void)loadStartViewTrainer {
@@ -213,20 +238,127 @@
     
     // For goal is Set
     else if ([result isEqualToString:@"Begun"]) {
-        /*CGRect newFrame = self.viewWeeklyDiet.frame;
+        CGRect newFrame = self.vwTrainerWeeklySchedule.frame;
         newFrame.origin.y = 68;
-        self.viewWeeklyDiet.hidden = NO;
+        self.vwTrainerWeeklySchedule.hidden = NO;
         
         [UIView animateWithDuration:0.7f
                               delay:0.0f
                             options: UIViewAnimationOptionTransitionCrossDissolve
                          animations:^{
-                             self.viewWeeklyDiet.frame = newFrame;
+                             self.vwTrainerWeeklySchedule.frame = newFrame;
                          }
                          completion:nil];
-        DietPlan *dietPlan = [[DietPlan alloc] initialize];
-        weeklyDiet = [dietPlan getDiet];
-        [self.tvWeeklyDiet reloadData];*/
+        // Add cards based on values here
+        
+        //-------------------------- Add Tips View Start -------------------------
+        
+        NSString *tips;
+        if ([vacationDate isEqualToString:@""] || vacationDate == NULL) {
+            tips = trainerTips[randomTrainer];
+        } else {
+            tips = vacationTips[0];
+        }
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 90, 131)];
+        if (tips.length < 60) {
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"t_m_1.jpg"]];
+        } else if (tips.length > 60 && tips.length < 120) {
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"t_m_2.jpg"]];
+        } else if (tips.length > 120 && tips.length < 160) {
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"t_m_3.jpg"]];
+        } else {
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"t_m_4.jpg"]];
+        }
+        
+        NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:12]};
+        CGRect rect = [tips boundingRectWithSize:CGSizeMake(203, MAXFLOAT)
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:attributes
+                                         context:nil];
+        float heightToAdd = MAX(rect.size.height, 70.0f);
+        
+        UIView *yellowView = [[UIView alloc] initWithFrame:CGRectMake(0, top, 300, (heightToAdd + 26))];
+        [imageView setFrame:CGRectMake(2, 2, 90, (heightToAdd + 22))];
+        yellowView.backgroundColor = [UIColor yellowColor];
+        
+        UIImageView *quoteImageView = [[UIImageView alloc] initWithFrame:CGRectMake(95, 3, 20, 18)];
+        quoteImageView.image = [UIImage imageNamed:@"quotes.png"];
+        
+        UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(95, 21, 203, rect.size.height)];
+        lblTips.text = tips;
+        lblTips.numberOfLines = 0;
+        lblTips.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+        
+        [yellowView addSubview:imageView];
+        [yellowView addSubview:quoteImageView];
+        [yellowView addSubview:lblTips];
+        [self.trainerScrollView addSubview:yellowView];
+        
+        // set the top value here
+        top = top + (heightToAdd + 26);
+        
+        //-------------------------- Add Tips View End -------------------------
+        
+        //-------------------------- Add Log your weight Start -----------------
+        //if ([result isEqualToString:@"Indeterminate"]) {
+            UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+            logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+            UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+            alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+            
+            UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+            lblLogWeight.text = @"Log your Weight";
+            lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        
+            UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+            arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+            [logWeight addSubview:alarmImage];
+            [logWeight addSubview:lblLogWeight];
+            [logWeight addSubview:arrowImage];
+            [self.trainerScrollView addSubview:logWeight];
+            
+            // set the top value here
+            top = top + 64;
+        //}
+        //-------------------------- Add Log your weight End -------------------
+        
+        //-------------------------- Add Log yesterday's workout Start ---------
+        // if yesterday's workout is not logged
+        UIView *logYesterdayWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+        logYesterdayWeight.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+        UIImageView *alarmYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmYesterdayImage.image = [UIImage imageNamed:@"ic_log.png"];
+        
+        UILabel *lblYesterdayLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 250, 25)];
+        lblYesterdayLogWeight.text = @"Log Yesterday's Workout";
+        lblYesterdayLogWeight.textColor = [UIColor redColor];
+        lblYesterdayLogWeight.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        
+        UIImageView *arrowYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowYesterdayImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [logYesterdayWeight addSubview:alarmYesterdayImage];
+        [logYesterdayWeight addSubview:lblYesterdayLogWeight];
+        [logYesterdayWeight addSubview:arrowYesterdayImage];
+        [self.trainerScrollView addSubview:logYesterdayWeight];
+        
+        // set the top value here
+        top = top + 64;
+        //-------------------------- Add Log yesterday's workout End -----------
+        
+        //-------------------------- Add Weekly Schedule Start -----------------
+        UIView *viewSchedule = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 350)];
+        viewSchedule.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+        
+        UILabel *lblSchedule = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 150, 20)];
+        lblSchedule.text = @"Weekly Schedule";
+        //lblSchedule.textColor = [UIColor redColor];
+        lblSchedule.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        
+        [viewSchedule addSubview:lblSchedule];
+        [self.trainerScrollView addSubview:viewSchedule];
+        //-------------------------- Add Weekly Schedule End -------------------
     }
 }
 
@@ -433,6 +565,7 @@
     self.viewBegin.hidden = YES;
     self.viewWeeklyDiet.hidden = YES;
     self.vwProfile.hidden = YES;
+    self.vwTrainerWeeklySchedule.hidden = YES;
 }
 
 #pragma mark - Button click Events
@@ -503,8 +636,7 @@
             
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 90, 96)];
             
-            int num = arc4random_uniform(dietTips.count) + 0;
-            NSString *tips = dietTips[num];
+            NSString *tips = dietTips[randomNutritionist];
             
             if (tips.length < 60) {
                 imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"n_m_1.jpg"]];
@@ -530,36 +662,9 @@
             
             [cell.contentView addSubview:yellowView];
         } else if (indexPath.row == 2) {
-
-            /*double lessHeight;
-            if (weeklyDiet.length > 2400 &&  weeklyDiet.length < 2600) {
-                lessHeight = 275;
-            } else if (weeklyDiet.length > 2600 &&  weeklyDiet.length < 3000) {
-                lessHeight = 400;
-            } else if (weeklyDiet.length > 3000 &&  weeklyDiet.length < 3300) {
-                lessHeight = 300;
-            } else if (weeklyDiet.length > 3300 &&  weeklyDiet.length < 3500) {
-                lessHeight = 500;
-            } else if (weeklyDiet.length > 3500) {
-                lessHeight = 425;
-            }
-            
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-            
-            CGRect textRect = [weeklyDiet boundingRectWithSize:constraint
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:FONT_SIZE]}
-                                                 context:nil];
-            CGSize size = textRect.size;*/
-            
             // call function for disabling long press on uiwebview
             [self longPress:webView];
-            
-            //removing extra spacing
-            //[webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, MAX((size.height - lessHeight), 44.0f))];
             [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, webViewHeight)];
-            
-            //cell.backgroundColor = [UIColor grayColor];
             [cell.contentView addSubview:webView];
             
         } else if (indexPath.row == 4) {
@@ -584,37 +689,12 @@
         if (indexPath.row == 0) {
             return 100;
         } else if (indexPath.row == 2) {
-            NSString *text = weeklyDiet;
-            
-            double lessHeight;
-            if (weeklyDiet.length > 2400 &&  weeklyDiet.length < 2600) {
-                lessHeight = 275;
-            } else if (weeklyDiet.length > 2600 &&  weeklyDiet.length < 3000) {
-                lessHeight = 400;
-            } else if (weeklyDiet.length > 3000 &&  weeklyDiet.length < 3300) {
-                lessHeight = 300;
-            } else if (weeklyDiet.length > 3300 &&  weeklyDiet.length < 3500) {
-                lessHeight = 500;
-            } else if (weeklyDiet.length > 3500) {
-                lessHeight = 425;
-            }
-            
-            CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-            CGRect textRect = [text boundingRectWithSize:constraint
-                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:FONT_SIZE]}
-                                                 context:nil];
-            CGSize size = textRect.size;
-            //removing extra spacing
-            CGFloat height = MAX((size.height - lessHeight), 44.0f);
-
-            //CGFloat height = MAX((webView.scrollView.contentSize.height), 44.0f);
             return webViewHeight;
-        } else if (indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 5) {
-            return 20;
+        } else if (indexPath.row == 4 || indexPath.row == 6 || indexPath.row == 8) {
+            return 44;
         }
     }
-    return 44;
+    return 20;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -639,7 +719,7 @@
 
 #pragma mark - UIWebView Long Press Disable methods
 
-- (void)longPress:(UIView *)webView {
+- (void)longPress:(UIView *)webview {
     UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress)];
     
     // Making sure the allowable movement isn't too narrow
@@ -652,11 +732,10 @@
     
     longPress.cancelsTouchesInView=YES; // That's when we tell the gesture recognizer to block the gestures we want
     
-    [webView addGestureRecognizer:longPress]; // Add the gesture recognizer to the view and scroll view then release
-    [webView addGestureRecognizer:longPress];
+    [webview addGestureRecognizer:longPress]; // Add the gesture recognizer to the view and scroll view then release
+    [webview addGestureRecognizer:longPress];
 }
 
-// I just need this for the selector in the gesture recognizer.
 - (void)handleLongPress {
     
 }
@@ -671,7 +750,6 @@
     aWebView.frame = frame;
     webViewHeight = fittingSize.height;
     [self.tvWeeklyDiet reloadData];
-    NSLog(@"size: %f, %f", fittingSize.width, fittingSize.height);
 }
 
 @end

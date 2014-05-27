@@ -50,10 +50,25 @@
 		EC086AD0192719BA0094AD35 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = EC086ACF192719BA0094AD35 /* call.png */; };
 		EC086AD3192720B60094AD35 /* T&CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC086AD2192720B60094AD35 /* T&CViewController.m */; };
 		EC086AD5192734890094AD35 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC086AD4192734890094AD35 /* Social.framework */; };
+		EC0F18B219344DF20038F8A4 /* t_m_1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18AE19344DF20038F8A4 /* t_m_1@2x.jpg */; };
+		EC0F18B319344DF20038F8A4 /* t_m_2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18AF19344DF20038F8A4 /* t_m_2@2x.jpg */; };
+		EC0F18B419344DF20038F8A4 /* t_m_3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B019344DF20038F8A4 /* t_m_3@2x.jpg */; };
+		EC0F18B519344DF20038F8A4 /* t_m_4@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B119344DF20038F8A4 /* t_m_4@2x.jpg */; };
+		EC0F18BA19344E040038F8A4 /* t_m_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B619344E040038F8A4 /* t_m_1.jpg */; };
+		EC0F18BB19344E040038F8A4 /* t_m_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B719344E040038F8A4 /* t_m_2.jpg */; };
+		EC0F18BC19344E040038F8A4 /* t_m_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B819344E040038F8A4 /* t_m_3.jpg */; };
+		EC0F18BD19344E040038F8A4 /* t_m_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18B919344E040038F8A4 /* t_m_4.jpg */; };
+		EC0F18C0193477E50038F8A4 /* WeeklySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F18BF193477E50038F8A4 /* WeeklySchedule.m */; };
+		EC0F18C21934AF020038F8A4 /* green_panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18C11934AF020038F8A4 /* green_panel@2x.png */; };
+		EC0F18C41934AF120038F8A4 /* green_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18C31934AF120038F8A4 /* green_panel.png */; };
+		EC0F18C61934B1C50038F8A4 /* ic_log@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18C51934B1C50038F8A4 /* ic_log@2x.png */; };
+		EC0F18C81934B1CF0038F8A4 /* ic_log.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0F18C71934B1CF0038F8A4 /* ic_log.png */; };
 		EC19B39F1932F3D400C5BE54 /* default_profile.png in Resources */ = {isa = PBXBuildFile; fileRef = EC19B39E1932F3D400C5BE54 /* default_profile.png */; };
 		EC19B3A11932F3E300C5BE54 /* default_profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC19B3A01932F3E300C5BE54 /* default_profile@2x.png */; };
 		EC19B3A31932F58800C5BE54 /* btn_full_body_pics.png in Resources */ = {isa = PBXBuildFile; fileRef = EC19B3A21932F58800C5BE54 /* btn_full_body_pics.png */; };
 		EC19B3A51932F59300C5BE54 /* btn_full_body_pics@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC19B3A41932F59300C5BE54 /* btn_full_body_pics@2x.png */; };
+		EC205E961934B53B001E4374 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E951934B53B001E4374 /* arrow@2x.png */; };
+		EC205E981934B547001E4374 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E971934B547001E4374 /* arrow.png */; };
 		EC251C7C192DAE6A0081F0CD /* DietResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */; };
 		EC251C7E192DD5120081F0CD /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7D192DD5120081F0CD /* start@2x.png */; };
 		EC251C80192DD52A0081F0CD /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7F192DD52A0081F0CD /* start.png */; };
@@ -247,10 +262,26 @@
 		EC086AD1192720B60094AD35 /* T&CViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "T&CViewController.h"; sourceTree = "<group>"; };
 		EC086AD2192720B60094AD35 /* T&CViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "T&CViewController.m"; sourceTree = "<group>"; };
 		EC086AD4192734890094AD35 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		EC0F18AE19344DF20038F8A4 /* t_m_1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_m_1@2x.jpg"; sourceTree = "<group>"; };
+		EC0F18AF19344DF20038F8A4 /* t_m_2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_m_2@2x.jpg"; sourceTree = "<group>"; };
+		EC0F18B019344DF20038F8A4 /* t_m_3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_m_3@2x.jpg"; sourceTree = "<group>"; };
+		EC0F18B119344DF20038F8A4 /* t_m_4@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "t_m_4@2x.jpg"; sourceTree = "<group>"; };
+		EC0F18B619344E040038F8A4 /* t_m_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t_m_1.jpg; sourceTree = "<group>"; };
+		EC0F18B719344E040038F8A4 /* t_m_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t_m_2.jpg; sourceTree = "<group>"; };
+		EC0F18B819344E040038F8A4 /* t_m_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t_m_3.jpg; sourceTree = "<group>"; };
+		EC0F18B919344E040038F8A4 /* t_m_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t_m_4.jpg; sourceTree = "<group>"; };
+		EC0F18BE193477E50038F8A4 /* WeeklySchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklySchedule.h; sourceTree = "<group>"; };
+		EC0F18BF193477E50038F8A4 /* WeeklySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklySchedule.m; sourceTree = "<group>"; };
+		EC0F18C11934AF020038F8A4 /* green_panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green_panel@2x.png"; sourceTree = "<group>"; };
+		EC0F18C31934AF120038F8A4 /* green_panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_panel.png; sourceTree = "<group>"; };
+		EC0F18C51934B1C50038F8A4 /* ic_log@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_log@2x.png"; sourceTree = "<group>"; };
+		EC0F18C71934B1CF0038F8A4 /* ic_log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_log.png; sourceTree = "<group>"; };
 		EC19B39E1932F3D400C5BE54 /* default_profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_profile.png; sourceTree = "<group>"; };
 		EC19B3A01932F3E300C5BE54 /* default_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_profile@2x.png"; sourceTree = "<group>"; };
 		EC19B3A21932F58800C5BE54 /* btn_full_body_pics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_full_body_pics.png; sourceTree = "<group>"; };
 		EC19B3A41932F59300C5BE54 /* btn_full_body_pics@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_full_body_pics@2x.png"; sourceTree = "<group>"; };
+		EC205E951934B53B001E4374 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		EC205E971934B547001E4374 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		EC251C7A192DAE6A0081F0CD /* DietResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietResultViewController.h; sourceTree = "<group>"; };
 		EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietResultViewController.m; sourceTree = "<group>"; };
 		EC251C7D192DD5120081F0CD /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
@@ -480,6 +511,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0F18AB193447320038F8A4 /* tips */ = {
+			isa = PBXGroup;
+			children = (
+				ECF5EC4319330FBC009EDFA6 /* dietTips.plist */,
+			);
+			name = tips;
+			sourceTree = "<group>";
+		};
+		EC0F18AC19344DD40038F8A4 /* trainer */ = {
+			isa = PBXGroup;
+			children = (
+				EC205E951934B53B001E4374 /* arrow@2x.png */,
+				EC0F18C51934B1C50038F8A4 /* ic_log@2x.png */,
+				EC0F18C11934AF020038F8A4 /* green_panel@2x.png */,
+				EC0F18AE19344DF20038F8A4 /* t_m_1@2x.jpg */,
+				EC0F18AF19344DF20038F8A4 /* t_m_2@2x.jpg */,
+				EC0F18B019344DF20038F8A4 /* t_m_3@2x.jpg */,
+				EC0F18B119344DF20038F8A4 /* t_m_4@2x.jpg */,
+			);
+			name = trainer;
+			sourceTree = "<group>";
+		};
+		EC0F18AD19344DDE0038F8A4 /* trainer */ = {
+			isa = PBXGroup;
+			children = (
+				EC205E971934B547001E4374 /* arrow.png */,
+				EC0F18C71934B1CF0038F8A4 /* ic_log.png */,
+				EC0F18C31934AF120038F8A4 /* green_panel.png */,
+				EC0F18B619344E040038F8A4 /* t_m_1.jpg */,
+				EC0F18B719344E040038F8A4 /* t_m_2.jpg */,
+				EC0F18B819344E040038F8A4 /* t_m_3.jpg */,
+				EC0F18B919344E040038F8A4 /* t_m_4.jpg */,
+			);
+			name = trainer;
+			sourceTree = "<group>";
+		};
 		EC42178419232C6000B162D8 = {
 			isa = PBXGroup;
 			children = (
@@ -539,7 +606,7 @@
 				EC42179919232C6000B162D8 /* InfoPlist.strings */,
 				EC42179C19232C6000B162D8 /* main.m */,
 				EC42179E19232C6000B162D8 /* My Daily Fitness Guide-Prefix.pch */,
-				ECF5EC4319330FBC009EDFA6 /* dietTips.plist */,
+				EC0F18AB193447320038F8A4 /* tips */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -654,6 +721,8 @@
 				ECCA452F1925CE91002F19AE /* CustomButton.m */,
 				ECBD1022192E0BF30007D0DC /* DietPlan.h */,
 				ECBD1023192E0BF30007D0DC /* DietPlan.m */,
+				EC0F18BE193477E50038F8A4 /* WeeklySchedule.h */,
+				EC0F18BF193477E50038F8A4 /* WeeklySchedule.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -768,6 +837,7 @@
 		ECEA11621923795600823952 /* icons@1x */ = {
 			isa = PBXGroup;
 			children = (
+				EC0F18AD19344DDE0038F8A4 /* trainer */,
 				ECAE3199192F27810095A40F /* n_m_1.jpg */,
 				EC19B3A21932F58800C5BE54 /* btn_full_body_pics.png */,
 				ECF5EC4719334738009EDFA6 /* quotes.png */,
@@ -813,6 +883,7 @@
 		ECEA11671923795600823952 /* icons@2x */ = {
 			isa = PBXGroup;
 			children = (
+				EC0F18AC19344DD40038F8A4 /* trainer */,
 				ECAE31A1192F278C0095A40F /* n_m_1@2x.jpg */,
 				EC19B3A01932F3E300C5BE54 /* default_profile@2x.png */,
 				ECF5EC451933472D009EDFA6 /* quotes@2x.png */,
@@ -1028,6 +1099,7 @@
 				EC7D409E19248D52001338E4 /* ic_nav_share_app.png in Resources */,
 				EC02DCC4192A0EAD00BAD1D0 /* kgs_inactive@2x.png in Resources */,
 				EC02DC951929CB1200BAD1D0 /* welcome_bg@2x.png in Resources */,
+				EC0F18B219344DF20038F8A4 /* t_m_1@2x.jpg in Resources */,
 				EC02DCBB192A0E9600BAD1D0 /* pounds_active.png in Resources */,
 				EC4217A919232C6000B162D8 /* Images.xcassets in Resources */,
 				EC7D408419248D48001338E4 /* ic_nav_reset_body_stats@2x.png in Resources */,
@@ -1039,6 +1111,7 @@
 				ECF5EC461933472D009EDFA6 /* quotes@2x.png in Resources */,
 				ECEA11731923795600823952 /* male_inactive@2x.png in Resources */,
 				ECAE31A5192F278C0095A40F /* n_m_1@2x.jpg in Resources */,
+				EC0F18BC19344E040038F8A4 /* t_m_3.jpg in Resources */,
 				ECEA116D1923795600823952 /* female_inactive.png in Resources */,
 				EC02DC921929CB1200BAD1D0 /* profile_inactive@2x.png in Resources */,
 				ECAE31A0192F27810095A40F /* n_m_4.jpg in Resources */,
@@ -1046,11 +1119,13 @@
 				EC02DCC6192A0EAD00BAD1D0 /* pounds_inactive@2x.png in Resources */,
 				EC251C84192DD5BD0081F0CD /* btn_lets_begin@2x.png in Resources */,
 				ECCA4540192623D4002F19AE /* im_boundary.png in Resources */,
+				EC0F18BB19344E040038F8A4 /* t_m_2.jpg in Resources */,
 				EC02DCB8192A0E9600BAD1D0 /* bmi.png in Resources */,
 				EC02DCA41929CB2300BAD1D0 /* nutritionist_inactive.png in Resources */,
 				EC7D409B19248D52001338E4 /* ic_nav_offers.png in Resources */,
 				ECCA45321925DB12002F19AE /* google_map.png in Resources */,
 				EC7D407E19248D48001338E4 /* ic_nav_going_on_vacation@2x.png in Resources */,
+				EC0F18C81934B1CF0038F8A4 /* ic_log.png in Resources */,
 				EC02DCB9192A0E9600BAD1D0 /* kgs_active.png in Resources */,
 				ECAE31A8192F278C0095A40F /* n_m_4@2x.jpg in Resources */,
 				ECCA453E192623CC002F19AE /* im_boundary@2x.png in Resources */,
@@ -1060,10 +1135,12 @@
 				ECAE3198192F1F190095A40F /* ic_guidelines@2x.png in Resources */,
 				EC19B39F1932F3D400C5BE54 /* default_profile.png in Resources */,
 				ECAE31A6192F278C0095A40F /* n_m_2@2x.jpg in Resources */,
+				EC0F18BD19344E040038F8A4 /* t_m_4.jpg in Resources */,
 				ECF5EC4819334738009EDFA6 /* quotes.png in Resources */,
 				ECEA11711923795600823952 /* female_inactive@2x.png in Resources */,
 				ECDB8AC819234B0B00CA2137 /* splashscreen_320x480.png in Resources */,
 				EC02DCC3192A0EAD00BAD1D0 /* kgs_active@2x.png in Resources */,
+				EC0F18C41934AF120038F8A4 /* green_panel.png in Resources */,
 				EC7D407C19248D48001338E4 /* ic_nav_buy_membership@2x.png in Resources */,
 				EC49E75419262BBD00D87337 /* default_offers_events@2x.png in Resources */,
 				EC02DCA51929CB2300BAD1D0 /* profile_active.png in Resources */,
@@ -1071,14 +1148,18 @@
 				EC086AD0192719BA0094AD35 /* call.png in Resources */,
 				ECDB8ACA19234B0B00CA2137 /* Default-568h@2x.png in Resources */,
 				ECF5EC4419330FBC009EDFA6 /* dietTips.plist in Resources */,
+				EC0F18B419344DF20038F8A4 /* t_m_3@2x.jpg in Resources */,
 				EC7D409519248D52001338E4 /* ic_nav_buy_membership.png in Resources */,
 				EC7D409D19248D52001338E4 /* ic_nav_reset_body_stats.png in Resources */,
 				EC02DCBC192A0E9600BAD1D0 /* pounds_inactive.png in Resources */,
 				ECEA116E1923795600823952 /* male_active.png in Resources */,
+				EC0F18B319344DF20038F8A4 /* t_m_2@2x.jpg in Resources */,
 				EC02DCA21929CB2300BAD1D0 /* nav_bar_icon.png in Resources */,
 				EC7D408219248D48001338E4 /* ic_nav_offers@2x.png in Resources */,
 				ECEA11721923795600823952 /* male_active@2x.png in Resources */,
+				EC0F18BA19344E040038F8A4 /* t_m_1.jpg in Resources */,
 				ECDB8AC919234B0B00CA2137 /* Default.png in Resources */,
+				EC205E961934B53B001E4374 /* arrow@2x.png in Resources */,
 				ECEA116C1923795600823952 /* female_active.png in Resources */,
 				EC19B3A11932F3E300C5BE54 /* default_profile@2x.png in Resources */,
 				EC02DCBA192A0E9600BAD1D0 /* kgs_inactive.png in Resources */,
@@ -1091,6 +1172,7 @@
 				EC02DCA61929CB2300BAD1D0 /* profile_inactive.png in Resources */,
 				EC086ACE192719B10094AD35 /* call@2x.png in Resources */,
 				ECAE3193192F1F0A0095A40F /* ic_dos_and_donts.png in Resources */,
+				EC0F18B519344DF20038F8A4 /* t_m_4@2x.jpg in Resources */,
 				ECAE3197192F1F190095A40F /* ic_dos_and_donts@2x.png in Resources */,
 				EC02DC8F1929CB1200BAD1D0 /* nutritionist_active@2x.png in Resources */,
 				EC19B3A31932F58800C5BE54 /* btn_full_body_pics.png in Resources */,
@@ -1098,6 +1180,7 @@
 				EC7D407D19248D48001338E4 /* ic_nav_events@2x.png in Resources */,
 				ECAE319E192F27810095A40F /* n_m_2.jpg in Resources */,
 				EC7D409819248D52001338E4 /* ic_nav_gym_locator.png in Resources */,
+				EC0F18C21934AF020038F8A4 /* green_panel@2x.png in Resources */,
 				EC030252192B55D500744A6A /* btn_add.png in Resources */,
 				EC02DCC5192A0EAD00BAD1D0 /* pounds_active@2x.png in Resources */,
 				EC030257192B55EC00744A6A /* bullet@2x.png in Resources */,
@@ -1113,6 +1196,7 @@
 				ECAE31A7192F278C0095A40F /* n_m_3@2x.jpg in Resources */,
 				ECAE319F192F27810095A40F /* n_m_3.jpg in Resources */,
 				EC7D408319248D48001338E4 /* ic_nav_rate_us@2x.png in Resources */,
+				EC205E981934B547001E4374 /* arrow.png in Resources */,
 				EC19B3A51932F59300C5BE54 /* btn_full_body_pics@2x.png in Resources */,
 				EC02DCAC1929E12800BAD1D0 /* my_daily_fitness.sqlite in Resources */,
 				EC02DCA71929CB2300BAD1D0 /* trainer_active.png in Resources */,
@@ -1126,6 +1210,7 @@
 				EC7D409F19248D52001338E4 /* ic_nav_t_and_c.png in Resources */,
 				EC7D406A19247F71001338E4 /* navigation@2x.png in Resources */,
 				EC02DC8D1929CB1200BAD1D0 /* btn_get_started@2x.png in Resources */,
+				EC0F18C61934B1C50038F8A4 /* ic_log@2x.png in Resources */,
 				ECEA11701923795600823952 /* female_active@2x.png in Resources */,
 				EC7D409C19248D52001338E4 /* ic_nav_rate_us.png in Resources */,
 			);
@@ -1146,6 +1231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC0F18C0193477E50038F8A4 /* WeeklySchedule.m in Sources */,
 				ECEA11A8192386BC00823952 /* UIProgressView+AFNetworking.m in Sources */,
 				ECEA11A9192386BC00823952 /* UIRefreshControl+AFNetworking.m in Sources */,
 				EC51E8511924E7120061E9F4 /* CityTableViewCell.m in Sources */,

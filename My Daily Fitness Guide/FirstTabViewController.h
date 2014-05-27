@@ -20,6 +20,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *vwProfile;
 
+@property (weak, nonatomic) IBOutlet UIView *vwTrainerWeeklySchedule;
+//@property (weak, nonatomic) IBOutlet UITableView *tvWeeklyScheduleParent;
+@property (weak, nonatomic) IBOutlet UIScrollView *trainerScrollView;
+
+
 // properties for tab view
 @property (weak, nonatomic) IBOutlet UIView *btnTrainer;
 @property (weak, nonatomic) IBOutlet UIView *btnNutritionist;

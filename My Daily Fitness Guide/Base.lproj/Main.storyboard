@@ -2293,6 +2293,17 @@ Cg
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="NQJ-Q7-nvh">
+                                <rect key="frame" x="10" y="66" width="300" height="437"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="tuT-ag-l4l">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="437"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2308,11 +2319,13 @@ Cg
                         <outlet property="btnProfile" destination="TPj-AO-VZZ" id="1Hl-sg-p6u"/>
                         <outlet property="btnTrainer" destination="o0N-Rt-1Fv" id="Su9-8O-CP5"/>
                         <outlet property="lblBegin" destination="hnb-uz-wfl" id="pnd-Oi-69H"/>
+                        <outlet property="trainerScrollView" destination="tuT-ag-l4l" id="Cx2-Cm-kAD"/>
                         <outlet property="tvWeeklyDiet" destination="D7V-uc-CCW" id="A43-Q0-38K"/>
                         <outlet property="viewBegin" destination="x5p-8D-v2z" id="4xH-Gv-hKF"/>
                         <outlet property="viewStart" destination="dla-7r-BcM" id="aGk-CH-tYj"/>
                         <outlet property="viewWeeklyDiet" destination="b8N-W2-3co" id="HO6-Vk-Ixe"/>
                         <outlet property="vwProfile" destination="xRE-aW-QyF" id="XIt-2P-q9Q"/>
+                        <outlet property="vwTrainerWeeklySchedule" destination="NQJ-Q7-nvh" id="W8v-uw-chC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8AF-mr-jjC" userLabel="First Responder" sceneMemberID="firstResponder"/>
