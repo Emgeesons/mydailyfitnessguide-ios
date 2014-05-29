@@ -9,25 +9,34 @@
 #import "WeeklySchedule.h"
 
 @implementation WeeklySchedule {
-    NSArray *weeklyBasic1, *weeklyBasic2, *weeklyIntermediate1, *weeklyIntermediate2NCOdd, *weeklyIntermediate2NCEven, *weeklyAdvance1, *weeklyAdvance2, *vacationFunctional1, *weeklyBasic2NC, *weeklyAdvance1NC, *functional1, *functional2;
-    NSString *programLevel;
+    NSArray *weeklyBasic1, *weeklyBasic2, *weeklyIntermediate1, *weeklyIntermediate2NCOdd, *weeklyIntermediate2NCEven, *weeklyAdvance1, *weeklyAdvance2, *vacationFunctional1, *weeklyBasic2NC, *weeklyAdvance1NC, *functional1, *functional2, *vacation;
+    NSString *programLevel, *vacationDate;
     NSInteger numberOfDays;
 }
-
 
 -(id)initialize {
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
+    int month = [self getMonth];
+    NSString *dietType = [self getDietType];
+    
+    [self initializeAllArray];
+    programLevel = [self getProgramLevel:month dietType:dietType];
+    
+    return self;
+}
+
+-(int)getMonth {
     [database open];
     
     FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
-    NSString *startDate, *dietType, *endDate;
+    NSString *startDate, *endDate;
     
     while([results next]) {
         if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
             startDate = [results stringForColumn:@"value"];
-        } else if ([[results stringForColumn:@"type"] isEqualToString:@"programType"]) {
-            dietType = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"vacationDate"]) {
+            vacationDate = [results stringForColumn:@"value"];
         }
     }
     [database close];
@@ -37,48 +46,64 @@
     endDate = [f stringFromDate:[NSDate date]];
     numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     
-    int month = (numberOfDays/30) + 1;
+    return (numberOfDays/30) + 1;
+}
+
+-(NSString *)getDietType {
+    [database open];
     
-    [self initializeAllArray];
-    programLevel = [self getProgramLevel:month dietType:dietType];
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *dietType;
     
-    return self;
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"programType"]) {
+            dietType = [results stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    return dietType;
 }
 
 -(NSArray *)getWeeklySchedule {
     NSArray *tmpArray;
     
-    if ([programLevel isEqualToString:@"Basic 1"]) {
-        tmpArray = weeklyBasic1;
-    } else if ([programLevel isEqualToString:@"Basic 2 (No Cardio)"]) {
-        tmpArray = weeklyBasic2NC;
-    } else if ([programLevel isEqualToString:@"Intermediate 2 (No Cardio)"]) {
-        //do based on odd and even week
-        int numOfDays = numberOfDays % 30; // give you remaining of days
-        int week = (numOfDays/7) + 1; // will give you week number
-        if (week == 1 || week == 3) {
-            tmpArray = weeklyIntermediate2NCOdd;
-        } else {
-            tmpArray = weeklyIntermediate2NCEven;
+    if ([vacationDate isEqualToString:@""] || vacationDate == NULL) {
+        if ([programLevel isEqualToString:@"Basic 1"]) {
+            tmpArray = weeklyBasic1;
+        } else if ([programLevel isEqualToString:@"Basic 2 (No Cardio)"]) {
+            tmpArray = weeklyBasic2NC;
+        } else if ([programLevel isEqualToString:@"Intermediate 2 (No Cardio)"]) {
+            //do based on odd and even week
+            int numOfDays = numberOfDays % 30; // give you remaining of days
+            int week = (numOfDays/7) + 1; // will give you week number
+            if (week == 1 || week == 3) {
+                tmpArray = weeklyIntermediate2NCOdd;
+            } else {
+                tmpArray = weeklyIntermediate2NCEven;
+            }
+        } else if ([programLevel isEqualToString:@"Advance 1 (No Cardio)"]) {
+            tmpArray = weeklyAdvance1NC;
+        } else if ([programLevel isEqualToString:@"Advance 2"]) {
+            tmpArray = weeklyAdvance2;
+        } else if ([programLevel isEqualToString:@"Functional Training 2"]) {
+            tmpArray = functional2;
+        } else if ([programLevel isEqualToString:@"Functional Training 1"]) {
+            tmpArray = functional1;
         }
         
-    } else if ([programLevel isEqualToString:@"Advance 1 (No Cardio)"]) {
-        tmpArray = weeklyAdvance1NC;
-    } else if ([programLevel isEqualToString:@"Advance 2"]) {
-        tmpArray = weeklyAdvance2;
-    } else if ([programLevel isEqualToString:@"Functional Training 2"]) {
-        tmpArray = functional2;
-    } else if ([programLevel isEqualToString:@"Functional Training 1"]) {
-        tmpArray = functional1;
+        else if ([programLevel isEqualToString:@"Basic 2"]) {
+            tmpArray = weeklyBasic2;
+        } else if ([programLevel isEqualToString:@"Intermediate 1"]) {
+            tmpArray = weeklyIntermediate1;
+        } else if ([programLevel isEqualToString:@"Advance 1"]) {
+            tmpArray = weeklyAdvance1;
+        }
+    } else {
+        // vacation time
+        tmpArray = vacation;
     }
     
-    else if ([programLevel isEqualToString:@"Basic 2"]) {
-        tmpArray = weeklyBasic2;
-    }else if ([programLevel isEqualToString:@"Intermediate 1"]) {
-        tmpArray = weeklyIntermediate1;
-    }else if ([programLevel isEqualToString:@"Advance 1"]) {
-        tmpArray = weeklyAdvance1;
-    }
     
     return tmpArray;
 }
@@ -160,6 +185,8 @@
     weeklyIntermediate2NCOdd = @[@"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Rest"];
     
     weeklyIntermediate2NCEven = @[@"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Rest"];
+    
+    vacation = [NSArray arrayWithArray:functional1];
 }
 
 @end

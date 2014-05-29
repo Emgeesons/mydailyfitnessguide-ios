@@ -12,6 +12,7 @@
 #import "GuidelinesViewController.h"
 #import "DosAndDontsViewController.h"
 #import "WeeklySchedule.h"
+#import "CustomButton.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -19,13 +20,17 @@
 
 @interface FirstTabViewController () {
     FMDatabase *database;
-    NSString *weeklyDiet, *vacationDate, *goalState;
+    NSString *weeklyDiet, *vacationDate, *goalState, *yesterdayName;
     int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top;
     BOOL bTrainer, bNutritionist, bProfile;
     NSArray *dietTips, *trainerTips, *vacationTips;
     float webViewHeight;
     UIWebView *webView;
     UITableView *scheduleTableChild;
+    CustomButton *btnMonTick, *btnTueTick, *btnWedTick, *btnThurTick, *btnFriTick, *btnSatTick, *btnSunTick, *btnYesterdayTick;
+    int mon, tue, wed, thur, fri, sat, sun, yesterdaysDay;
+    
+    UIView *logYesterdayWeight, *viewSchedule, *viewGuidelines, *viewDAD;
 }
 
 @end
@@ -44,9 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //WeeklySchedule *w = [[WeeklySchedule alloc] initialize];
-    
     top = 0;
     
     // database initialization
@@ -164,6 +166,70 @@
     self.vwTrainerWeeklySchedule.frame = frame;
 }
 
+-(void)assignDay {
+    NSString *start_date, *endDate;
+    [database open];
+    FMResultSet *results = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type = 'start_date'"];
+
+    while([results next]) {
+        start_date = [results stringForColumn:@"value"];
+    }
+    
+    [database close];
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate date]];
+    int numberOfDays = [DatabaseExtra numberOfDaysBetween:start_date and:endDate];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EE"];
+    NSString *dayName = [dateFormatter stringFromDate:[f dateFromString:start_date]];
+    
+    // set yesterdaysDay here
+    yesterdaysDay = numberOfDays - 1;
+    yesterdayName = dayName;
+    if (numberOfDays > 7) {
+        
+        int week = numberOfDays/7;
+        numberOfDays = 7 * week;
+        
+        if ([dayName isEqualToString:@"Mon"]) {
+            mon = (numberOfDays + 1), tue = (numberOfDays + 2), wed = (numberOfDays + 3), thur = (numberOfDays + 4), fri = (numberOfDays + 5), sat = (numberOfDays + 6), sun = (numberOfDays + 7);
+        } else if ([dayName isEqualToString:@"Tue"]) {
+            mon = numberOfDays, tue = (numberOfDays + 1), wed = (numberOfDays + 2), thur = (numberOfDays + 3), fri = (numberOfDays + 4), sat = (numberOfDays + 5), sun = (numberOfDays + 6);
+        } else if ([dayName isEqualToString:@"Wed"]) {
+            mon = (numberOfDays - 1), tue = numberOfDays, wed = (numberOfDays + 1), thur = (numberOfDays + 2), fri = (numberOfDays + 3), sat = (numberOfDays + 4), sun = (numberOfDays + 5);
+        } else if ([dayName isEqualToString:@"Thur"]) {
+            mon = (numberOfDays - 2), tue = (numberOfDays - 1), wed = numberOfDays, thur = (numberOfDays + 1), fri = (numberOfDays + 2), sat = (numberOfDays + 3), sun = (numberOfDays + 4);
+        } else if ([dayName isEqualToString:@"Fri"]) {
+            mon = (numberOfDays - 3), tue = (numberOfDays - 2), wed = (numberOfDays - 1), thur = numberOfDays, fri = (numberOfDays + 1), sat = (numberOfDays + 2), sun = (numberOfDays + 3);
+        } else if ([dayName isEqualToString:@"Sat"]) {
+            mon = (numberOfDays - 4), tue = (numberOfDays - 3), wed = (numberOfDays - 2), thur = (numberOfDays - 1), fri = numberOfDays, sat = (numberOfDays + 1), sun = (numberOfDays + 2);
+        } else if ([dayName isEqualToString:@"Sun"]) {
+            mon = (numberOfDays - 5), tue = (numberOfDays - 4), wed = (numberOfDays - 3), thur = (numberOfDays - 2), fri = (numberOfDays - 1), sat = numberOfDays, sun = (numberOfDays + 1);
+        }
+    } else {
+        if ([dayName isEqualToString:@"Mon"]) {
+            mon = 1, tue = 2, wed = 3, thur = 4, fri = 5, sat = 6, sun = 7;
+        } else if ([dayName isEqualToString:@"Tue"]) {
+            mon = 0, tue = 1, wed = 2, thur = 3, fri = 4, sat = 5, sun = 6;
+        } else if ([dayName isEqualToString:@"Wed"]) {
+            mon = 0, tue = 0, wed = 1, thur = 2, fri = 3, sat = 4, sun = 5;
+        } else if ([dayName isEqualToString:@"Thu"]) {
+            mon = 0, tue = 0, wed = 0, thur = 1, fri = 2, sat = 3, sun = 4;
+        } else if ([dayName isEqualToString:@"Fri"]) {
+            mon = 0, tue = 0, wed = 0, thur = 0, fri = 1, sat = 2, sun = 3;
+        } else if ([dayName isEqualToString:@"Sat"]) {
+            mon = 0, tue = 0, wed = 0, thur = 0, fri = 0, sat = 1, sun = 2;
+        } else if ([dayName isEqualToString:@"Sun"]) {
+            mon = 0, tue = 0, wed = 0, thur = 0, fri = 0, sat = 0, sun = 1;
+        }
+    }
+    //NSLog(@"%@", dayName);
+    
+    //NSLog(@"%d", numberOfDays);
+}
+
 -(void)loadStartViewTrainer {
     [database open];
     FMResultSet *results = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type = 'goal'"];
@@ -236,8 +302,14 @@
                          completion:nil];
     }
     
-    // For goal is Set
+    // For goal is Begun
     else if ([result isEqualToString:@"Begun"]) {
+        top = 0;
+        [self assignDay];
+        
+        // remove all subviews from scrollview
+        [self.trainerScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
         CGRect newFrame = self.vwTrainerWeeklySchedule.frame;
         newFrame.origin.y = 68;
         self.vwTrainerWeeklySchedule.hidden = NO;
@@ -300,7 +372,7 @@
         //-------------------------- Add Tips View End -------------------------
         
         //-------------------------- Add Log your weight Start -----------------
-        //if ([result isEqualToString:@"Indeterminate"]) {
+        if ([result isEqualToString:@"Indeterminate"]) {
             UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
             logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
             UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
@@ -308,7 +380,7 @@
             
             UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
             lblLogWeight.text = @"Log your Weight";
-            lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+            lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
             UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
             arrowImage.image = [UIImage imageNamed:@"arrow.png"];
@@ -320,45 +392,361 @@
             
             // set the top value here
             top = top + 64;
-        //}
+        }
         //-------------------------- Add Log your weight End -------------------
         
         //-------------------------- Add Log yesterday's workout Start ---------
         // if yesterday's workout is not logged
-        UIView *logYesterdayWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
-        logYesterdayWeight.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
-        UIImageView *alarmYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
-        alarmYesterdayImage.image = [UIImage imageNamed:@"ic_log.png"];
-        
-        UILabel *lblYesterdayLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 250, 25)];
-        lblYesterdayLogWeight.text = @"Log Yesterday's Workout";
-        lblYesterdayLogWeight.textColor = [UIColor redColor];
-        lblYesterdayLogWeight.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        
-        UIImageView *arrowYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
-        arrowYesterdayImage.image = [UIImage imageNamed:@"arrow.png"];
-        
-        [logYesterdayWeight addSubview:alarmYesterdayImage];
-        [logYesterdayWeight addSubview:lblYesterdayLogWeight];
-        [logYesterdayWeight addSubview:arrowYesterdayImage];
-        [self.trainerScrollView addSubview:logYesterdayWeight];
-        
-        // set the top value here
-        top = top + 64;
+        if ([self dayPresent:yesterdaysDay] && [self checkDayPresent:yesterdaysDay]) {
+            // Do nothing
+        } else {
+            logYesterdayWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+            logYesterdayWeight.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+            UIImageView *alarmYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+            alarmYesterdayImage.image = [UIImage imageNamed:@"ic_log.png"];
+            
+            UILabel *lblYesterdayLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 250, 25)];
+            lblYesterdayLogWeight.text = @"Log Yesterday's Workout";
+            lblYesterdayLogWeight.textColor = [UIColor redColor];
+            lblYesterdayLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            
+            /*UIImageView *arrowYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+            arrowYesterdayImage.image = [UIImage imageNamed:@"arrow.png"];*/
+            btnYesterdayTick = [[CustomButton alloc] initWithFrame:CGRectMake(260, 19, 20, 20)];
+            [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+            [btnYesterdayTick addTarget:self action:@selector(btnYesterdayTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [logYesterdayWeight addSubview:alarmYesterdayImage];
+            [logYesterdayWeight addSubview:lblYesterdayLogWeight];
+            [logYesterdayWeight addSubview:btnYesterdayTick];
+            //[logYesterdayWeight addSubview:arrowYesterdayImage];
+            [self.trainerScrollView addSubview:logYesterdayWeight];
+            
+            // set the top value here
+            top = top + 64;
+        }
         //-------------------------- Add Log yesterday's workout End -----------
         
         //-------------------------- Add Weekly Schedule Start -----------------
-        UIView *viewSchedule = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 350)];
+        
+        // Get Weekly Schedule
+        WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+        NSArray *scheduleArray = [week getWeeklySchedule];
+        
+        viewSchedule = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 370)];
         viewSchedule.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
         
         UILabel *lblSchedule = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 150, 20)];
         lblSchedule.text = @"Weekly Schedule";
-        //lblSchedule.textColor = [UIColor redColor];
         lblSchedule.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        
+        // -----------------------------------Add btnMon-------------------------------------
+        CustomButton *btnMon = [[CustomButton alloc] initWithFrame:CGRectMake(lblSchedule.frame.origin.x, 35, 270, 44)];
+        btnMon.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];
+        btnMon.dayName = @"Mon";
+        btnMon.dayWorkout = scheduleArray[0];
+        [btnMon addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblMon = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 30, 20)];
+        lblMon.text = btnMon.dayName;
+        lblMon.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+        [btnMon addSubview:lblMon];
+        
+        UILabel *lblMonSchedule = [[UILabel alloc] initWithFrame:CGRectMake(45, 13, 195, 20)];
+        lblMonSchedule.text = scheduleArray[0];
+        lblMonSchedule.textColor = [UIColor grayColor];
+        lblMonSchedule.font = [UIFont fontWithName:@"HelveticaNeue" size:10];
+        [btnMon addSubview:lblMonSchedule];
+        
+        btnMonTick = [[CustomButton alloc] initWithFrame:CGRectMake(245, 13, 20, 20)];
+        [btnMonTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (mon != 0) {
+            btnMonTick.dayNumber = mon;
+            [btnMonTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:mon]) {
+                [btnMonTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnMon addSubview:btnMonTick];
+        }
+        
+        [viewSchedule addSubview:btnMon];
+        
+        // -----------------------------------Add btnTue-------------------------------------
+        CustomButton *btnTue = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnMon.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnTue.backgroundColor = btnMon.backgroundColor;
+        btnTue.dayName = @"Tue";
+        btnTue.dayWorkout = scheduleArray[1];
+        [btnTue addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblTue = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblTue.text = btnTue.dayName;
+        lblTue.font = lblMon.font;
+        [btnTue addSubview:lblTue];
+        
+        UILabel *lblTueSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblTueSchedule.text = scheduleArray[1];
+        lblTueSchedule.textColor = lblMonSchedule.textColor;
+        lblTueSchedule.font = lblMonSchedule.font;
+        [btnTue addSubview:lblTueSchedule];
+        
+        btnTueTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnTueTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (tue != 0) {
+            btnTueTick.dayNumber = tue;
+            [btnTueTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:tue]) {
+                [btnTueTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnTue addSubview:btnTueTick];
+        }
+        
+        [viewSchedule addSubview:btnTue];
+        
+        // -------------------------------------Add btnWed-------------------------------------
+        CustomButton *btnWed = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnTue.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnWed.backgroundColor = btnMon.backgroundColor;
+        btnWed.dayName = @"Wed";
+        btnWed.dayWorkout = scheduleArray[2];
+        [btnWed addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblWed = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblWed.text = btnWed.dayName;
+        lblWed.font = lblMon.font;
+        [btnWed addSubview:lblWed];
+        
+        UILabel *lblWedSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblWedSchedule.text = scheduleArray[2];
+        lblWedSchedule.textColor = lblMonSchedule.textColor;
+        lblWedSchedule.font = lblMonSchedule.font;
+        [btnWed addSubview:lblWedSchedule];
+        
+        btnWedTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnWedTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (wed != 0) {
+            btnWedTick.dayNumber = wed;
+            [btnWedTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:wed]) {
+                [btnWedTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnWed addSubview:btnWedTick];
+        }
+        
+        [viewSchedule addSubview:btnWed];
+        
+        // -------------------------------------Add btnThur-------------------------------------
+        CustomButton *btnThur = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnWed.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnThur.backgroundColor = btnMon.backgroundColor;
+        btnThur.dayName = @"Thu";
+        btnThur.dayWorkout = scheduleArray[3];
+        [btnThur addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblThur = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblThur.text = btnThur.dayName;
+        lblThur.font = lblMon.font;
+        [btnThur addSubview:lblThur];
+        
+        UILabel *lblThurSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblThurSchedule.text = scheduleArray[3];
+        lblThurSchedule.textColor = lblMonSchedule.textColor;
+        lblThurSchedule.font = lblMonSchedule.font;
+        [btnThur addSubview:lblThurSchedule];
+        
+        btnThurTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnThurTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (thur != 0) {
+            btnThurTick.dayNumber = thur;
+            [btnThurTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:thur]) {
+                [btnThurTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnThur addSubview:btnThurTick];
+        }
+        
+        [viewSchedule addSubview:btnThur];
+        
+        // -------------------------------------Add btnFri-------------------------------------
+        CustomButton *btnFri = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnThur.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnFri.backgroundColor = btnMon.backgroundColor;
+        btnFri.dayName = @"Fri";
+        btnFri.dayWorkout = scheduleArray[4];
+        [btnFri addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblFri = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblFri.text = btnFri.dayName;
+        lblFri.font = lblMon.font;
+        [btnFri addSubview:lblFri];
+        
+        UILabel *lblFriSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblFriSchedule.text = scheduleArray[4];
+        lblFriSchedule.textColor = lblMonSchedule.textColor;
+        lblFriSchedule.font = lblMonSchedule.font;
+        [btnFri addSubview:lblFriSchedule];
+        
+        btnFriTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnFriTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (fri != 0) {
+            btnFriTick.dayNumber = fri;
+            [btnFriTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:fri]) {
+                [btnFriTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnFri addSubview:btnFriTick];
+        }
+        
+        [viewSchedule addSubview:btnFri];
+        
+        // -------------------------------------Add btnSat-------------------------------------
+        CustomButton *btnSat = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnFri.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnSat.backgroundColor = btnMon.backgroundColor;
+        btnSat.dayName = @"Sat";
+        btnSat.dayWorkout = scheduleArray[5];
+        [btnSat addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblSat = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblSat.text = btnSat.dayName;
+        lblSat.font = lblMon.font;
+        [btnSat addSubview:lblSat];
+        
+        UILabel *lblSatSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblSatSchedule.text = scheduleArray[5];
+        lblSatSchedule.textColor = lblMonSchedule.textColor;
+        lblSatSchedule.font = lblMonSchedule.font;
+        [btnSat addSubview:lblSatSchedule];
+        
+        btnSatTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnSatTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (sat != 0) {
+            btnSatTick.dayNumber = sat;
+            [btnSatTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:sat]) {
+                [btnSatTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnSat addSubview:btnSatTick];
+        }
+        
+        [viewSchedule addSubview:btnSat];
+        
+        // -------------------------------------Add btnSun-------------------------------------
+        CustomButton *btnSun = [[CustomButton alloc] initWithFrame:CGRectMake(btnMon.frame.origin.x, btnSat.frame.origin.y + btnMon.frame.size.height + 2, btnMon.frame.size.width, btnMon.frame.size.height)];
+        btnSun.backgroundColor = btnMon.backgroundColor;
+        btnSun.dayName = @"Sun";
+        btnSun.dayWorkout = scheduleArray[6];
+        [btnSun addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lblSun = [[UILabel alloc] initWithFrame:lblMon.frame];
+        lblSun.text = btnSun.dayName;
+        lblSun.font = lblMon.font;
+        [btnSun addSubview:lblSun];
+        
+        UILabel *lblSunSchedule = [[UILabel alloc] initWithFrame:lblMonSchedule.frame];
+        lblSunSchedule.text = scheduleArray[6];
+        lblSunSchedule.textColor = lblMonSchedule.textColor;
+        lblSunSchedule.font = lblMonSchedule.font;
+        [btnSun addSubview:lblSunSchedule];
+        
+        btnSunTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
+        [btnSunTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        if (sun != 0) {
+            btnSunTick.dayNumber = sun;
+            [btnSunTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if ([self checkDayPresent:sun]) {
+                [btnSunTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+            }
+            
+            [btnSun addSubview:btnSunTick];
+        }
+        
+        [viewSchedule addSubview:btnSun];
         
         [viewSchedule addSubview:lblSchedule];
         [self.trainerScrollView addSubview:viewSchedule];
+        
+        // set the top value here
+        top = top + 380;
         //-------------------------- Add Weekly Schedule End -------------------
+        
+        //-------------------------- Add Guidelines Start ----------------------
+        
+        UITapGestureRecognizer *tapGuide = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGuide:)];
+        
+        viewGuidelines = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+        viewGuidelines.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+        [viewGuidelines addGestureRecognizer:tapGuide];
+        
+        UIImageView *guideImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        guideImage.image = [UIImage imageNamed:@"ic_guidelines.png"];
+        
+        UILabel *lblGuide = [[UILabel alloc] initWithFrame:CGRectMake(55, 15, 250, 25)];
+        lblGuide.text = @"Guidelines";
+        lblGuide.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowGuide = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowGuide.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [viewGuidelines addSubview:guideImage];
+        [viewGuidelines addSubview:lblGuide];
+        [viewGuidelines addSubview:arrowGuide];
+        [self.trainerScrollView addSubview:viewGuidelines];
+        
+        // set the top value here
+        top = top + 64;
+        //-------------------------- Add Guidelines End ------------------------
+        
+        //-------------------------- Add Do's And Dont's Start -----------------
+        [database open];
+        int trainerMedicalCount = 0;
+        FMResultSet *results = [database executeQuery:@"SELECT count(selected) as selected FROM medicalCondition WHERE selected='true' AND wtm = 'yes'"];
+        while([results next]) {
+            trainerMedicalCount = [[results stringForColumn:@"selected"] intValue];
+        }
+        [database close];
+        
+        UITapGestureRecognizer *tapDAD = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDAD:)];
+        
+        viewDAD = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+        viewDAD.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+        [viewDAD addGestureRecognizer:tapDAD];
+        
+        UIImageView *dadImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        dadImage.image = [UIImage imageNamed:@"ic_dos_and_donts.png"];
+        
+        UILabel *lblDAD = [[UILabel alloc] initWithFrame:CGRectMake(55, 15, 250, 25)];
+        lblDAD.text = @"Do's and Dont's";
+        lblDAD.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowDAD = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowDAD.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [viewDAD addSubview:dadImage];
+        [viewDAD addSubview:lblDAD];
+        [viewDAD addSubview:arrowDAD];
+        
+        if (trainerMedicalCount != 0) {
+            [self.trainerScrollView addSubview:viewDAD];
+        }
+        //-------------------------- Add Do's And Dont's End -------------------
+        
+        float sizeOfContent = 0;
+        UIView *lLast = [self.trainerScrollView.subviews lastObject];
+        NSInteger wd = lLast.frame.origin.y;
+        NSInteger ht = lLast.frame.size.height;
+        
+        sizeOfContent = wd+ht;
+        
+        self.trainerScrollView.contentSize = CGSizeMake(self.trainerScrollView.frame.size.width, sizeOfContent);
     }
 }
 
@@ -752,4 +1140,271 @@
     [self.tvWeeklyDiet reloadData];
 }
 
+#pragma mark - Tap Recogniser
+
+- (void)tapDAD:(UITapGestureRecognizer *)recognizer {
+    // open do's and don't
+    DosAndDontsViewController *viewController = (DosAndDontsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"dosAndDontsViewController"];
+    viewController.screenType = @"trainer";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)tapGuide:(UITapGestureRecognizer *)recognizer {
+    // open Guidelines
+    GuidelinesViewController *viewController = (GuidelinesViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"guidelinesViewController"];
+    viewController.screenType = @"trainer";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+-(void)btnScheduleClicked:(id)sender {
+    CustomButton *btn = (CustomButton *)sender;
+    NSLog(@"%@", btn.dayName);
+}
+
+-(void)btnTickClicked:(id)sender {
+    CustomButton *btn = (CustomButton *)sender;
+    if (btn == btnMonTick) {
+        if ([yesterdayName isEqualToString:@"Mon"]) {
+            [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnTueTick) {
+        if ([yesterdayName isEqualToString:@"Tue"]) {
+            [self btnShrink:btnTueTick withDay:btnTueTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnTueTick withDay:btnTueTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnWedTick) {
+        if ([yesterdayName isEqualToString:@"Wed"]) {
+            [self btnShrink:btnWedTick withDay:btnWedTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnWedTick withDay:btnWedTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnThurTick) {
+        if ([yesterdayName isEqualToString:@"Thu"]) {
+            [self btnShrink:btnThurTick withDay:btnThurTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnThurTick withDay:btnThurTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnFriTick) {
+        if ([yesterdayName isEqualToString:@"Fri"]) {
+            [self btnShrink:btnFriTick withDay:btnFriTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnFriTick withDay:btnFriTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnSatTick) {
+        if ([yesterdayName isEqualToString:@"Sat"]) {
+            [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:NO];
+        }
+    } else if (btn == btnSunTick) {
+        if ([yesterdayName isEqualToString:@"Sun"]) {
+            [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:YES];
+        } else {
+            [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:NO];
+        }
+    }
+}
+
+#pragma mark - Animation Functions
+
+-(void)btnShrink:(CustomButton *)button withDay:(int)day withYesterday:(BOOL)yest {
+    CGRect newFrameOfMyView = button.frame;
+    newFrameOfMyView.size.width = 1;
+    newFrameOfMyView.size.height = 1;
+    
+    CGPoint ce = button.center;
+    CGPoint yesterdayCe = btnYesterdayTick.center;
+    
+    [UIView animateWithDuration:1.f
+                          delay:0.0f
+                        options: UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         button.frame = newFrameOfMyView;
+                         button.center = ce;
+                         if (yest) {
+                             btnYesterdayTick.frame = newFrameOfMyView;
+                             btnYesterdayTick.center = yesterdayCe;
+                         }
+                     }
+                     completion:^(BOOL finished) {
+                         // update/insert into database
+                         
+                         if ([self dayPresent:day]) {
+                             // update query
+                             UIImage *tmpImage = [UIImage imageNamed:@"green_tickmark.png"];
+                             
+                             if (button.currentBackgroundImage == tmpImage) {
+                                 //update false query
+                                 [database open];
+                                 [database executeUpdate:@"UPDATE dailyTicks SET tick = ? WHERE day = ?", @"false", [NSString stringWithFormat:@"%d",day]];
+                                 [button setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+                                 
+                                 if (yest) {
+                                     [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+                                 }
+                                 
+                                 [database close];
+                             } else {
+                                 //update true query
+                                 [database open];
+                                 [database executeUpdate:@"UPDATE dailyTicks SET tick = ? WHERE day = ?", @"true", [NSString stringWithFormat:@"%d",day]];
+                                 [button setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+                                 
+                                 if (yest) {
+                                     [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+                                 }
+                                 
+                                 [database close];
+                             }
+                             
+                         } else {
+                             // insert query
+                             [database open];
+                             [database executeUpdate:@"INSERT INTO dailyTicks (day, tick) VALUES (?, ?)", [NSString stringWithFormat:@"%d",day], @"true", nil];
+                             [button setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+                             
+                             if (yest) {
+                                 [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"green_tickmark.png"] forState:UIControlStateNormal];
+                             }
+                             
+                             [database close];
+                         }
+                         
+                         [self btnGrow:button withYesterday:yest];
+                     }];
+}
+
+-(void)btnGrow:(CustomButton *)button  withYesterday:(BOOL)yest {
+    CGRect newFrameOfMyView = button.frame;
+    newFrameOfMyView.size.width = 20;
+    newFrameOfMyView.size.height = 20;
+    
+    CGPoint ce = button.center;
+    CGPoint yesterdayCe = btnYesterdayTick.center;
+    
+    [UIView animateWithDuration:1.f
+                          delay:0.0f
+                        options: UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         button.frame = newFrameOfMyView;
+                         button.center = ce;
+                         
+                         if (yest) {
+                             btnYesterdayTick.frame = newFrameOfMyView;
+                             btnYesterdayTick.center = yesterdayCe;
+                         }
+                     }
+                     completion:^(BOOL finished) {
+                         if (logYesterdayWeight.alpha == 1 && yest) {
+                             [self hideLogYesterdayView];
+                         }
+                     }];
+}
+
+-(void)btnYesterdayTickClicked:(id)sender {
+    if ([yesterdayName isEqualToString:@"Mon"]) {
+        [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Tue"]) {
+        [self btnShrink:btnTueTick withDay:btnTueTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Wed"]) {
+        [self btnShrink:btnWedTick withDay:btnWedTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Thu"]) {
+        [self btnShrink:btnThurTick withDay:btnThurTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Fri"]) {
+        [self btnShrink:btnFriTick withDay:btnFriTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Sat"]) {
+        [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:YES];
+    } else if ([yesterdayName isEqualToString:@"Sun"]) {
+        [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:YES];
+    }
+}
+
+-(void)hideLogYesterdayView {
+    CGRect newFrameSchedule = viewSchedule.frame;
+    CGRect newFrameGuide = viewGuidelines.frame;
+    CGRect newFrameDAD = viewDAD.frame;
+    
+    newFrameSchedule.origin.y -= 64;
+    newFrameGuide.origin.y -= 64;
+    newFrameDAD.origin.y -= 64;
+    
+    [UIView animateWithDuration:0.7f
+                          delay:0.0f
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         logYesterdayWeight.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished){
+                         [logYesterdayWeight removeFromSuperview];
+                         [UIView animateWithDuration:0.7f
+                                               delay:0.0f
+                                             options: UIViewAnimationOptionTransitionCrossDissolve
+                                          animations:^{
+                                              viewSchedule.frame = newFrameSchedule;
+                                              viewGuidelines.frame = newFrameGuide;
+                                              viewDAD.frame = newFrameDAD;
+                                          }
+                                          completion:^(BOOL finished){
+                                              float sizeOfContent = 0;
+                                              UIView *lLast = [self.trainerScrollView.subviews lastObject];
+                                              NSInteger wd = lLast.frame.origin.y;
+                                              NSInteger ht = lLast.frame.size.height;
+                                              
+                                              sizeOfContent = wd+ht;
+                                              
+                                              self.trainerScrollView.contentSize = CGSizeMake(self.trainerScrollView.frame.size.width, sizeOfContent);
+                                          }];
+                     }];
+}
+
+#pragma mark - General Functions
+
+-(BOOL)dayPresent:(int)day {
+    
+    BOOL tmpResult = '\0';
+    
+    [database open];
+    
+    FMResultSet *results = [database executeQuery:[NSString stringWithFormat:@"SELECT count(day) as day FROM dailyTicks WHERE day = '%d'", day]];
+    
+    while([results next]) {
+        if([results intForColumn:@"day"] >= 1) {
+            tmpResult = YES;
+        } else {
+            tmpResult = NO;
+        }
+    }
+    
+    [database close];
+    
+    return tmpResult;
+}
+
+-(BOOL)checkDayPresent:(int)day {
+    
+    BOOL tmpResult = '\0';
+    
+    [database open];
+    
+    FMResultSet *results = [database executeQuery:[NSString stringWithFormat:@"SELECT count(day) as day FROM dailyTicks WHERE tick = 'true' AND day = '%d'", day]];
+
+    while([results next]) {
+        if([results intForColumn:@"day"] >= 1) {
+            tmpResult = YES;
+        } else {
+            tmpResult = NO;
+        }
+    }
+    
+    [database close];
+    
+    return tmpResult;
+}
 @end

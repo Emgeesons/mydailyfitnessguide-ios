@@ -14,5 +14,8 @@
 
 -(id)initialize;
 -(NSArray *)getWeeklySchedule;
+-(NSString *)getProgramLevel:(int)month dietType:(NSString *)dietType;
+-(int)getMonth;
+-(NSString *)getDietType;
 
 @end
