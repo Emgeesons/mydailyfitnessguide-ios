@@ -13,6 +13,7 @@
 #import "DosAndDontsViewController.h"
 #import "WeeklySchedule.h"
 #import "CustomButton.h"
+#import "ExcerciseListViewController.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -44,6 +45,26 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) titleView {
+    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
+    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(70, 0, 300, 30)];
+    
+    title.text = [NSString stringWithFormat:@"Howdy %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"name"]];
+    [title setTextColor:[UIColor whiteColor]];
+    [title setFont:[UIFont boldSystemFontOfSize:titleFont]];
+    
+    [title setBackgroundColor:[UIColor clearColor]];
+    UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    
+    myImageView.frame = CGRectMake(30, 0, 30, 30);
+    
+    [myView addSubview:title];
+    [myView setBackgroundColor:[UIColor  clearColor]];
+    [myView addSubview:myImageView];
+    self.navigationItem.titleView = myView;
 }
 
 - (void)viewDidLoad
@@ -78,7 +99,9 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    self.title = [NSString stringWithFormat:@"Howdy %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"name"]];
+    [self titleView];
+    
+    //self.title = [NSString stringWithFormat:@"Howdy %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"name"]];
     
     // Add tap gesture on views of bottom tab
     UITapGestureRecognizer *tapTrainer = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -137,6 +160,34 @@
     [self hideAllViews];
     [self positionViewbelow];
     
+    [database open];
+    
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *startDate, *endDate;
+    
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"vacationDate"]) {
+            startDate = [results stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate date]];
+    if ([startDate isEqualToString:@""]) {
+        
+    } else {
+        int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+        if (numberOfDays > 1) {
+            // update database and empty the vacation date
+            [database open];
+            [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"", @"vacationDate"];
+            [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"", @"vacationStartDate"];
+            [database close];
+        }
+    }
+    
     // generate random numbers here
     randomTrainer = arc4random_uniform(trainerTips.count) + 0;
     randomNutritionist = arc4random_uniform(dietTips.count) + 0;
@@ -187,42 +238,51 @@
     
     // set yesterdaysDay here
     yesterdaysDay = numberOfDays - 1;
-    yesterdayName = dayName;
-    if (numberOfDays > 7) {
-        
-        int week = numberOfDays/7;
-        numberOfDays = 7 * week;
-        
-        if ([dayName isEqualToString:@"Mon"]) {
-            mon = (numberOfDays + 1), tue = (numberOfDays + 2), wed = (numberOfDays + 3), thur = (numberOfDays + 4), fri = (numberOfDays + 5), sat = (numberOfDays + 6), sun = (numberOfDays + 7);
-        } else if ([dayName isEqualToString:@"Tue"]) {
+    
+    NSDate *now = [NSDate date];
+    
+    NSString *currentDayName = [dateFormatter stringFromDate:now];
+    
+    int daysToAdd = -1;
+    NSDate *newDate1 = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
+    NSString *yesterDayName = [dateFormatter stringFromDate:newDate1];
+    yesterdayName = yesterDayName;
+    
+    //NSLog(@"%@", dayName);
+    
+    //NSLog(@"%d", numberOfDays);
+    
+    if (numberOfDays > 1) {
+        if ([currentDayName isEqualToString:@"Mon"]) {
             mon = numberOfDays, tue = (numberOfDays + 1), wed = (numberOfDays + 2), thur = (numberOfDays + 3), fri = (numberOfDays + 4), sat = (numberOfDays + 5), sun = (numberOfDays + 6);
-        } else if ([dayName isEqualToString:@"Wed"]) {
+        } else if ([currentDayName isEqualToString:@"Tue"]) {
             mon = (numberOfDays - 1), tue = numberOfDays, wed = (numberOfDays + 1), thur = (numberOfDays + 2), fri = (numberOfDays + 3), sat = (numberOfDays + 4), sun = (numberOfDays + 5);
-        } else if ([dayName isEqualToString:@"Thur"]) {
+        } else if ([currentDayName isEqualToString:@"Wed"]) {
             mon = (numberOfDays - 2), tue = (numberOfDays - 1), wed = numberOfDays, thur = (numberOfDays + 1), fri = (numberOfDays + 2), sat = (numberOfDays + 3), sun = (numberOfDays + 4);
-        } else if ([dayName isEqualToString:@"Fri"]) {
+        } else if ([currentDayName isEqualToString:@"Thu"]) {
             mon = (numberOfDays - 3), tue = (numberOfDays - 2), wed = (numberOfDays - 1), thur = numberOfDays, fri = (numberOfDays + 1), sat = (numberOfDays + 2), sun = (numberOfDays + 3);
-        } else if ([dayName isEqualToString:@"Sat"]) {
+        } else if ([currentDayName isEqualToString:@"Fri"]) {
             mon = (numberOfDays - 4), tue = (numberOfDays - 3), wed = (numberOfDays - 2), thur = (numberOfDays - 1), fri = numberOfDays, sat = (numberOfDays + 1), sun = (numberOfDays + 2);
-        } else if ([dayName isEqualToString:@"Sun"]) {
+        } else if ([currentDayName isEqualToString:@"Sat"]) {
             mon = (numberOfDays - 5), tue = (numberOfDays - 4), wed = (numberOfDays - 3), thur = (numberOfDays - 2), fri = (numberOfDays - 1), sat = numberOfDays, sun = (numberOfDays + 1);
+        } else if ([currentDayName isEqualToString:@"Sun"]) {
+            mon = (numberOfDays - 6), tue = (numberOfDays - 5), wed = (numberOfDays - 4), thur = (numberOfDays - 3), fri = (numberOfDays - 2), sat = (numberOfDays - 1), sun = numberOfDays;
         }
     } else {
         if ([dayName isEqualToString:@"Mon"]) {
             mon = 1, tue = 2, wed = 3, thur = 4, fri = 5, sat = 6, sun = 7;
         } else if ([dayName isEqualToString:@"Tue"]) {
-            mon = 0, tue = 1, wed = 2, thur = 3, fri = 4, sat = 5, sun = 6;
+            mon = -1, tue = 1, wed = 2, thur = 3, fri = 4, sat = 5, sun = 6;
         } else if ([dayName isEqualToString:@"Wed"]) {
-            mon = 0, tue = 0, wed = 1, thur = 2, fri = 3, sat = 4, sun = 5;
+            mon = -1, tue = -1, wed = 1, thur = 2, fri = 3, sat = 4, sun = 5;
         } else if ([dayName isEqualToString:@"Thu"]) {
-            mon = 0, tue = 0, wed = 0, thur = 1, fri = 2, sat = 3, sun = 4;
+            mon = -1, tue = -1, wed = -1, thur = 1, fri = 2, sat = 3, sun = 4;
         } else if ([dayName isEqualToString:@"Fri"]) {
-            mon = 0, tue = 0, wed = 0, thur = 0, fri = 1, sat = 2, sun = 3;
+            mon = -1, tue = -1, wed = -1, thur = -1, fri = 1, sat = 2, sun = 3;
         } else if ([dayName isEqualToString:@"Sat"]) {
-            mon = 0, tue = 0, wed = 0, thur = 0, fri = 0, sat = 1, sun = 2;
+            mon = -1, tue = -1, wed = -1, thur = -1, fri = -1, sat = 1, sun = 2;
         } else if ([dayName isEqualToString:@"Sun"]) {
-            mon = 0, tue = 0, wed = 0, thur = 0, fri = 0, sat = 0, sun = 1;
+            mon = -1, tue = -1, wed = -1, thur = -1, fri = -1, sat = -1, sun = 1;
         }
     }
     //NSLog(@"%@", dayName);
@@ -379,7 +439,7 @@
             alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
             
             UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
-            lblLogWeight.text = @"Log your Weight";
+            lblLogWeight.text = @"Log your Body Stats";
             lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
             UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
@@ -397,33 +457,54 @@
         
         //-------------------------- Add Log yesterday's workout Start ---------
         // if yesterday's workout is not logged
+        
+        logYesterdayWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+        logYesterdayWeight.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+        UIImageView *alarmYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmYesterdayImage.image = [UIImage imageNamed:@"ic_log.png"];
+        
+        UILabel *lblYesterdayLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 250, 25)];
+        lblYesterdayLogWeight.text = @"Log Yesterday's Workout";
+        lblYesterdayLogWeight.textColor = [UIColor redColor];
+        lblYesterdayLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        btnYesterdayTick = [[CustomButton alloc] initWithFrame:CGRectMake(260, 19, 20, 20)];
+        [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
+        [btnYesterdayTick addTarget:self action:@selector(btnYesterdayTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [logYesterdayWeight addSubview:alarmYesterdayImage];
+        [logYesterdayWeight addSubview:lblYesterdayLogWeight];
+        [logYesterdayWeight addSubview:btnYesterdayTick];
+        [self.trainerScrollView addSubview:logYesterdayWeight];
         if ([self dayPresent:yesterdaysDay] && [self checkDayPresent:yesterdaysDay]) {
             // Do nothing
+            logYesterdayWeight.alpha = 0;
         } else {
-            logYesterdayWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
-            logYesterdayWeight.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
-            UIImageView *alarmYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
-            alarmYesterdayImage.image = [UIImage imageNamed:@"ic_log.png"];
+            // check today's date with start_date of database
+            [database open];
             
-            UILabel *lblYesterdayLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 250, 25)];
-            lblYesterdayLogWeight.text = @"Log Yesterday's Workout";
-            lblYesterdayLogWeight.textColor = [UIColor redColor];
-            lblYesterdayLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+            NSString *startDate, *endDate;
             
-            /*UIImageView *arrowYesterdayImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
-            arrowYesterdayImage.image = [UIImage imageNamed:@"arrow.png"];*/
-            btnYesterdayTick = [[CustomButton alloc] initWithFrame:CGRectMake(260, 19, 20, 20)];
-            [btnYesterdayTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-            [btnYesterdayTick addTarget:self action:@selector(btnYesterdayTickClicked:) forControlEvents:UIControlEventTouchUpInside];
+            while([results next]) {
+                if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+                    startDate = [results stringForColumn:@"value"];
+                }
+            }
+            [database close];
             
-            [logYesterdayWeight addSubview:alarmYesterdayImage];
-            [logYesterdayWeight addSubview:lblYesterdayLogWeight];
-            [logYesterdayWeight addSubview:btnYesterdayTick];
-            //[logYesterdayWeight addSubview:arrowYesterdayImage];
-            [self.trainerScrollView addSubview:logYesterdayWeight];
-            
-            // set the top value here
-            top = top + 64;
+            NSDateFormatter *f = [[NSDateFormatter alloc] init];
+            [f setDateFormat:@"yyyy-MM-dd"];
+            endDate = [f stringFromDate:[NSDate date]];
+            int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+            //NSLog(@"%d", numberOfDays);
+            if (numberOfDays > 1) {
+                // set the top value here
+                top = top + 64;
+            } else {
+                // Do nothing
+                logYesterdayWeight.alpha = 0;
+            }
         }
         //-------------------------- Add Log yesterday's workout End -----------
         
@@ -445,6 +526,7 @@
         btnMon.backgroundColor = [UIColor colorWithHexString:@"#d6d6d6"];
         btnMon.dayName = @"Mon";
         btnMon.dayWorkout = scheduleArray[0];
+        btnMon.dietPlan = scheduleArray[7];
         [btnMon addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblMon = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 30, 20)];
@@ -460,7 +542,7 @@
         
         btnMonTick = [[CustomButton alloc] initWithFrame:CGRectMake(245, 13, 20, 20)];
         [btnMonTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (mon != 0) {
+        if (mon > 0) {
             btnMonTick.dayNumber = mon;
             [btnMonTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -478,6 +560,7 @@
         btnTue.backgroundColor = btnMon.backgroundColor;
         btnTue.dayName = @"Tue";
         btnTue.dayWorkout = scheduleArray[1];
+        btnTue.dietPlan = scheduleArray[7];
         [btnTue addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblTue = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -493,7 +576,7 @@
         
         btnTueTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnTueTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (tue != 0) {
+        if (tue > 0) {
             btnTueTick.dayNumber = tue;
             [btnTueTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -511,6 +594,7 @@
         btnWed.backgroundColor = btnMon.backgroundColor;
         btnWed.dayName = @"Wed";
         btnWed.dayWorkout = scheduleArray[2];
+        btnWed.dietPlan = scheduleArray[7];
         [btnWed addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblWed = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -526,7 +610,7 @@
         
         btnWedTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnWedTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (wed != 0) {
+        if (wed > 0) {
             btnWedTick.dayNumber = wed;
             [btnWedTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -544,6 +628,7 @@
         btnThur.backgroundColor = btnMon.backgroundColor;
         btnThur.dayName = @"Thu";
         btnThur.dayWorkout = scheduleArray[3];
+        btnThur.dietPlan = scheduleArray[7];
         [btnThur addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblThur = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -559,7 +644,7 @@
         
         btnThurTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnThurTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (thur != 0) {
+        if (thur > 0) {
             btnThurTick.dayNumber = thur;
             [btnThurTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -577,6 +662,7 @@
         btnFri.backgroundColor = btnMon.backgroundColor;
         btnFri.dayName = @"Fri";
         btnFri.dayWorkout = scheduleArray[4];
+        btnFri.dietPlan = scheduleArray[7];
         [btnFri addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblFri = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -592,7 +678,7 @@
         
         btnFriTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnFriTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (fri != 0) {
+        if (fri > 0) {
             btnFriTick.dayNumber = fri;
             [btnFriTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -610,6 +696,7 @@
         btnSat.backgroundColor = btnMon.backgroundColor;
         btnSat.dayName = @"Sat";
         btnSat.dayWorkout = scheduleArray[5];
+        btnSat.dietPlan = scheduleArray[7];
         [btnSat addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblSat = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -625,7 +712,7 @@
         
         btnSatTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnSatTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (sat != 0) {
+        if (sat > 0) {
             btnSatTick.dayNumber = sat;
             [btnSatTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -643,6 +730,7 @@
         btnSun.backgroundColor = btnMon.backgroundColor;
         btnSun.dayName = @"Sun";
         btnSun.dayWorkout = scheduleArray[6];
+        btnSun.dietPlan = scheduleArray[7];
         [btnSun addTarget:self action:@selector(btnScheduleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *lblSun = [[UILabel alloc] initWithFrame:lblMon.frame];
@@ -658,7 +746,7 @@
         
         btnSunTick = [[CustomButton alloc] initWithFrame:btnMonTick.frame];
         [btnSunTick setBackgroundImage:[UIImage imageNamed:@"grey_tickmark.png"] forState:UIControlStateNormal];
-        if (sun != 0) {
+        if (sun > 0) {
             btnSunTick.dayNumber = sun;
             [btnSunTick addTarget:self action:@selector(btnTickClicked:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -1162,11 +1250,28 @@
 
 -(void)btnScheduleClicked:(id)sender {
     CustomButton *btn = (CustomButton *)sender;
-    NSLog(@"%@", btn.dayName);
+    
+    if ([btn.dayWorkout isEqualToString:@"Rest"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Kudos! You've earned your rest for today" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        ExcerciseListViewController *viewController = (ExcerciseListViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"excerciselistViewController"];
+        
+        viewController.dietPlan = btn.dietPlan;
+        viewController.excerciseName = btn.dayWorkout;
+        viewController.pageTitle = btn.dayName;
+        
+        viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+        viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:viewController animated:YES completion:nil];
+    }
 }
 
 -(void)btnTickClicked:(id)sender {
     CustomButton *btn = (CustomButton *)sender;
+
+    NSLog(@"%d", yesterdaysDay);
+    NSLog(@"new %d", sun);
     if (btn == btnMonTick) {
         if ([yesterdayName isEqualToString:@"Mon"]) {
             [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:YES];
@@ -1204,11 +1309,11 @@
             [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnSunTick) {
-        if ([yesterdayName isEqualToString:@"Sun"]) {
+        /*if ([yesterdayName isEqualToString:@"Sun"]) {
             [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:YES];
-        } else {
+        } else {*/
             [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:NO];
-        }
+        //}
     }
 }
 
@@ -1304,6 +1409,8 @@
                      completion:^(BOOL finished) {
                          if (logYesterdayWeight.alpha == 1 && yest) {
                              [self hideLogYesterdayView];
+                         } else if (logYesterdayWeight.alpha == 0 && yest) {
+                             [self showLogYesterdayView];
                          }
                      }];
 }
@@ -1322,7 +1429,7 @@
     } else if ([yesterdayName isEqualToString:@"Sat"]) {
         [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:YES];
     } else if ([yesterdayName isEqualToString:@"Sun"]) {
-        [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:YES];
+        [self btnShrink:nil withDay:(btnSunTick.dayNumber - 7) withYesterday:YES];
     }
 }
 
@@ -1335,15 +1442,14 @@
     newFrameGuide.origin.y -= 64;
     newFrameDAD.origin.y -= 64;
     
-    [UIView animateWithDuration:0.7f
+    [UIView animateWithDuration:0.5f
                           delay:0.0f
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          logYesterdayWeight.alpha = 0.0;
                      }
                      completion:^(BOOL finished){
-                         [logYesterdayWeight removeFromSuperview];
-                         [UIView animateWithDuration:0.7f
+                         [UIView animateWithDuration:0.5f
                                                delay:0.0f
                                              options: UIViewAnimationOptionTransitionCrossDissolve
                                           animations:^{
@@ -1360,6 +1466,44 @@
                                               sizeOfContent = wd+ht;
                                               
                                               self.trainerScrollView.contentSize = CGSizeMake(self.trainerScrollView.frame.size.width, sizeOfContent);
+                                          }];
+                     }];
+}
+
+-(void)showLogYesterdayView {
+    CGRect newFrameSchedule = viewSchedule.frame;
+    CGRect newFrameGuide = viewGuidelines.frame;
+    CGRect newFrameDAD = viewDAD.frame;
+    
+    newFrameSchedule.origin.y += 64;
+    newFrameGuide.origin.y += 64;
+    newFrameDAD.origin.y += 64;
+    
+    [UIView animateWithDuration:0.5f
+                          delay:0.0f
+                        options: UIViewAnimationOptionTransitionCrossDissolve
+                     animations:^{
+                         viewSchedule.frame = newFrameSchedule;
+                         viewGuidelines.frame = newFrameGuide;
+                         viewDAD.frame = newFrameDAD;
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.5f
+                                               delay:0.0f
+                                             options: UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              logYesterdayWeight.alpha = 1.0;
+                                          }
+                                          completion:^(BOOL finished){
+                                                float sizeOfContent = 0;
+                                                UIView *lLast = [self.trainerScrollView.subviews lastObject];
+
+                                                NSInteger wd = lLast.frame.origin.y;
+                                                NSInteger ht = lLast.frame.size.height;
+
+                                                sizeOfContent = wd+ht;
+
+                                                self.trainerScrollView.contentSize = CGSizeMake(self.trainerScrollView.frame.size.width, sizeOfContent);
                                           }];
                      }];
 }

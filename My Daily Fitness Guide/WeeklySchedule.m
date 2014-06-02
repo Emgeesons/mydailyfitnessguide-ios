@@ -164,29 +164,31 @@
 }
 
 -(void)initializeAllArray {
-    weeklyBasic1 = @[@"Cardio", @"Whole Body Resistance Training", @"Rest", @"Cardio", @"Whole Body Resistance Training", @"Cardio", @"Rest"];
+    weeklyBasic1 = @[@"Cardio", @"Whole Body Resistance Training", @"Rest", @"Cardio", @"Whole Body Resistance Training", @"Cardio", @"Rest", @"Basic 1"];
     
-    weeklyBasic2 = @[@"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Cardio & Abs", @"Rest", @"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Cardio / Rest"];
+    weeklyBasic2 = @[@"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Cardio & Abs", @"Rest", @"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Cardio / Rest", @"Basic 2"];
     
-    weeklyAdvance1 = @[@"Lower Body Resistance Training (Legs)", @"Rest", @"Upper Body Resistance Training (back)", @"Cardio & Abs/ Core", @"Upper Body Resistance Training (Chest + Biceps)", @"Rest", @"Upper Body Resistance Training (Shoulder + Triceps)"];
+    weeklyAdvance1 = @[@"Lower Body Resistance Training (Legs)", @"Rest", @"Upper Body Resistance Training (back)", @"Cardio & Abs/ Core", @"Upper Body Resistance Training (Chest + Biceps)", @"Rest", @"Upper Body Resistance Training (Shoulder + Triceps)", @"Advance 1"];
     
-    weeklyAdvance2 = [NSArray arrayWithArray:weeklyAdvance1];
+    weeklyAdvance2 = @[@"Lower Body Resistance Training (Legs)", @"Rest", @"Upper Body Resistance Training (back)", @"Cardio & Abs/ Core", @"Upper Body Resistance Training (Chest + Biceps)", @"Rest", @"Upper Body Resistance Training (Shoulder + Triceps)", @"Advance 2"];
     
-    vacationFunctional1 = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest"];
+    weeklyIntermediate1 = @[@"Lower Body Resistance Training", @"Upper Body Resistance Training (Back + Biceps)", @"Cardio & Core (Abs)", @"Rest", @"Upper Body Resistance Training (Chest + Shoulder + Triceps)", @"Cardio & Core (Abs)", @"Rest", @"Intermediate 1"];
     
-    weeklyBasic2NC = @[@"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Abs", @"Rest", @"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Rest"];
+    //vacationFunctional1 = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest"];
     
-    weeklyAdvance1NC = @[@"Lower Body Resistance Training (Legs)", @"Rest", @"Upper Body Resistance Training (back)", @"Abs/ Core", @"Upper Body Resistance Training (Chest + Biceps)", @"Rest", @"Upper Body Resistance Training (Shoulder + Triceps)"];
+    weeklyBasic2NC = @[@"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Abs", @"Rest", @"Lower Body Resistance Training", @"Upper Body Resistance Training", @"Rest", @"Basic 2 (No Cardio)"];
     
-    functional1 = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest"];
+    weeklyAdvance1NC = @[@"Lower Body Resistance Training (Legs)", @"Rest", @"Upper Body Resistance Training (back)", @"Abs/ Core", @"Upper Body Resistance Training (Chest + Biceps)", @"Rest", @"Upper Body Resistance Training (Shoulder + Triceps)", @"Advance 1 (No Cardio)"];
     
-    functional2 = [NSArray arrayWithArray:functional1];
+    functional1 = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest", @"Functional Training 1"];
     
-    weeklyIntermediate2NCOdd = @[@"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Rest"];
+    functional2 = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest", @"Functional Training 2"];
     
-    weeklyIntermediate2NCEven = @[@"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Rest"];
+    weeklyIntermediate2NCOdd = @[@"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Rest", @"Intermediate 2 (No Cardio)"];
     
-    vacation = [NSArray arrayWithArray:functional1];
+    weeklyIntermediate2NCEven = @[@"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Rest", @"Intermediate 2 (No Cardio)"];
+    
+    vacation = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest", @"vacation"];
 }
 
 @end

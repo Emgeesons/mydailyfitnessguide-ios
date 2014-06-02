@@ -10,7 +10,7 @@
 
 @interface CustomButton : UIButton
 
-@property (nonatomic, strong) NSString *latitude, *longitude, *callString, *dayName, *dayWorkout;
+@property (nonatomic, strong) NSString *latitude, *longitude, *callString, *dayName, *dayWorkout, *dietPlan;
 @property (nonatomic) int dayNumber;
 
 @end

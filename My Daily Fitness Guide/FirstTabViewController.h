@@ -24,6 +24,7 @@
 //@property (weak, nonatomic) IBOutlet UITableView *tvWeeklyScheduleParent;
 @property (weak, nonatomic) IBOutlet UIScrollView *trainerScrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *viewBodyStats;
 
 // properties for tab view
 @property (weak, nonatomic) IBOutlet UIView *btnTrainer;
