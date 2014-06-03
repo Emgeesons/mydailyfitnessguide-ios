@@ -46,6 +46,18 @@
 		EC030256192B55EC00744A6A /* btn_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC030254192B55EC00744A6A /* btn_add@2x.png */; };
 		EC030257192B55EC00744A6A /* bullet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC030255192B55EC00744A6A /* bullet@2x.png */; };
 		EC03025A192B58A900744A6A /* DietTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC030259192B58A900744A6A /* DietTableViewController.m */; };
+		EC0596B4193DCE38006A80E6 /* a_icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596AE193DCE38006A80E6 /* a_icon1.png */; };
+		EC0596B5193DCE38006A80E6 /* a_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596AF193DCE38006A80E6 /* a_icon2.png */; };
+		EC0596B6193DCE38006A80E6 /* a_icon3.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596B0193DCE38006A80E6 /* a_icon3.png */; };
+		EC0596B7193DCE38006A80E6 /* a_icon4.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596B1193DCE38006A80E6 /* a_icon4.png */; };
+		EC0596B8193DCE38006A80E6 /* a_icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596B2193DCE38006A80E6 /* a_icon5.png */; };
+		EC0596B9193DCE38006A80E6 /* a_icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596B3193DCE38006A80E6 /* a_icon6.png */; };
+		EC0596C0193DCE50006A80E6 /* a_icon1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BA193DCE50006A80E6 /* a_icon1@2x.png */; };
+		EC0596C1193DCE50006A80E6 /* a_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BB193DCE50006A80E6 /* a_icon2@2x.png */; };
+		EC0596C2193DCE50006A80E6 /* a_icon3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BC193DCE50006A80E6 /* a_icon3@2x.png */; };
+		EC0596C3193DCE50006A80E6 /* a_icon4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BD193DCE50006A80E6 /* a_icon4@2x.png */; };
+		EC0596C4193DCE50006A80E6 /* a_icon5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BE193DCE50006A80E6 /* a_icon5@2x.png */; };
+		EC0596C5193DCE50006A80E6 /* a_icon6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0596BF193DCE50006A80E6 /* a_icon6@2x.png */; };
 		EC086ACE192719B10094AD35 /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC086ACD192719B10094AD35 /* call@2x.png */; };
 		EC086AD0192719BA0094AD35 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = EC086ACF192719BA0094AD35 /* call.png */; };
 		EC086AD3192720B60094AD35 /* T&CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC086AD2192720B60094AD35 /* T&CViewController.m */; };
@@ -78,6 +90,7 @@
 		EC251C84192DD5BD0081F0CD /* btn_lets_begin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C83192DD5BD0081F0CD /* btn_lets_begin@2x.png */; };
 		EC2C6F611930676000AEA06D /* GuidelinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C6F601930676000AEA06D /* GuidelinesViewController.m */; };
 		EC2C6F64193085BE00AEA06D /* DosAndDontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C6F63193085BE00AEA06D /* DosAndDontsViewController.m */; };
+		EC2FE083193DF96B009D8455 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2FE082193DF96B009D8455 /* FacebookSDK.framework */; };
 		EC42179119232C6000B162D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179019232C6000B162D8 /* Foundation.framework */; };
 		EC42179319232C6000B162D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179219232C6000B162D8 /* CoreGraphics.framework */; };
 		EC42179519232C6000B162D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179419232C6000B162D8 /* UIKit.framework */; };
@@ -92,6 +105,7 @@
 		EC4217B219232C6000B162D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC42179419232C6000B162D8 /* UIKit.framework */; };
 		EC4217BA19232C6000B162D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4217B819232C6000B162D8 /* InfoPlist.strings */; };
 		EC4217BC19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4217BB19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m */; };
+		EC45AD6B193C910A00455443 /* CourseCorrectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC45AD6A193C910A00455443 /* CourseCorrectionViewController.m */; };
 		EC49E75419262BBD00D87337 /* default_offers_events@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC49E75319262BBD00D87337 /* default_offers_events@2x.png */; };
 		EC49E75619262BCB00D87337 /* default_offers_events.png in Resources */ = {isa = PBXBuildFile; fileRef = EC49E75519262BCB00D87337 /* default_offers_events.png */; };
 		EC49E75919262E1200D87337 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC49E75819262E1200D87337 /* EventsViewController.m */; };
@@ -376,6 +390,7 @@
 		ECFD7942192C6CBC00464EE4 /* MVPopupTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7937192C6CBC00464EE4 /* MVPopupTransition.m */; };
 		ECFD7947192C6D9400464EE4 /* MVCustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7944192C6D9400464EE4 /* MVCustomAlertView.m */; };
 		ECFD7948192C6D9400464EE4 /* MVPickerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7946192C6D9400464EE4 /* MVPickerAlertView.m */; };
+		ECFE756D193C4E86002D3DD4 /* BodyStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE756C193C4E86002D3DD4 /* BodyStatsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -432,6 +447,18 @@
 		EC030255192B55EC00744A6A /* bullet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet@2x.png"; sourceTree = "<group>"; };
 		EC030258192B58A900744A6A /* DietTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietTableViewController.h; sourceTree = "<group>"; };
 		EC030259192B58A900744A6A /* DietTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietTableViewController.m; sourceTree = "<group>"; };
+		EC0596AE193DCE38006A80E6 /* a_icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon1.png; sourceTree = "<group>"; };
+		EC0596AF193DCE38006A80E6 /* a_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon2.png; sourceTree = "<group>"; };
+		EC0596B0193DCE38006A80E6 /* a_icon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon3.png; sourceTree = "<group>"; };
+		EC0596B1193DCE38006A80E6 /* a_icon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon4.png; sourceTree = "<group>"; };
+		EC0596B2193DCE38006A80E6 /* a_icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon5.png; sourceTree = "<group>"; };
+		EC0596B3193DCE38006A80E6 /* a_icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a_icon6.png; sourceTree = "<group>"; };
+		EC0596BA193DCE50006A80E6 /* a_icon1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon1@2x.png"; sourceTree = "<group>"; };
+		EC0596BB193DCE50006A80E6 /* a_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon2@2x.png"; sourceTree = "<group>"; };
+		EC0596BC193DCE50006A80E6 /* a_icon3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon3@2x.png"; sourceTree = "<group>"; };
+		EC0596BD193DCE50006A80E6 /* a_icon4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon4@2x.png"; sourceTree = "<group>"; };
+		EC0596BE193DCE50006A80E6 /* a_icon5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon5@2x.png"; sourceTree = "<group>"; };
+		EC0596BF193DCE50006A80E6 /* a_icon6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "a_icon6@2x.png"; sourceTree = "<group>"; };
 		EC086ACD192719B10094AD35 /* call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call@2x.png"; sourceTree = "<group>"; };
 		EC086ACF192719BA0094AD35 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		EC086AD1192720B60094AD35 /* T&CViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "T&CViewController.h"; sourceTree = "<group>"; };
@@ -471,6 +498,7 @@
 		EC2C6F601930676000AEA06D /* GuidelinesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidelinesViewController.m; sourceTree = "<group>"; };
 		EC2C6F62193085BE00AEA06D /* DosAndDontsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DosAndDontsViewController.h; sourceTree = "<group>"; };
 		EC2C6F63193085BE00AEA06D /* DosAndDontsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DosAndDontsViewController.m; sourceTree = "<group>"; };
+		EC2FE082193DF96B009D8455 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		EC42178D19232C6000B162D8 /* My Daily Fitness Guide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Daily Fitness Guide.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC42179019232C6000B162D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EC42179219232C6000B162D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -490,6 +518,8 @@
 		EC4217B719232C6000B162D8 /* My Daily Fitness GuideTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "My Daily Fitness GuideTests-Info.plist"; sourceTree = "<group>"; };
 		EC4217B919232C6000B162D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EC4217BB19232C6000B162D8 /* My_Daily_Fitness_GuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = My_Daily_Fitness_GuideTests.m; sourceTree = "<group>"; };
+		EC45AD69193C910A00455443 /* CourseCorrectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCorrectionViewController.h; sourceTree = "<group>"; };
+		EC45AD6A193C910A00455443 /* CourseCorrectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCorrectionViewController.m; sourceTree = "<group>"; };
 		EC49E75319262BBD00D87337 /* default_offers_events@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_offers_events@2x.png"; sourceTree = "<group>"; };
 		EC49E75519262BCB00D87337 /* default_offers_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_offers_events.png; sourceTree = "<group>"; };
 		EC49E75719262E1200D87337 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
@@ -836,6 +866,8 @@
 		ECFD7944192C6D9400464EE4 /* MVCustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVCustomAlertView.m; sourceTree = "<group>"; };
 		ECFD7945192C6D9400464EE4 /* MVPickerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPickerAlertView.h; sourceTree = "<group>"; };
 		ECFD7946192C6D9400464EE4 /* MVPickerAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVPickerAlertView.m; sourceTree = "<group>"; };
+		ECFE756B193C4E86002D3DD4 /* BodyStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyStatsViewController.h; sourceTree = "<group>"; };
+		ECFE756C193C4E86002D3DD4 /* BodyStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyStatsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -848,6 +880,7 @@
 				EC42179319232C6000B162D8 /* CoreGraphics.framework in Frameworks */,
 				EC42179519232C6000B162D8 /* UIKit.framework in Frameworks */,
 				EC42179119232C6000B162D8 /* Foundation.framework in Frameworks */,
+				EC2FE083193DF96B009D8455 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +908,12 @@
 		EC0F18AC19344DD40038F8A4 /* trainer */ = {
 			isa = PBXGroup;
 			children = (
+				EC0596BA193DCE50006A80E6 /* a_icon1@2x.png */,
+				EC0596BB193DCE50006A80E6 /* a_icon2@2x.png */,
+				EC0596BC193DCE50006A80E6 /* a_icon3@2x.png */,
+				EC0596BD193DCE50006A80E6 /* a_icon4@2x.png */,
+				EC0596BE193DCE50006A80E6 /* a_icon5@2x.png */,
+				EC0596BF193DCE50006A80E6 /* a_icon6@2x.png */,
 				EC705CF71938A19F0012E81E /* c_1@2x.jpg */,
 				EC705CF81938A19F0012E81E /* c_2@2x.jpg */,
 				EC705CF91938A19F0012E81E /* c_3@2x.jpg */,
@@ -976,6 +1015,12 @@
 		EC0F18AD19344DDE0038F8A4 /* trainer */ = {
 			isa = PBXGroup;
 			children = (
+				EC0596AE193DCE38006A80E6 /* a_icon1.png */,
+				EC0596AF193DCE38006A80E6 /* a_icon2.png */,
+				EC0596B0193DCE38006A80E6 /* a_icon3.png */,
+				EC0596B1193DCE38006A80E6 /* a_icon4.png */,
+				EC0596B2193DCE38006A80E6 /* a_icon5.png */,
+				EC0596B3193DCE38006A80E6 /* a_icon6.png */,
 				EC705C4F1938A16E0012E81E /* c_1.jpg */,
 				EC705C501938A16E0012E81E /* c_2.jpg */,
 				EC705C511938A16E0012E81E /* c_3.jpg */,
@@ -1096,6 +1141,7 @@
 		EC42178F19232C6000B162D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC2FE082193DF96B009D8455 /* FacebookSDK.framework */,
 				EC4EC98A193744BF00AA7A2E /* EventKit.framework */,
 				EC086AD4192734890094AD35 /* Social.framework */,
 				ECCA45381925E30C002F19AE /* MapKit.framework */,
@@ -1187,6 +1233,10 @@
 				EC2C6F63193085BE00AEA06D /* DosAndDontsViewController.m */,
 				EC4EC98C19375E7100AA7A2E /* ExcerciseListViewController.h */,
 				EC4EC98D19375E7100AA7A2E /* ExcerciseListViewController.m */,
+				ECFE756B193C4E86002D3DD4 /* BodyStatsViewController.h */,
+				ECFE756C193C4E86002D3DD4 /* BodyStatsViewController.m */,
+				EC45AD69193C910A00455443 /* CourseCorrectionViewController.h */,
+				EC45AD6A193C910A00455443 /* CourseCorrectionViewController.m */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -1695,6 +1745,8 @@
 				EC02DCA41929CB2300BAD1D0 /* nutritionist_inactive.png in Resources */,
 				EC705CEC1938A1870012E81E /* s_50.jpg in Resources */,
 				EC705C751938A16E0012E81E /* f_12.jpg in Resources */,
+				EC0596C5193DCE50006A80E6 /* a_icon6@2x.png in Resources */,
+				EC0596B6193DCE38006A80E6 /* a_icon3.png in Resources */,
 				EC705D7B1938A1B20012E81E /* s_25@2x.jpg in Resources */,
 				EC7D409B19248D52001338E4 /* ic_nav_offers.png in Resources */,
 				ECCA45321925DB12002F19AE /* google_map.png in Resources */,
@@ -1733,6 +1785,7 @@
 				EC705CCC1938A1870012E81E /* s_18.jpg in Resources */,
 				EC0F18BD19344E040038F8A4 /* t_m_4.jpg in Resources */,
 				EC705CCA1938A1870012E81E /* s_16.jpg in Resources */,
+				EC0596B9193DCE38006A80E6 /* a_icon6.png in Resources */,
 				EC705CCE1938A1870012E81E /* s_20.jpg in Resources */,
 				EC1F40FD19386F970051AA92 /* ic_about.png in Resources */,
 				EC705D1F1938A1A00012E81E /* f_14@2x.jpg in Resources */,
@@ -1764,17 +1817,21 @@
 				EC705D1D1938A1A00012E81E /* f_12@2x.jpg in Resources */,
 				EC7D409D19248D52001338E4 /* ic_nav_reset_body_stats.png in Resources */,
 				EC02DCBC192A0E9600BAD1D0 /* pounds_inactive.png in Resources */,
+				EC0596B4193DCE38006A80E6 /* a_icon1.png in Resources */,
 				ECEA116E1923795600823952 /* male_active.png in Resources */,
 				EC705C7C1938A16E0012E81E /* f_19.jpg in Resources */,
 				EC0F18B319344DF20038F8A4 /* t_m_2@2x.jpg in Resources */,
 				EC705CC71938A1870012E81E /* s_13.jpg in Resources */,
 				EC02DCA21929CB2300BAD1D0 /* nav_bar_icon.png in Resources */,
 				EC7D408219248D48001338E4 /* ic_nav_offers@2x.png in Resources */,
+				EC0596B8193DCE38006A80E6 /* a_icon5.png in Resources */,
 				EC705D9B1938A1B20012E81E /* s_57@2x.jpg in Resources */,
 				EC705D8B1938A1B20012E81E /* s_41@2x.jpg in Resources */,
 				ECEA11721923795600823952 /* male_active@2x.png in Resources */,
+				EC0596C4193DCE50006A80E6 /* a_icon5@2x.png in Resources */,
 				EC705CD01938A1870012E81E /* s_22.jpg in Resources */,
 				EC0F18BA19344E040038F8A4 /* t_m_1.jpg in Resources */,
+				EC0596C2193DCE50006A80E6 /* a_icon3@2x.png in Resources */,
 				EC705CE81938A1870012E81E /* s_46.jpg in Resources */,
 				EC705CF01938A1870012E81E /* s_54.jpg in Resources */,
 				ECDB8AC919234B0B00CA2137 /* Default.png in Resources */,
@@ -1788,6 +1845,7 @@
 				EC7D408519248D48001338E4 /* ic_nav_share_app@2x.png in Resources */,
 				EC705D6B1938A1B20012E81E /* s_9@2x.jpg in Resources */,
 				EC705D7F1938A1B20012E81E /* s_29@2x.jpg in Resources */,
+				EC0596C3193DCE50006A80E6 /* a_icon4@2x.png in Resources */,
 				ECAE319D192F27810095A40F /* n_m_1.jpg in Resources */,
 				EC02DC901929CB1200BAD1D0 /* nutritionist_inactive@2x.png in Resources */,
 				EC705D1A1938A1A00012E81E /* f_9@2x.jpg in Resources */,
@@ -1840,6 +1898,7 @@
 				EC7D409819248D52001338E4 /* ic_nav_gym_locator.png in Resources */,
 				EC705CC31938A1870012E81E /* s_9.jpg in Resources */,
 				EC0F18C21934AF020038F8A4 /* green_panel@2x.png in Resources */,
+				EC0596B7193DCE38006A80E6 /* a_icon4.png in Resources */,
 				EC030252192B55D500744A6A /* btn_add.png in Resources */,
 				EC705CC91938A1870012E81E /* s_15.jpg in Resources */,
 				EC02DCC5192A0EAD00BAD1D0 /* pounds_active@2x.png in Resources */,
@@ -1857,6 +1916,7 @@
 				EC7D40A019248D52001338E4 /* ic_nav_vip_guest_pass.png in Resources */,
 				EC705D6E1938A1B20012E81E /* s_12@2x.jpg in Resources */,
 				EC705CCD1938A1870012E81E /* s_19.jpg in Resources */,
+				EC0596B5193DCE38006A80E6 /* a_icon2.png in Resources */,
 				EC030256192B55EC00744A6A /* btn_add@2x.png in Resources */,
 				ECEA116F1923795600823952 /* male_inactive.png in Resources */,
 				EC705CC61938A1870012E81E /* s_12.jpg in Resources */,
@@ -1887,6 +1947,7 @@
 				EC02DCA81929CB2300BAD1D0 /* trainer_inactive.png in Resources */,
 				EC705D0F1938A1A00012E81E /* c_1@2x.jpg in Resources */,
 				EC02DC911929CB1200BAD1D0 /* profile_active@2x.png in Resources */,
+				EC0596C1193DCE50006A80E6 /* a_icon2@2x.png in Resources */,
 				EC705D221938A1A00012E81E /* f_17@2x.jpg in Resources */,
 				EC705CE41938A1870012E81E /* s_42.jpg in Resources */,
 				EC705C781938A16E0012E81E /* f_15.jpg in Resources */,
@@ -1908,6 +1969,7 @@
 				EC7D406A19247F71001338E4 /* navigation@2x.png in Resources */,
 				EC705CED1938A1870012E81E /* s_51.jpg in Resources */,
 				EC02DC8D1929CB1200BAD1D0 /* btn_get_started@2x.png in Resources */,
+				EC0596C0193DCE50006A80E6 /* a_icon1@2x.png in Resources */,
 				EC705D171938A1A00012E81E /* f_6@2x.jpg in Resources */,
 				EC705D871938A1B20012E81E /* s_37@2x.jpg in Resources */,
 				EC0F18C61934B1C50038F8A4 /* ic_log@2x.png in Resources */,
@@ -1946,6 +2008,7 @@
 				ECFD793A192C6CBC00464EE4 /* MASConstraintMaker.m in Sources */,
 				ECFD793D192C6CBC00464EE4 /* MASViewConstraint.m in Sources */,
 				ECDB8AAA192341DC00CA2137 /* UIColor+Extra.m in Sources */,
+				EC45AD6B193C910A00455443 /* CourseCorrectionViewController.m in Sources */,
 				ECFD7942192C6CBC00464EE4 /* MVPopupTransition.m in Sources */,
 				ECFD7940192C6CBC00464EE4 /* View+MASAdditions.m in Sources */,
 				EC4217A719232C6000B162D8 /* ViewController.m in Sources */,
@@ -1981,6 +2044,7 @@
 				ECEA119D192386BC00823952 /* AFNetworkReachabilityManager.m in Sources */,
 				ECEA11A2192386BC00823952 /* AFURLSessionManager.m in Sources */,
 				ECDB8ABF1923434C00CA2137 /* FMDatabasePool.m in Sources */,
+				ECFE756D193C4E86002D3DD4 /* BodyStatsViewController.m in Sources */,
 				ECFD793C192C6CBC00464EE4 /* MASViewAttribute.m in Sources */,
 				EC7D406619247E4B001338E4 /* FirstTabViewController.m in Sources */,
 				EC4EC98E19375E7100AA7A2E /* ExcerciseListViewController.m in Sources */,
@@ -2125,6 +2189,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/yogesh/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
 				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";
@@ -2137,6 +2205,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/yogesh/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
 				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";

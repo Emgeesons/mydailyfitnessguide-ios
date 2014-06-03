@@ -14,6 +14,7 @@
 #import "WeeklySchedule.h"
 #import "CustomButton.h"
 #import "ExcerciseListViewController.h"
+#import "BodyStatsViewController.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -175,7 +176,7 @@
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
-    if ([startDate isEqualToString:@""]) {
+    if ([startDate isEqualToString:@""] || startDate == NULL) {
         
     } else {
         int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
@@ -215,6 +216,7 @@
     self.viewWeeklyDiet.frame = frame;
     self.vwProfile.frame = frame;
     self.vwTrainerWeeklySchedule.frame = frame;
+    self.viewBodyStats.frame = frame;
 }
 
 -(void)assignDay {
@@ -361,9 +363,44 @@
                          }
                          completion:nil];
     }
+    // For goal is Indeterminate
+    else if ([result isEqualToString:@"Indeterminate"]) {
+        UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+        
+        UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 300, 54)];
+        [logWeight addGestureRecognizer:tapBodyStats];
+        
+        logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+        UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+        
+        UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+        lblLogWeight.text = @"Log your Body Stats";
+        lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [logWeight addSubview:alarmImage];
+        [logWeight addSubview:lblLogWeight];
+        [logWeight addSubview:arrowImage];
+        [self.viewBodyStats addSubview:logWeight];
+        
+        CGRect newFrame = self.viewBodyStats.frame;
+        newFrame.origin.y = 68;
+        self.viewBodyStats.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewBodyStats.frame = newFrame;
+                         }
+                         completion:nil];
+    }
     
     // For goal is Begun
-    else if ([result isEqualToString:@"Begun"]) {
+    else if ([result isEqualToString:@"Begun"] || [result isEqualToString:@"Maintenance"]) {
         top = 0;
         [self assignDay];
         
@@ -382,6 +419,9 @@
                          }
                          completion:nil];
         // Add cards based on values here
+        
+        //Add achievement UI here
+        [self addAchievementView];
         
         //-------------------------- Add Tips View Start -------------------------
         
@@ -432,8 +472,14 @@
         //-------------------------- Add Tips View End -------------------------
         
         //-------------------------- Add Log your weight Start -----------------
-        if ([result isEqualToString:@"Indeterminate"]) {
+        WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+        //NSLog(@"%d", [week getMonth]);
+        if (![self checkMonthPresent:[week getMonth]]) {
+            UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+            
             UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 54)];
+            [logWeight addGestureRecognizer:tapBodyStats];
+            
             logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
             UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
             alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
@@ -511,7 +557,7 @@
         //-------------------------- Add Weekly Schedule Start -----------------
         
         // Get Weekly Schedule
-        WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+        //WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
         NSArray *scheduleArray = [week getWeeklySchedule];
         
         viewSchedule = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 370)];
@@ -909,6 +955,41 @@
                          }
                          completion:nil];
     }
+    // For goal is Indeterminate
+    else if ([result isEqualToString:@"Indeterminate"]) {
+        UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+        
+        UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 300, 54)];
+        [logWeight addGestureRecognizer:tapBodyStats];
+        
+        logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+        UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+        
+        UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+        lblLogWeight.text = @"Log your Body Stats";
+        lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [logWeight addSubview:alarmImage];
+        [logWeight addSubview:lblLogWeight];
+        [logWeight addSubview:arrowImage];
+        [self.viewBodyStats addSubview:logWeight];
+        
+        CGRect newFrame = self.viewBodyStats.frame;
+        newFrame.origin.y = 68;
+        self.viewBodyStats.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewBodyStats.frame = newFrame;
+                         }
+                         completion:nil];
+    }
     
     // For goal is Set
     else if ([result isEqualToString:@"Begun"]) {
@@ -1042,6 +1123,7 @@
     self.viewWeeklyDiet.hidden = YES;
     self.vwProfile.hidden = YES;
     self.vwTrainerWeeklySchedule.hidden = YES;
+    self.viewBodyStats.hidden = YES;
 }
 
 #pragma mark - Button click Events
@@ -1058,10 +1140,15 @@
     
     [database open];
     
-    FMResultSet *res = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type ='durationInMonth'"];
+    FMResultSet *res = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];
     int month = 0, days;
+    double weight = 0.0;
     while([res next]) {
-        month = [[res stringForColumn:@"value"] integerValue];
+        if ([[res stringForColumn:@"type"] isEqualToString:@"durationInMonth"]) {
+            month = [[res stringForColumn:@"value"] integerValue];
+        } else if ([[res stringForColumn:@"type"] isEqualToString:@"weight"]) {
+            weight = [[res stringForColumn:@"value"] doubleValue];
+        }
     }
     
     days = month * 30;
@@ -1070,6 +1157,8 @@
     [format setDateFormat:@"YYYY-MM-dd"];
     NSDate *stDate = [format dateFromString:start_date];
     NSDate *enDate = [stDate dateByAddingTimeInterval:60*60*24 * days];
+    
+    [database executeUpdate:@"INSERT INTO monthLog(monthNumber, weight) VALUES(?, ?)" , @"1", [NSString stringWithFormat:@"%f", weight], nil];
     
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Begun", @"goal"];
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", start_date, @"start_date"];
@@ -1248,6 +1337,14 @@
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
+-(void)tapBodyStats:(UITapGestureRecognizer *)recognizer {
+    BodyStatsViewController *viewController = (BodyStatsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"bodyStatsViewController"];
+    //viewController.screenType = @"trainer";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
 -(void)btnScheduleClicked:(id)sender {
     CustomButton *btn = (CustomButton *)sender;
     
@@ -1270,8 +1367,8 @@
 -(void)btnTickClicked:(id)sender {
     CustomButton *btn = (CustomButton *)sender;
 
-    NSLog(@"%d", yesterdaysDay);
-    NSLog(@"new %d", sun);
+    //NSLog(@"%d", yesterdaysDay);
+    //NSLog(@"new %d", sun);
     if (btn == btnMonTick) {
         if ([yesterdayName isEqualToString:@"Mon"]) {
             [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:YES];
@@ -1510,6 +1607,97 @@
 
 #pragma mark - General Functions
 
+-(void)addAchievementView {
+    [database open];
+    NSString *achieveWeek, *achieveMonth, *achieve25, *achieve50, *achieve75, *achieve100;
+    NSString *dateAchieveWeek, *dateAchieveMonth, *dateAchieve25, *dateAchieve50, *dateAchieve75, *dateAchieve100;
+    
+    FMResultSet *res = [database executeQuery:@"SELECT name, appear, dateShown FROM achievementTable"];
+    
+    while([res next]) {
+        if ([[res stringForColumn:@"name"] isEqualToString:@"week"]) {
+            achieveWeek = [res stringForColumn:@"appear"];
+            dateAchieveWeek = [res stringForColumn:@"dateShown"];
+        } else if ([[res stringForColumn:@"name"] isEqualToString:@"month"]) {
+            achieveMonth = [res stringForColumn:@"appear"];
+            dateAchieveMonth = [res stringForColumn:@"dateShown"];
+        } else if ([[res stringForColumn:@"name"] isEqualToString:@"percent25"]) {
+            achieve25 = [res stringForColumn:@"appear"];
+            dateAchieve25 = [res stringForColumn:@"dateShown"];
+        } else if ([[res stringForColumn:@"name"] isEqualToString:@"percent50"]) {
+            achieve50 = [res stringForColumn:@"appear"];
+            dateAchieve50 = [res stringForColumn:@"dateShown"];
+        } else if ([[res stringForColumn:@"name"] isEqualToString:@"percent75"]) {
+            achieve75 = [res stringForColumn:@"appear"];
+            dateAchieve75 = [res stringForColumn:@"dateShown"];
+        } else if ([[res stringForColumn:@"name"] isEqualToString:@"percent100"]) {
+            achieve100 = [res stringForColumn:@"appear"];
+            dateAchieve100 = [res stringForColumn:@"dateShown"];
+        }
+    }
+    
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *startDate, *endDate;
+    
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+            startDate = [results stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate date]];
+    int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    
+    if ([achieveWeek isEqualToString:@"false"] || [achieveWeek isEqualToString:@"true"]) {
+        if (numberOfDays > 6) {
+            // for week achievement
+            // check here last 7, 8, 9 days tick in database.
+            if ([achieveWeek isEqualToString:@"false"]) {
+                [database open];
+                FMResultSet *resWeekDays = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS days FROM dailyTicks where day >= %d AND day <= %d AND tick = 'true'", (numberOfDays - 7), numberOfDays]];
+                int weekDays = 0;
+                
+                while([resWeekDays next]) {
+                    weekDays = [[resWeekDays stringForColumn:@"days"] intValue];
+                }
+                [database close];
+                
+                if (weekDays == 7) {
+                    // Add UI here
+                    UIView *weekView = [[UIView alloc] initWithFrame:CGRectMake(0, top + 5, 300, 200)];
+                    weekView.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+                    [self.trainerScrollView addSubview:weekView];
+                    
+                    UIImageView *imgAchieve = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 90, 90)];
+                    imgAchieve.image = [UIImage imageNamed:@"a_icon5.png"];
+                    [weekView addSubview:imgAchieve];
+                    
+                    UILabel *lblMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, imgAchieve.frame.origin.y + imgAchieve.frame.size.height, 300, 20)];
+                    lblMsg.textAlignment = NSTextAlignmentCenter;
+                    lblMsg.font = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
+                    lblMsg.text = @"Congratulations. You've had a Perfect Week.";
+                    [weekView addSubview:lblMsg];
+                    
+                    UILabel *lblSubMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, lblMsg.frame.origin.y + lblMsg.frame.size.height + 5, 300, 20)];
+                    lblSubMsg.textAlignment = NSTextAlignmentCenter;
+                    lblSubMsg.textColor = [UIColor grayColor];
+                    lblSubMsg.font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:11.0f];
+                    lblSubMsg.text = @"Now go get a perfect Month.";
+                    [weekView addSubview:lblSubMsg];
+                    
+                    top = top + weekView.frame.size.height + 15;
+                }
+            }
+        }
+    }
+    
+    [database close];
+    
+}
+
 -(BOOL)dayPresent:(int)day {
     
     BOOL tmpResult = '\0';
@@ -1520,6 +1708,26 @@
     
     while([results next]) {
         if([results intForColumn:@"day"] >= 1) {
+            tmpResult = YES;
+        } else {
+            tmpResult = NO;
+        }
+    }
+    
+    [database close];
+    
+    return tmpResult;
+}
+
+-(BOOL)checkMonthPresent:(int)month {
+    BOOL tmpResult = '\0';
+    
+    [database open];
+    
+    FMResultSet *results = [database executeQuery:[NSString stringWithFormat:@"SELECT count(monthNumber) as monthNum FROM monthLog WHERE monthNumber = '%d'", month]];
+    
+    while([results next]) {
+        if([results intForColumn:@"monthNum"] >= 1) {
             tmpResult = YES;
         } else {
             tmpResult = NO;
