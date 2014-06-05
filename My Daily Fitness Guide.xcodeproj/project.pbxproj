@@ -88,6 +88,8 @@
 		EC251C80192DD52A0081F0CD /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7F192DD52A0081F0CD /* start.png */; };
 		EC251C82192DD5A50081F0CD /* btn_lets_begin.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C81192DD5A50081F0CD /* btn_lets_begin.png */; };
 		EC251C84192DD5BD0081F0CD /* btn_lets_begin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C83192DD5BD0081F0CD /* btn_lets_begin@2x.png */; };
+		EC292577193F1C4D0050B419 /* share_on_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC292576193F1C4D0050B419 /* share_on_facebook@2x.png */; };
+		EC292579193F1C5B0050B419 /* share_on_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = EC292578193F1C5B0050B419 /* share_on_facebook.png */; };
 		EC2C6F611930676000AEA06D /* GuidelinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C6F601930676000AEA06D /* GuidelinesViewController.m */; };
 		EC2C6F64193085BE00AEA06D /* DosAndDontsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C6F63193085BE00AEA06D /* DosAndDontsViewController.m */; };
 		EC2FE083193DF96B009D8455 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2FE082193DF96B009D8455 /* FacebookSDK.framework */; };
@@ -494,6 +496,8 @@
 		EC251C7F192DD52A0081F0CD /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		EC251C81192DD5A50081F0CD /* btn_lets_begin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_lets_begin.png; sourceTree = "<group>"; };
 		EC251C83192DD5BD0081F0CD /* btn_lets_begin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_lets_begin@2x.png"; sourceTree = "<group>"; };
+		EC292576193F1C4D0050B419 /* share_on_facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_on_facebook@2x.png"; sourceTree = "<group>"; };
+		EC292578193F1C5B0050B419 /* share_on_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_on_facebook.png; sourceTree = "<group>"; };
 		EC2C6F5F1930676000AEA06D /* GuidelinesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuidelinesViewController.h; sourceTree = "<group>"; };
 		EC2C6F601930676000AEA06D /* GuidelinesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuidelinesViewController.m; sourceTree = "<group>"; };
 		EC2C6F62193085BE00AEA06D /* DosAndDontsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DosAndDontsViewController.h; sourceTree = "<group>"; };
@@ -908,6 +912,7 @@
 		EC0F18AC19344DD40038F8A4 /* trainer */ = {
 			isa = PBXGroup;
 			children = (
+				EC292576193F1C4D0050B419 /* share_on_facebook@2x.png */,
 				EC0596BA193DCE50006A80E6 /* a_icon1@2x.png */,
 				EC0596BB193DCE50006A80E6 /* a_icon2@2x.png */,
 				EC0596BC193DCE50006A80E6 /* a_icon3@2x.png */,
@@ -1015,6 +1020,7 @@
 		EC0F18AD19344DDE0038F8A4 /* trainer */ = {
 			isa = PBXGroup;
 			children = (
+				EC292578193F1C5B0050B419 /* share_on_facebook.png */,
 				EC0596AE193DCE38006A80E6 /* a_icon1.png */,
 				EC0596AF193DCE38006A80E6 /* a_icon2.png */,
 				EC0596B0193DCE38006A80E6 /* a_icon3.png */,
@@ -1847,6 +1853,7 @@
 				EC705D7F1938A1B20012E81E /* s_29@2x.jpg in Resources */,
 				EC0596C3193DCE50006A80E6 /* a_icon4@2x.png in Resources */,
 				ECAE319D192F27810095A40F /* n_m_1.jpg in Resources */,
+				EC292579193F1C5B0050B419 /* share_on_facebook.png in Resources */,
 				EC02DC901929CB1200BAD1D0 /* nutritionist_inactive@2x.png in Resources */,
 				EC705D1A1938A1A00012E81E /* f_9@2x.jpg in Resources */,
 				EC251C80192DD52A0081F0CD /* start.png in Resources */,
@@ -1975,6 +1982,7 @@
 				EC0F18C61934B1C50038F8A4 /* ic_log@2x.png in Resources */,
 				EC705CEA1938A1870012E81E /* s_48.jpg in Resources */,
 				EC705D731938A1B20012E81E /* s_17@2x.jpg in Resources */,
+				EC292577193F1C4D0050B419 /* share_on_facebook@2x.png in Resources */,
 				EC705D6D1938A1B20012E81E /* s_11@2x.jpg in Resources */,
 				EC705D8F1938A1B20012E81E /* s_45@2x.jpg in Resources */,
 				EC9FE4911935E34100B7A434 /* grey_tickmark@2x.png in Resources */,

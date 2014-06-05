@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *latitude, *longitude, *callString, *dayName, *dayWorkout, *dietPlan;
 @property (nonatomic) int dayNumber;
+@property (nonatomic, strong) NSString *fbPost, *fbImage, *fbTitle, *fbDescription, *fbLink;
 
 @end

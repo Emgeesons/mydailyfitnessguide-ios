@@ -20,7 +20,7 @@
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 10.0f
 
-@interface FirstTabViewController () {
+@interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate> {
     FMDatabase *database;
     NSString *weeklyDiet, *vacationDate, *goalState, *yesterdayName;
     int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top;
@@ -33,6 +33,9 @@
     int mon, tue, wed, thur, fri, sat, sun, yesterdaysDay;
     
     UIView *logYesterdayWeight, *viewSchedule, *viewGuidelines, *viewDAD;
+    
+    FBLoginView *btnFacebookLogin;
+    CustomButton *btnFacebook;
 }
 
 @end
@@ -1605,6 +1608,66 @@
                      }];
 }
 
+#pragma mark - FB delegate methods
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    // If the user is logged in, they can post to Facebook using API calls, so we show the buttons
+    NSLog(@"login");
+    btnFacebook.hidden = NO;
+    btnFacebookLogin.hidden = YES;
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    // If the user is NOT logged in, they can't post to Facebook using API calls, so we show the buttons
+    NSLog(@"logout");
+    btnFacebook.hidden = YES;
+    btnFacebookLogin.hidden = NO;
+}
+
+// You need to override loginView:handleError in order to handle possible errors that can occur during login
+- (void)loginView:(FBLoginView *)loginView handleError:(NSError *)error {
+    NSString *alertMessage, *alertTitle;
+    
+    // If the user should perform an action outside of you app to recover,
+    // the SDK will provide a message for the user, you just need to surface it.
+    // This conveniently handles cases like Facebook password change or unverified Facebook accounts.
+    if ([FBErrorUtility shouldNotifyUserForError:error]) {
+        alertTitle = @"Facebook error";
+        alertMessage = [FBErrorUtility userMessageForError:error];
+        
+        // This code will handle session closures since that happen outside of the app.
+        // You can take a look at our error handling guide to know more about it
+        // https://developers.facebook.com/docs/ios/errors
+    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession) {
+        alertTitle = @"Session Error";
+        alertMessage = @"Your current session is no longer valid. Please log in again.";
+        
+        // If the user has cancelled a login, we will do nothing.
+        // You can also choose to show the user a message if cancelling login will result in
+        // the user not being able to complete a task they had initiated in your app
+        // (like accessing FB-stored information or posting to Facebook)
+    } else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled) {
+        NSLog(@"user cancelled login");
+        
+        // For simplicity, this sample handles other errors with a generic message
+        // You can checkout our error handling guide for more detailed information
+        // https://developers.facebook.com/docs/ios/errors
+    } else {
+        alertTitle  = @"Something went wrong";
+        alertMessage = @"Please try again later.";
+        NSLog(@"Unexpected error:%@", error);
+    }
+    
+    if (alertMessage) {
+        [[[UIAlertView alloc] initWithTitle:alertTitle
+                                    message:alertMessage
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
+}
+
+
 #pragma mark - General Functions
 
 -(void)addAchievementView {
@@ -1637,13 +1700,25 @@
     }
     
     FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
-    NSString *startDate, *endDate;
+    NSString *startDate, *endDate, *startWeight, *targetWeight, *weightProgram, *currentWeight;
     
     while([results next]) {
         if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
             startDate = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"weight"]) {
+            startWeight = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"kgsLossGain"]) {
+            targetWeight = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"programType"]) {
+            weightProgram = [results stringForColumn:@"value"];
         }
     }
+    
+    FMResultSet *res1 = [database executeQuery:@"SELECT weight FROM monthLog ORDER BY id DESC LIMIT 0,1"];
+    while([res1 next]) {
+        currentWeight = [res1 stringForColumn:@"weight"];
+    }
+    
     [database close];
     
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
@@ -1651,13 +1726,51 @@
     endDate = [f stringFromDate:[NSDate date]];
     int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     
+    UIView *weekView = [[UIView alloc] initWithFrame:CGRectMake(0, top + 5, 300, 200)];
+    weekView.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+    
+    UIImageView *imgAchieve = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 90, 90)];
+    [weekView addSubview:imgAchieve];
+    
+    UILabel *lblMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, imgAchieve.frame.origin.y + imgAchieve.frame.size.height, 300, 20)];
+    lblMsg.textAlignment = NSTextAlignmentCenter;
+    lblMsg.font = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
+    [weekView addSubview:lblMsg];
+    
+    UILabel *lblSubMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, lblMsg.frame.origin.y + lblMsg.frame.size.height + 5, 300, 20)];
+    lblSubMsg.textAlignment = NSTextAlignmentCenter;
+    lblSubMsg.textColor = [UIColor grayColor];
+    lblSubMsg.font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:11.0f];
+    [weekView addSubview:lblSubMsg];
+    
+    btnFacebook = [[CustomButton alloc] initWithFrame:CGRectMake(90, lblSubMsg.frame.origin.y + lblSubMsg.frame.size.height + 5, 120, 25)];
+    [btnFacebook setBackgroundImage:[UIImage imageNamed:@"share_on_facebook.png"] forState:UIControlStateNormal];
+    [btnFacebook addTarget:self action:@selector(facebookShare:) forControlEvents:UIControlEventTouchUpInside];
+    [weekView addSubview:btnFacebook];
+    
+    btnFacebookLogin = [[FBLoginView alloc] initWithFrame:CGRectMake(90, lblSubMsg.frame.origin.y + lblSubMsg.frame.size.height + 5, 120, 25)];
+    btnFacebookLogin.delegate = self;
+    [weekView addSubview:btnFacebookLogin];
+    
+    /*-------------------------------------- For Week ----------------------------------------*/
     if ([achieveWeek isEqualToString:@"false"] || [achieveWeek isEqualToString:@"true"]) {
-        if (numberOfDays > 6) {
-            // for week achievement
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon5.png"];
+        lblMsg.text = @"Congratulations. You've had a Perfect Week.";
+        lblSubMsg.text = @"Now go get a perfect Month.";
+        
+        btnFacebook.fbPost = @"Woohoo!! Worked out 7 Days on a Trot and it Feels Great!";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/perfect_week.png";
+        btnFacebook.fbTitle = @"Had A Perfect Week at The Gym with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        
+        if (numberOfDays >= 7) {
             // check here last 7, 8, 9 days tick in database.
             if ([achieveWeek isEqualToString:@"false"]) {
                 [database open];
-                FMResultSet *resWeekDays = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS days FROM dailyTicks where day >= %d AND day <= %d AND tick = 'true'", (numberOfDays - 7), numberOfDays]];
+                NSString *sqlString = [NSString stringWithFormat:@"SELECT count(*) AS days FROM dailyTicks where day >= %d AND day <= %d AND tick = 'true'", (numberOfDays - 7), numberOfDays];
+                //NSLog(@"%@", sqlString);
+                FMResultSet *resWeekDays = [database executeQuery:sqlString];
                 int weekDays = 0;
                 
                 while([resWeekDays next]) {
@@ -1667,35 +1780,239 @@
                 
                 if (weekDays == 7) {
                     // Add UI here
-                    UIView *weekView = [[UIView alloc] initWithFrame:CGRectMake(0, top + 5, 300, 200)];
-                    weekView.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
                     [self.trainerScrollView addSubview:weekView];
+                    top = top + weekView.frame.size.height + 15;
                     
-                    UIImageView *imgAchieve = [[UIImageView alloc] initWithFrame:CGRectMake(105, 0, 90, 90)];
-                    imgAchieve.image = [UIImage imageNamed:@"a_icon5.png"];
-                    [weekView addSubview:imgAchieve];
-                    
-                    UILabel *lblMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, imgAchieve.frame.origin.y + imgAchieve.frame.size.height, 300, 20)];
-                    lblMsg.textAlignment = NSTextAlignmentCenter;
-                    lblMsg.font = [UIFont fontWithName:@"HelveticaNeue" size:13.0f];
-                    lblMsg.text = @"Congratulations. You've had a Perfect Week.";
-                    [weekView addSubview:lblMsg];
-                    
-                    UILabel *lblSubMsg = [[UILabel alloc] initWithFrame:CGRectMake(0, lblMsg.frame.origin.y + lblMsg.frame.size.height + 5, 300, 20)];
-                    lblSubMsg.textAlignment = NSTextAlignmentCenter;
-                    lblSubMsg.textColor = [UIColor grayColor];
-                    lblSubMsg.font = [UIFont fontWithName:@"HelveticaNeue-Italic" size:11.0f];
-                    lblSubMsg.text = @"Now go get a perfect Month.";
-                    [weekView addSubview:lblSubMsg];
-                    
+                    [database open];
+                    [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"week"];
+                    [database close];
+                }
+            } else {
+                // for next 2 days
+                int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieveWeek and:endDate];
+                if (numberOdDaysBetweenDateShown <=3) {
+                    // show the UI
+                    [self.trainerScrollView addSubview:weekView];
                     top = top + weekView.frame.size.height + 15;
                 }
             }
         }
     }
     
-    [database close];
+    /*-------------------------------------- For Month ---------------------------------------*/
+    if ([achieveMonth isEqualToString:@"false"] || [achieveMonth isEqualToString:@"true"]) {
+        if (numberOfDays >= 30) {
+            // check here last 30, 31, 32 days tick in database.
+            if ([achieveMonth isEqualToString:@"false"]) {
+                [database open];
+                FMResultSet *resMonthDays = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS days FROM dailyTicks where day >= %d AND day <= %d AND tick = 'true'", (numberOfDays - 30), numberOfDays]];
+                int monthDays = 0;
+                
+                while([resMonthDays next]) {
+                    monthDays = [[resMonthDays stringForColumn:@"days"] intValue];
+                }
+                [database close];
+                
+                if (monthDays == 30) {
+                    // Add UI here
+                    [self.trainerScrollView addSubview:weekView];
+                    top = top + weekView.frame.size.height + 15;
+                    
+                    [database open];
+                    [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"month"];
+                    [database close];
+                }
+            } else {
+                // for next 2 days
+                int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieveMonth and:endDate];
+                if (numberOdDaysBetweenDateShown <=3) {
+                    // show the UI
+                    [self.trainerScrollView addSubview:weekView];
+                    top = top + weekView.frame.size.height + 15;
+                }
+            }
+        }
+    }
     
+    double diffWeight, percent;
+    if ([weightProgram isEqualToString:@"weightGain"]) {
+        // weight gain
+        diffWeight = [currentWeight doubleValue] - [startWeight doubleValue];
+    } else {
+        // weight loss
+        diffWeight = [startWeight doubleValue] - [currentWeight doubleValue];
+    }
+    
+    // check the difference here
+//    if (diffWeight > 0) {
+//        // positive value
+//    } else {
+//        // negative value
+//        diffWeight = 1;
+//    }
+    
+    percent = (diffWeight * 100)/ ([targetWeight doubleValue]);
+    
+    /*-------------------------------------- For 25% ---------------------------------------*/
+    if (percent >= 25 && percent < 50) {
+        if ([achieve25 isEqualToString:@"false"]) {
+            // Add UI here
+            [self.trainerScrollView addSubview:weekView];
+            top = top + weekView.frame.size.height + 15;
+            
+            [database open];
+            [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"percent25"];
+            [database close];
+        } else {
+            // for next 2 days
+            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve25 and:endDate];
+            if (numberOdDaysBetweenDateShown <=3) {
+                // show the UI
+                [self.trainerScrollView addSubview:weekView];
+                top = top + weekView.frame.size.height + 15;
+            }
+        }
+    }
+    /*-------------------------------------- For 50% ---------------------------------------*/
+    else if (percent >= 50 && percent < 75) {
+        if ([achieve50 isEqualToString:@"false"]) {
+            // Add UI here
+            [self.trainerScrollView addSubview:weekView];
+            top = top + weekView.frame.size.height + 15;
+            
+            [database open];
+            [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"percent50"];
+            [database close];
+        } else {
+            // for next 2 days
+            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve50 and:endDate];
+            if (numberOdDaysBetweenDateShown <=3) {
+                // show the UI
+                [self.trainerScrollView addSubview:weekView];
+                top = top + weekView.frame.size.height + 15;
+            }
+        }
+    }
+    /*-------------------------------------- For 75% ---------------------------------------*/
+    else if (percent >= 75 && percent < 100) {
+        if ([achieve75 isEqualToString:@"false"]) {
+            // Add UI here
+            [self.trainerScrollView addSubview:weekView];
+            top = top + weekView.frame.size.height + 15;
+            
+            [database open];
+            [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"percent75"];
+            [database close];
+        } else {
+            // for next 2 days
+            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve75 and:endDate];
+            if (numberOdDaysBetweenDateShown <=3) {
+                // show the UI
+                [self.trainerScrollView addSubview:weekView];
+                top = top + weekView.frame.size.height + 15;
+            }
+        }
+    }
+    /*-------------------------------------- For 100% ---------------------------------------*/
+    else if (percent >= 100) {
+        if ([achieve100 isEqualToString:@"false"]) {
+            // Add UI here
+            [self.trainerScrollView addSubview:weekView];
+            top = top + weekView.frame.size.height + 15;
+            
+            [database open];
+            [database executeUpdate:@"UPDATE achievementTable SET appear = ?,dateShown = ?  WHERE name = ?", @"true", endDate, @"percent100"];
+            [database close];
+        } else {
+            // for next 2 days
+            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve100 and:endDate];
+            if (numberOdDaysBetweenDateShown <=3) {
+                // show the UI
+                [self.trainerScrollView addSubview:weekView];
+                top = top + weekView.frame.size.height + 15;
+            }
+        }
+    }
+}
+
+-(void)facebookShare:(CustomButton *)sender {
+    CustomButton *btn = (CustomButton *)sender;
+    // We will post on behalf of the user, these are the permissions we need:
+    NSArray *permissionsNeeded = @[@"publish_actions"];
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:@"/me/permissions"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error){
+                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
+                                  NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
+                                  
+                                  // Check if all the permissions we need are present in the user's current permissions
+                                  // If they are not present add them to the permissions to be requested
+                                  for (NSString *permission in permissionsNeeded){
+                                      if (![currentPermissions objectForKey:permission]){
+                                          [requestPermissions addObject:permission];
+                                      }
+                                  }
+                                  
+                                  // If we have permissions to request
+                                  if ([requestPermissions count] > 0){
+                                      // Ask for the missing permissions
+                                      [FBSession.activeSession requestNewPublishPermissions:requestPermissions
+                                                                            defaultAudience:FBSessionDefaultAudienceFriends
+                                                                          completionHandler:^(FBSession *session, NSError *error) {
+                                                                              if (!error) {
+                                                                                  // Permission granted, we can request the user information
+                                                                                  [self makeRequestToUpdateStatus];
+                                                                              } else {
+                                                                                  // An error occurred, handle the error
+                                                                                  // See our Handling Errors guide: https://developers.facebook.com/docs/ios/errors/
+                                                                                  NSLog(@"%@", error.description);
+                                                                              }
+                                                                          }];
+                                  } else {
+                                      // Permissions are present, we can request the user information
+                                      [self makeRequestToUpdateStatus];
+                                  }
+                                  
+                              } else {
+                                  // There was an error requesting the permission information
+                                  // See our Handling Errors guide: https://developers.facebook.com/docs/ios/errors/
+                                  NSLog(@"%@", error.description);
+                              }
+                          }];
+}
+
+- (void)makeRequestToUpdateStatus {
+    
+    // NOTE: pre-filling fields associated with Facebook posts,
+    // unless the user manually generated the content earlier in the workflow of your app,
+    // can be against the Platform policies: https://developers.facebook.com/policy
+    
+    // Put together the dialog parameters
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Sharing Tutorial", @"name",
+                                   @"Build great social apps and get more installs.", @"caption",
+                                   @"Allow your users to share stories on Facebook from your app using the iOS SDK.", @"description",
+                                   @"https://developers.facebook.com/docs/ios/share/", @"link",
+                                   @"http://i.imgur.com/g3Qc1HN.png", @"picture",
+                                   nil];
+    
+    // Make the request
+    [FBRequestConnection startWithGraphPath:@"/me/feed"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error) {
+                                  // Link posted successfully to Facebook
+                                  NSLog(@"result: %@", result);
+                              } else {
+                                  // An error occurred, we need to handle the error
+                                  // See: https://developers.facebook.com/docs/ios/errors
+                                  NSLog(@"%@", error.description);
+                              }
+                          }];
+    //[FBRequestConnection startForPostOpenGraphObjectWithType:<#(NSString *)#> title:<#(NSString *)#> image:<#(id)#> url:<#(id)#> description:<#(NSString *)#> objectProperties:<#(NSDictionary *)#> completionHandler:<#^(FBRequestConnection *connection, id result, NSError *error)handler#>]
 }
 
 -(BOOL)dayPresent:(int)day {

@@ -100,7 +100,7 @@
     [manager POST:eventsURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [activityIndicator stopAnimating];
-        NSLog(@"response %@", responseObject);
+        //NSLog(@"response %@", responseObject);
         
         NSDictionary *json = (NSDictionary *)responseObject;
         
@@ -135,7 +135,7 @@
                     imageView.image = [UIImage imageNamed:@"default_offers_events.png"];
                 }
                 
-                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 310, 250)];
+                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 300, 250)];
                 testWebview.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
                 
                 NSString *path = [[NSBundle mainBundle] pathForResource:@"im_boundary" ofType:@"png"];
