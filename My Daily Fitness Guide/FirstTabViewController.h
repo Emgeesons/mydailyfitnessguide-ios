@@ -26,6 +26,12 @@
 
 @property (weak, nonatomic) IBOutlet UIView *viewBodyStats;
 
+@property (weak, nonatomic) IBOutlet UIView *viewAchieved;
+- (IBAction)btnMaintainWeightClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIView *viewNotAchieved;
+- (IBAction)btnResetBodyClicked:(id)sender;
+
 // properties for tab view
 @property (weak, nonatomic) IBOutlet UIView *btnTrainer;
 @property (weak, nonatomic) IBOutlet UIView *btnNutritionist;

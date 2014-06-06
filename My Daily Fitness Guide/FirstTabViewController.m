@@ -220,6 +220,8 @@
     self.vwProfile.frame = frame;
     self.vwTrainerWeeklySchedule.frame = frame;
     self.viewBodyStats.frame = frame;
+    self.viewAchieved.frame = frame;
+    self.viewNotAchieved.frame = frame;
 }
 
 -(void)assignDay {
@@ -290,9 +292,6 @@
             mon = -1, tue = -1, wed = -1, thur = -1, fri = -1, sat = -1, sun = 1;
         }
     }
-    //NSLog(@"%@", dayName);
-    
-    //NSLog(@"%d", numberOfDays);
 }
 
 -(void)loadStartViewTrainer {
@@ -366,6 +365,37 @@
                          }
                          completion:nil];
     }
+    
+    // For goal is Achieved
+    if ([result isEqualToString:@"Achieved"]) {
+        CGRect newFrame = self.viewAchieved.frame;
+        newFrame.origin.y = 68;
+        self.viewAchieved.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewAchieved.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
+    // For goal is Not Achieved
+    if ([result isEqualToString:@"Not Achieved"]) {
+        CGRect newFrame = self.viewNotAchieved.frame;
+        newFrame.origin.y = 68;
+        self.viewNotAchieved.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewNotAchieved.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
     // For goal is Indeterminate
     else if ([result isEqualToString:@"Indeterminate"]) {
         UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
@@ -562,7 +592,7 @@
         // Get Weekly Schedule
         //WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
         NSArray *scheduleArray = [week getWeeklySchedule];
-        
+        //NSLog(@"%@", scheduleArray);
         viewSchedule = [[UIView alloc] initWithFrame:CGRectMake(0, top + 10, 300, 370)];
         viewSchedule.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
         
@@ -994,8 +1024,23 @@
                          completion:nil];
     }
     
+    // For goal is Achieved
+    if ([result isEqualToString:@"Achieved"]) {
+        CGRect newFrame = self.viewAchieved.frame;
+        newFrame.origin.y = 68;
+        self.viewAchieved.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewAchieved.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
     // For goal is Set
-    else if ([result isEqualToString:@"Begun"]) {
+    else if ([result isEqualToString:@"Begun"]  || [result isEqualToString:@"Maintenance"]) {
         CGRect newFrame = self.viewWeeklyDiet.frame;
         newFrame.origin.y = 68;
         self.viewWeeklyDiet.hidden = NO;
@@ -1127,6 +1172,8 @@
     self.vwProfile.hidden = YES;
     self.vwTrainerWeeklySchedule.hidden = YES;
     self.viewBodyStats.hidden = YES;
+    self.viewAchieved.hidden = YES;
+    self.viewNotAchieved.hidden = YES;
 }
 
 #pragma mark - Button click Events
@@ -1175,6 +1222,55 @@
     [self.tvWeeklyDiet reloadData];
     
     [self handleNutritionistTap];
+}
+
+- (IBAction)btnMaintainWeightClicked:(id)sender {
+    [database open];
+    [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Maintenance", @"goal"];
+    [database close];
+    
+    if (bTrainer) {
+        [self loadStartViewTrainer];
+    } else if (bNutritionist) {
+        [self loadStartViewNutritionist];
+    } else if (bProfile) {
+        [self loadStartViewProfile];
+    }
+}
+
+- (IBAction)btnResetBodyClicked:(id)sender {
+    [database open];
+    [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Undefined", @"goal"];
+    [database executeUpdate:@"DELETE FROM dailyTicks"];
+    [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ?", @""];
+    [database executeUpdate:@"UPDATE achievementTable SET appear = ?, dateShown = ?", @"false", @""];
+    [database executeUpdate:@"UPDATE medicalCondition SET selected = ?", @"false"];
+    [database executeUpdate:@"DELETE FROM monthLog"];
+    [database close];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"energy"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"carbohydrates"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"protiens"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fats"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fibre"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Breakfast"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Lunch"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Snacks"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Dinner"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Bedtime"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self hideAllViews];
+    
+    if (bTrainer) {
+        [self loadStartViewTrainer];
+    } else if (bNutritionist) {
+        [self loadStartViewNutritionist];
+    } else if (bProfile) {
+        [self loadStartViewProfile];
+    }
 }
 
 #pragma mark - UITableView Delegate methods
@@ -1763,6 +1859,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/perfect_week.png";
         btnFacebook.fbTitle = @"Had A Perfect Week at The Gym with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
         
         if (numberOfDays >= 7) {
             // check here last 7, 8, 9 days tick in database.
@@ -1800,7 +1897,18 @@
     }
     
     /*-------------------------------------- For Month ---------------------------------------*/
-    if ([achieveMonth isEqualToString:@"false"] || [achieveMonth isEqualToString:@"true"]) {
+    else if ([achieveMonth isEqualToString:@"false"] || [achieveMonth isEqualToString:@"true"]) {
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon6.png"];
+        lblMsg.text = @"Congratulations. You've had a Perfect Month.";
+        lblSubMsg.text = @"Share this on Facebook";
+        
+        btnFacebook.fbPost = @"Ain't Nothing Gonna Stop Me Now. Going for the Kill!!";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/perfect_month.png";
+        btnFacebook.fbTitle = @"Had a Perfect Month at The Gym with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
+        //NSLog(@"%d", numberOfDays);
         if (numberOfDays >= 30) {
             // check here last 30, 31, 32 days tick in database.
             if ([achieveMonth isEqualToString:@"false"]) {
@@ -1843,18 +1951,21 @@
         diffWeight = [startWeight doubleValue] - [currentWeight doubleValue];
     }
     
-    // check the difference here
-//    if (diffWeight > 0) {
-//        // positive value
-//    } else {
-//        // negative value
-//        diffWeight = 1;
-//    }
-    
     percent = (diffWeight * 100)/ ([targetWeight doubleValue]);
     
     /*-------------------------------------- For 25% ---------------------------------------*/
     if (percent >= 25 && percent < 50) {
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon1.png"];
+        lblMsg.text = @"Congratulations. You've reached 25% of your goal";
+        lblSubMsg.text = @"Share this on Facebook";
+        
+        btnFacebook.fbPost = @"Just Reached 25% of My Goal with The Gold's Gym iOS App";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/25_percent.png";
+        btnFacebook.fbTitle = @"Just Completed 25% of My Goal with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
+        
         if ([achieve25 isEqualToString:@"false"]) {
             // Add UI here
             [self.trainerScrollView addSubview:weekView];
@@ -1875,6 +1986,17 @@
     }
     /*-------------------------------------- For 50% ---------------------------------------*/
     else if (percent >= 50 && percent < 75) {
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon2.png"];
+        lblMsg.text = @"Congratulations. You've reached 50% of your goal";
+        lblSubMsg.text = @"Share this on Facebook";
+        
+        btnFacebook.fbPost = @"Dedication gives Results. I'm Halfway Through!.";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/50_percent.png";
+        btnFacebook.fbTitle = @"Just Completed 50% of My Goal with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
+        
         if ([achieve50 isEqualToString:@"false"]) {
             // Add UI here
             [self.trainerScrollView addSubview:weekView];
@@ -1895,6 +2017,17 @@
     }
     /*-------------------------------------- For 75% ---------------------------------------*/
     else if (percent >= 75 && percent < 100) {
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon3.png"];
+        lblMsg.text = @"Congratulations. You've reached 75% of your goal";
+        lblSubMsg.text = @"Share this on Facebook";
+        
+        btnFacebook.fbPost = @"Nothings Gonna Stop Me Now. Almost Reached My Ideal Body Weight";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/75_percent.png";
+        btnFacebook.fbTitle = @"Just Completed 75% of My Goal with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
+        
         if ([achieve75 isEqualToString:@"false"]) {
             // Add UI here
             [self.trainerScrollView addSubview:weekView];
@@ -1915,6 +2048,17 @@
     }
     /*-------------------------------------- For 100% ---------------------------------------*/
     else if (percent >= 100) {
+        
+        imgAchieve.image = [UIImage imageNamed:@"a_icon4.png"];
+        lblMsg.text = @"Congratulations. You've reached your goal";
+        lblSubMsg.text = @"Share this on Facebook";
+        
+        btnFacebook.fbPost = @"I Feel Awesome. Just Reached My Ideal Body Weight";
+        btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/goal_achieved.png";
+        btnFacebook.fbTitle = @"Completed My Goal with The Gold's Gym iOS App";
+        btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
+        btnFacebook.fbLink = @"http://www.google.com";
+        
         if ([achieve100 isEqualToString:@"false"]) {
             // Add UI here
             [self.trainerScrollView addSubview:weekView];
@@ -1937,6 +2081,7 @@
 
 -(void)facebookShare:(CustomButton *)sender {
     CustomButton *btn = (CustomButton *)sender;
+    
     // We will post on behalf of the user, these are the permissions we need:
     NSArray *permissionsNeeded = @[@"publish_actions"];
     
@@ -1944,17 +2089,21 @@
     [FBRequestConnection startWithGraphPath:@"/me/permissions"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               if (!error){
-                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
+                                  NSArray *tmpArray = (NSArray *)[result data];
                                   NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
+                                  BOOL present = NO;
                                   
-                                  // Check if all the permissions we need are present in the user's current permissions
-                                  // If they are not present add them to the permissions to be requested
-                                  for (NSString *permission in permissionsNeeded){
-                                      if (![currentPermissions objectForKey:permission]){
-                                          [requestPermissions addObject:permission];
+                                  for (int i = 0; i < tmpArray.count; i++) {
+                                      NSDictionary *tmpDic = tmpArray[i];
+                                      if ([[tmpDic objectForKey:@"permission"] isEqualToString:permissionsNeeded[0]]) {
+                                          present = YES;
                                       }
                                   }
                                   
+                                  if (!present){
+                                      [requestPermissions addObject:permissionsNeeded[0]];
+                                  }
+
                                   // If we have permissions to request
                                   if ([requestPermissions count] > 0){
                                       // Ask for the missing permissions
@@ -1963,7 +2112,7 @@
                                                                           completionHandler:^(FBSession *session, NSError *error) {
                                                                               if (!error) {
                                                                                   // Permission granted, we can request the user information
-                                                                                  [self makeRequestToUpdateStatus];
+                                                                                  [self makeRequestToUpdateStatus:btn.fbPost title:btn.fbTitle description:btn.fbDescription image:btn.fbImage link:btn.fbLink];
                                                                               } else {
                                                                                   // An error occurred, handle the error
                                                                                   // See our Handling Errors guide: https://developers.facebook.com/docs/ios/errors/
@@ -1972,7 +2121,7 @@
                                                                           }];
                                   } else {
                                       // Permissions are present, we can request the user information
-                                      [self makeRequestToUpdateStatus];
+                                      [self makeRequestToUpdateStatus:btn.fbPost title:btn.fbTitle description:btn.fbDescription image:btn.fbImage link:btn.fbLink];
                                   }
                                   
                               } else {
@@ -1983,19 +2132,14 @@
                           }];
 }
 
-- (void)makeRequestToUpdateStatus {
-    
-    // NOTE: pre-filling fields associated with Facebook posts,
-    // unless the user manually generated the content earlier in the workflow of your app,
-    // can be against the Platform policies: https://developers.facebook.com/policy
-    
+- (void)makeRequestToUpdateStatus:(NSString *)message title:(NSString *)title description:(NSString *)description image:(NSString *)image link:(NSString *)link {
     // Put together the dialog parameters
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Sharing Tutorial", @"name",
-                                   @"Build great social apps and get more installs.", @"caption",
-                                   @"Allow your users to share stories on Facebook from your app using the iOS SDK.", @"description",
-                                   @"https://developers.facebook.com/docs/ios/share/", @"link",
-                                   @"http://i.imgur.com/g3Qc1HN.png", @"picture",
+                                   message, @"message",
+                                   title, @"name",
+                                   description, @"description",
+                                   link, @"link",
+                                   image, @"picture",
                                    nil];
     
     // Make the request
@@ -2004,15 +2148,13 @@
                                  HTTPMethod:@"POST"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
                               if (!error) {
-                                  // Link posted successfully to Facebook
-                                  NSLog(@"result: %@", result);
+                                  //NSLog(@"result: %@", result);
+                                  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Shared on facebook." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                  [alert show];
                               } else {
-                                  // An error occurred, we need to handle the error
-                                  // See: https://developers.facebook.com/docs/ios/errors
                                   NSLog(@"%@", error.description);
                               }
                           }];
-    //[FBRequestConnection startForPostOpenGraphObjectWithType:<#(NSString *)#> title:<#(NSString *)#> image:<#(id)#> url:<#(id)#> description:<#(NSString *)#> objectProperties:<#(NSDictionary *)#> completionHandler:<#^(FBRequestConnection *connection, id result, NSError *error)handler#>]
 }
 
 -(BOOL)dayPresent:(int)day {
