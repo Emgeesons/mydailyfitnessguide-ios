@@ -18,4 +18,6 @@
 -(int)getMonth;
 -(NSString *)getDietType;
 
+-(NSArray *)getMonthlyScheduleWithMonthNumber:(NSInteger)monthNo;
+
 @end

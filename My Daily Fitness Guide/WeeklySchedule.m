@@ -104,7 +104,6 @@
         tmpArray = vacation;
     }
     
-    
     return tmpArray;
 }
 
@@ -189,6 +188,145 @@
     weeklyIntermediate2NCEven = @[@"Back & Biceps + Hamstrings & Abs", @"Rest", @"Chest, Shoulders & Triceps + Quads & Calves", @"Rest", @"Back & Biceps + Hamstrings & Abs", @"Rest", @"Rest", @"Intermediate 2 (No Cardio)"];
     
     vacation = @[@"Exercise", @"Rest", @"Exercise", @"Rest", @"Exercise", @"Cardio", @"Rest", @"vacation"];
+}
+
+-(NSArray *)getMonthlyScheduleWithMonthNumber:(NSInteger)monthNo {
+    
+    [database open];
+    
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *startDate, *endDate;
+    
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+            startDate = [results stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate date]];
+    int days = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    int month = [self getMonth];
+    NSString *dietType = [self getDietType];
+    
+    [self initializeAllArray];
+    
+    // For month
+    for (int i = 1; i < (month + 1); i++) {
+        // For week 1-4
+        for (int j = 1; j < 5; j++) {
+            NSArray *tmpArray = [self getProgramLevel:month withWeek:1 dietType:dietType];
+            // For number of items present in array
+            for (int k = 0; k < (tmpArray.count - 1); k++) {
+                [array addObject:tmpArray[k]];
+            }
+            [array addObject:array[0]];
+            [array addObject:array[1]];
+        }
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EE"];
+    NSString *dayName = [dateFormatter stringFromDate:[NSDate date]];
+    //NSLog(@"%@", dayName);
+    
+    if ([dayName isEqualToString:@"Mon"]) {
+        // remove 1
+        [array removeObjectsInRange:NSMakeRange(0, 1)];
+    } else if ([dayName isEqualToString:@"Tue"]) {
+        // remove 2
+        [array removeObjectsInRange:NSMakeRange(0, 2)];
+    } else if ([dayName isEqualToString:@"Wed"]) {
+        // remove 3
+        [array removeObjectsInRange:NSMakeRange(0, 3)];
+    } else if ([dayName isEqualToString:@"Thu"]) {
+        // remove 4
+        [array removeObjectsInRange:NSMakeRange(0, 4)];
+    } else if ([dayName isEqualToString:@"Fri"]) {
+        // remove 5
+        [array removeObjectsInRange:NSMakeRange(0, 5)];
+    } else if ([dayName isEqualToString:@"Sat"]) {
+        // remove 6
+        [array removeObjectsInRange:NSMakeRange(0, 6)];
+    }
+    
+    // remove any additional days which goes beyond 29 days
+    if (days > 30) {
+        int remainderDays = days % 30;
+        [array removeObjectsInRange:NSMakeRange(array.count - remainderDays, remainderDays)];
+        //NSLog(@"%d", (array.count - remainderDays));
+    }
+    
+    return array;
+}
+
+-(NSArray *)getProgramLevel:(int)month withWeek:(NSInteger)week dietType:(NSString *)dietType {
+    NSArray *tmpArray;
+    if ([vacationDate isEqualToString:@""] || vacationDate == NULL) {
+        if ([dietType isEqualToString:@"weightGain"]) {
+            month = month % 8;
+            //NSLog(@"%d", month);
+            if (month == 1) {
+                tmpArray = weeklyBasic1;
+            } else if (month == 2) {
+                tmpArray = weeklyBasic2NC;
+            } else if (month == 3) {
+                tmpArray = weeklyIntermediate1;
+            } else if (month == 4) {
+                if (week == 1 || week == 3) {
+                    tmpArray = weeklyIntermediate2NCOdd;
+                } else {
+                    tmpArray = weeklyIntermediate2NCEven;
+                }
+            } else if (month == 5) {
+                tmpArray = weeklyAdvance1NC;
+            } else if (month == 6) {
+                tmpArray = weeklyAdvance2;
+            } else if (month == 7) {
+                tmpArray = functional2;
+            } else if (month == 8) {
+                tmpArray = functional1;
+            }
+        } else {
+            // for weightLoss
+            if (month == 1) {
+                tmpArray = weeklyBasic1;
+            } else if (month == 2) {
+                tmpArray = weeklyBasic2;
+            } else if (month == 3) {
+                tmpArray = weeklyBasic2;
+            } else if (month == 4) {
+                tmpArray = weeklyIntermediate1;
+            } else if (month == 5) {
+                tmpArray = weeklyIntermediate1;
+            } else if (month == 6) {
+                tmpArray = weeklyIntermediate1;
+            } else if (month == 7) {
+                tmpArray = weeklyAdvance1;
+            } else if (month == 8) {
+                tmpArray = weeklyAdvance1;
+            } else if (month == 9) {
+                tmpArray = weeklyAdvance1;
+            } else if (month == 10) {
+                tmpArray = weeklyAdvance2;
+            } else if (month == 11) {
+                tmpArray = weeklyAdvance2;
+            } else if (month == 12) {
+                tmpArray = functional2;
+            } else {
+                tmpArray = functional1;
+            }
+        }
+    } else {
+        // vacation time
+        tmpArray = vacation;
+    }
+    return tmpArray;
 }
 
 @end

@@ -1221,6 +1221,31 @@
     weeklyDiet = [dietPlan getDiet];
     [self.tvWeeklyDiet reloadData];
     
+    // create local notification for next 30 days
+    NSString *time = @"07:00:00";
+    for (int i = 1; i < 31; i++) {
+        NSDate *currDate = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24 * i)];
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+        
+        NSDateFormatter *dateFor = [[NSDateFormatter alloc] init];
+        [dateFor setDateFormat:@"YYYY-MM-dd"];
+        
+        NSDate *notificationDate = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@", [dateFor stringFromDate:currDate], time]];
+
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = notificationDate;
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.alertBody = [NSString stringWithFormat:@"Log Yesterday's Workout"];
+        
+        NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[dateFor stringFromDate:currDate] forKey:@"id"];
+        localNotification.userInfo = infoDict;
+        
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+    
     [self handleNutritionistTap];
 }
 
@@ -1466,50 +1491,112 @@
 -(void)btnTickClicked:(id)sender {
     CustomButton *btn = (CustomButton *)sender;
 
-    //NSLog(@"%d", yesterdaysDay);
-    //NSLog(@"new %d", sun);
+    int dayNum = 0;
+    BOOL withYesterday = NO;
+    
     if (btn == btnMonTick) {
+        dayNum = btnMonTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Mon"]) {
+            withYesterday = YES;
             [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnMonTick withDay:btnMonTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnTueTick) {
+        dayNum = btnTueTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Tue"]) {
+            withYesterday = YES;
             [self btnShrink:btnTueTick withDay:btnTueTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnTueTick withDay:btnTueTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnWedTick) {
+        dayNum = btnWedTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Wed"]) {
+            withYesterday = YES;
             [self btnShrink:btnWedTick withDay:btnWedTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnWedTick withDay:btnWedTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnThurTick) {
+        dayNum = btnThurTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Thu"]) {
+            withYesterday = YES;
             [self btnShrink:btnThurTick withDay:btnThurTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnThurTick withDay:btnThurTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnFriTick) {
+        dayNum = btnFriTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Fri"]) {
+            withYesterday = YES;
             [self btnShrink:btnFriTick withDay:btnFriTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnFriTick withDay:btnFriTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnSatTick) {
+        dayNum = btnSatTick.dayNumber;
         if ([yesterdayName isEqualToString:@"Sat"]) {
+            withYesterday = YES;
             [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:YES];
         } else {
             [self btnShrink:btnSatTick withDay:btnSatTick.dayNumber withYesterday:NO];
         }
     } else if (btn == btnSunTick) {
+        dayNum = btnSunTick.dayNumber;
         /*if ([yesterdayName isEqualToString:@"Sun"]) {
             [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:YES];
         } else {*/
             [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:NO];
         //}
+    }
+    
+    [database open];
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *startDate, *endDate;
+    
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+            startDate = [results stringForColumn:@"value"];
+        }
+    }
+    
+    [database close];
+    
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate date]];
+    int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    
+    if (dayNum >= numberOfDays) {
+        NSDate *tmpDate = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24 * (dayNum + 1))];
+        NSString * tmpDateString = [f stringFromDate:tmpDate];
+        
+        // Cancel last notification
+        UIApplication *app = [UIApplication sharedApplication];
+        NSArray *eventArray = [app scheduledLocalNotifications];
+        for (int i=0; i<[eventArray count]; i++)
+        {
+            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+            NSDictionary *userInfoCurrent = oneEvent.userInfo;
+            NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"id"]];
+            if ([uid isEqualToString:tmpDateString])
+            {
+                //Cancelling local notification
+                [app cancelLocalNotification:oneEvent];
+                break;
+            }
+        }
+        
+        if (withYesterday == YES) {
+            
+        } else {
+            if (dayNum == numberOfDays) {
+                // Create workout notification
+            } else {
+                // Create
+            }
+        }
     }
 }
 
@@ -1708,14 +1795,14 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     // If the user is logged in, they can post to Facebook using API calls, so we show the buttons
-    NSLog(@"login");
+    //NSLog(@"login");
     btnFacebook.hidden = NO;
     btnFacebookLogin.hidden = YES;
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     // If the user is NOT logged in, they can't post to Facebook using API calls, so we show the buttons
-    NSLog(@"logout");
+    //NSLog(@"logout");
     btnFacebook.hidden = YES;
     btnFacebookLogin.hidden = NO;
 }

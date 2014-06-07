@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <EventKit/EventKit.h>
+#import "WeeklySchedule.h"
 
 @implementation AppDelegate
 
@@ -43,6 +44,16 @@
     }
     
     [FBLoginView class];
+    
+    // remove old notification
+    NSArray* scheduledNotifications = [NSArray arrayWithArray:[UIApplication sharedApplication].scheduledLocalNotifications];
+    application.scheduledLocalNotifications = scheduledNotifications;
+    
+    //[[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    NSLog(@"Notification count ==> %d", [[[UIApplication sharedApplication] scheduledLocalNotifications] count]);
+    
+    //NSLog(@"%@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
     
     return YES;
 }

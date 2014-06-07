@@ -1676,6 +1676,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
+					EC42178C19232C6000B162D8 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
+					};
 					EC4217AD19232C6000B162D8 = {
 						TestTargetID = EC42178C19232C6000B162D8;
 					};
