@@ -18,6 +18,20 @@
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
     int month = [self getMonth];
+    //NSLog(@"month %d", month);
+    NSString *dietType = [self getDietType];
+    
+    [self initializeAllArray];
+    programLevel = [self getProgramLevel:month dietType:dietType];
+    
+    return self;
+}
+
+-(id)initializeNotification {
+    database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
+    
+    int month = [self getMonthNotification];
+    //NSLog(@"month %d", month);
     NSString *dietType = [self getDietType];
     
     [self initializeAllArray];
@@ -45,8 +59,29 @@
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
     numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    //NSLog(@"%d", numberOfDays);
+    return ((numberOfDays - 1)/30) + 1;
+}
+
+-(int)getMonthNotification {
+    [database open];
     
-    return (numberOfDays/30) + 1;
+    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+    NSString *startDate, *endDate;
+    
+    while([results next]) {
+        if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+            startDate = [results stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    NSDateFormatter *f = [[NSDateFormatter alloc] init];
+    [f setDateFormat:@"yyyy-MM-dd"];
+    endDate = [f stringFromDate:[NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24)]];
+    numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    NSLog(@"%d", numberOfDays);
+    return ((numberOfDays - 1)/30) + 1;
 }
 
 -(NSString *)getDietType {

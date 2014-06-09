@@ -13,9 +13,14 @@
 }
 
 -(id)initialize;
+-(id)initializeNotification;
+
 -(NSArray *)getWeeklySchedule;
 -(NSString *)getProgramLevel:(int)month dietType:(NSString *)dietType;
+
 -(int)getMonth;
+-(int)getMonthNotification;
+
 -(NSString *)getDietType;
 
 -(NSArray *)getMonthlyScheduleWithMonthNumber:(NSInteger)monthNo;

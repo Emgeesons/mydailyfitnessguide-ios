@@ -506,7 +506,7 @@
         
         //-------------------------- Add Log your weight Start -----------------
         WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
-        //NSLog(@"%d", [week getMonth]);
+
         if (![self checkMonthPresent:[week getMonth]]) {
             UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
             
@@ -1550,54 +1550,6 @@
             [self btnShrink:btnSunTick withDay:btnSunTick.dayNumber withYesterday:NO];
         //}
     }
-    
-    [database open];
-    FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
-    NSString *startDate, *endDate;
-    
-    while([results next]) {
-        if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
-            startDate = [results stringForColumn:@"value"];
-        }
-    }
-    
-    [database close];
-    
-    NSDateFormatter *f = [[NSDateFormatter alloc] init];
-    [f setDateFormat:@"yyyy-MM-dd"];
-    endDate = [f stringFromDate:[NSDate date]];
-    int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
-    
-    if (dayNum >= numberOfDays) {
-        NSDate *tmpDate = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24 * (dayNum + 1))];
-        NSString * tmpDateString = [f stringFromDate:tmpDate];
-        
-        // Cancel last notification
-        UIApplication *app = [UIApplication sharedApplication];
-        NSArray *eventArray = [app scheduledLocalNotifications];
-        for (int i=0; i<[eventArray count]; i++)
-        {
-            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-            NSDictionary *userInfoCurrent = oneEvent.userInfo;
-            NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"id"]];
-            if ([uid isEqualToString:tmpDateString])
-            {
-                //Cancelling local notification
-                [app cancelLocalNotification:oneEvent];
-                break;
-            }
-        }
-        
-        if (withYesterday == YES) {
-            
-        } else {
-            if (dayNum == numberOfDays) {
-                // Create workout notification
-            } else {
-                // Create
-            }
-        }
-    }
 }
 
 #pragma mark - Animation Functions
@@ -1663,6 +1615,147 @@
                              }
                              
                              [database close];
+                         }
+                         
+                         [database open];
+                         FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+                         NSString *startDate, *endDate;
+                         
+                         while([results next]) {
+                             if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+                                 startDate = [results stringForColumn:@"value"];
+                             }
+                         }
+                         
+                         [database close];
+                         
+                         NSDateFormatter *f = [[NSDateFormatter alloc] init];
+                         [f setDateFormat:@"yyyy-MM-dd"];
+                         endDate = [f stringFromDate:[NSDate date]];
+                         int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+                         
+                         if (day >= numberOfDays) {
+                             NSDate *tmpDate = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24 * (day + 1))];
+                             NSString * tmpDateString = [f stringFromDate:tmpDate];
+                             
+                             // Cancel last notification
+                             UIApplication *app = [UIApplication sharedApplication];
+                             NSArray *eventArray = [app scheduledLocalNotifications];
+                             for (int i=0; i<[eventArray count]; i++)
+                             {
+                                 UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+                                 NSDictionary *userInfoCurrent = oneEvent.userInfo;
+                                 NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"id"]];
+                                 if ([uid isEqualToString:tmpDateString])
+                                 {
+                                     //Cancelling local notification
+                                     [app cancelLocalNotification:oneEvent];
+                                     break;
+                                 }
+                             }
+                             
+                             if (yest == YES) {
+                                 NSLog(@"yesterday clicked");
+                             } else {
+                                 NSString *time = @"07:00:00";
+                                 NSDate *currDate = [NSDate dateWithTimeInterval:(60 * 60 * 24 * (day)) sinceDate:[f dateFromString:startDate]];
+
+                                 NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+                                 [dateFormat setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+                                 
+                                 NSDateFormatter *dateFor = [[NSDateFormatter alloc] init];
+                                 [dateFor setDateFormat:@"YYYY-MM-dd"];
+                                 
+                                 NSDate *notificationDate = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@", [dateFor stringFromDate:currDate], time]];
+                                 
+                                 if ([self dayPresent:day] && [self checkDayPresent:day]) {
+                                     // day is present and ticked
+                                     /*if (day == numberOfDays) {
+                                         // Create workout notification for tomorrow
+                                         WeeklySchedule *week = [[WeeklySchedule alloc] initializeNotification];
+                                         NSArray *scheduleArray = [week getWeeklySchedule];
+                                         
+                                         NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
+                                         [dayFormatter setDateFormat:@"EE"];
+                                         NSString *tomorrowDayName = [dayFormatter stringFromDate:notificationDate];
+                                         NSString *workoutName;
+                                         
+                                         if ([tomorrowDayName isEqualToString:@"Mon"]) {
+                                             workoutName = scheduleArray[0];
+                                         } else if ([tomorrowDayName isEqualToString:@"Tue"]) {
+                                             workoutName = scheduleArray[1];
+                                         } else if ([tomorrowDayName isEqualToString:@"Wed"]) {
+                                             workoutName = scheduleArray[2];
+                                         } else if ([tomorrowDayName isEqualToString:@"Thu"]) {
+                                             workoutName = scheduleArray[3];
+                                         } else if ([tomorrowDayName isEqualToString:@"Fri"]) {
+                                             workoutName = scheduleArray[4];
+                                         } else if ([tomorrowDayName isEqualToString:@"Sat"]) {
+                                             workoutName = scheduleArray[5];
+                                         } else if ([tomorrowDayName isEqualToString:@"Sun"]) {
+                                             workoutName = scheduleArray[6];
+                                         }
+                                         
+                                         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                                         localNotification.fireDate = notificationDate;
+                                         localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                                         localNotification.alertBody = [NSString stringWithFormat:@"Today's Workout - %@", workoutName];
+                                         
+                                         NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[dateFor stringFromDate:currDate] forKey:@"id"];
+                                         localNotification.userInfo = infoDict;
+                                         
+                                         localNotification.soundName = UILocalNotificationDefaultSoundName;
+                                         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                                         
+                                     } else {
+                                         // Create workout notification for future dates
+                                         UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                                         localNotification.fireDate = notificationDate;
+                                         localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                                         localNotification.alertBody = [NSString stringWithFormat:@"Please Don't forget to do today's workout."];
+                                         
+                                         NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[dateFor stringFromDate:currDate] forKey:@"id"];
+                                         localNotification.userInfo = infoDict;
+                                         
+                                         localNotification.soundName = UILocalNotificationDefaultSoundName;
+                                         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                                     }*/
+                                     
+                                     // create yesterday log weight notification at the end of the notification array
+                                     UILocalNotification* lastEvent = [eventArray objectAtIndex:(eventArray.count - 1)];
+                                     NSDictionary *userInfoCurrent = lastEvent.userInfo;
+                                     NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"id"]];
+                                     
+                                     NSDate *currDate = [NSDate dateWithTimeInterval:(60 * 60 * 24) sinceDate:[f dateFromString:uid]];
+                                     NSDate *notificationDate = [dateFormat dateFromString:[NSString stringWithFormat:@"%@ %@", [dateFor stringFromDate:currDate], time]];
+                                     
+                                     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                                     localNotification.fireDate = notificationDate;
+                                     localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                                     localNotification.alertBody = [NSString stringWithFormat:@"Log Yesterday's Workout"];
+                                     
+                                     NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[dateFor stringFromDate:currDate] forKey:@"id"];
+                                     localNotification.userInfo = infoDict;
+                                     
+                                     localNotification.soundName = UILocalNotificationDefaultSoundName;
+                                     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                                     
+                                 } else {
+                                     // day is not present OR not ticked
+                                     // Create yesterday log weight notification
+                                     
+                                     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                                     localNotification.fireDate = notificationDate;
+                                     localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                                     localNotification.alertBody = [NSString stringWithFormat:@"Log Yesterday's Workout"];
+                                     
+                                     NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[dateFor stringFromDate:currDate] forKey:@"id"];
+                                     localNotification.userInfo = infoDict;
+                                     
+                                     localNotification.soundName = UILocalNotificationDefaultSoundName;
+                                     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                                 }
+                             }
                          }
                          
                          [self btnGrow:button withYesterday:yest];
