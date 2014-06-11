@@ -55,6 +55,8 @@
     
     //NSLog(@"%@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
     
+    [self createGalleryFolder];
+    
     return YES;
 }
 
@@ -158,6 +160,17 @@
         [params setObject:val forKey:[kv objectAtIndex:0]];
     }
     return params;
+}
+
+-(void)createGalleryFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/gallery"];
+    
+    NSError *error;
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
 }
 
 @end

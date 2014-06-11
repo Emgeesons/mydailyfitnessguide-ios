@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
+@interface FirstTabViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *viewStart;
 
 @property (weak, nonatomic) IBOutlet UIView *viewBegin;
@@ -19,6 +19,15 @@
 @property (weak, nonatomic) IBOutlet UITableView *tvWeeklyDiet;
 
 @property (weak, nonatomic) IBOutlet UIView *vwProfile;
+@property (weak, nonatomic) IBOutlet UILabel *lblWorkoutDone;
+@property (weak, nonatomic) IBOutlet UILabel *lblWorkoutMissed;
+@property (weak, nonatomic) IBOutlet UILabel *lblDaysLeft;
+@property (weak, nonatomic) IBOutlet UIButton *btnFullBodyPicks;
+@property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
+
+- (IBAction)btnProfilePicClicked:(id)sender;
+
+
 
 @property (weak, nonatomic) IBOutlet UIView *vwTrainerWeeklySchedule;
 //@property (weak, nonatomic) IBOutlet UITableView *tvWeeklyScheduleParent;

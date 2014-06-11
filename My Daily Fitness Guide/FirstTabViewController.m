@@ -20,7 +20,7 @@
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 10.0f
 
-@interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate> {
+@interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate> {
     FMDatabase *database;
     NSString *weeklyDiet, *vacationDate, *goalState, *yesterdayName;
     int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top;
@@ -36,6 +36,8 @@
     
     FBLoginView *btnFacebookLogin;
     CustomButton *btnFacebook;
+    
+    UIAlertView *alertImagePick;
 }
 
 @end
@@ -158,6 +160,9 @@
     scheduleTableChild.delegate = self;
     scheduleTableChild.dataSource = self;
     scheduleTableChild.scrollEnabled = NO;
+    
+    // alertview for taking image pick
+    alertImagePick = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@" " otherButtonTitles:@"Pick from Gallery", @"Cancel",nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -217,11 +222,14 @@
     self.viewStart.frame = frame;
     self.viewBegin.frame = frame;
     self.viewWeeklyDiet.frame = frame;
-    self.vwProfile.frame = frame;
     self.vwTrainerWeeklySchedule.frame = frame;
     self.viewBodyStats.frame = frame;
     self.viewAchieved.frame = frame;
     self.viewNotAchieved.frame = frame;
+    
+    CGRect profileFrame = self.vwProfile.frame;
+    profileFrame.origin.y = 200;
+    self.vwProfile.frame = profileFrame;
 }
 
 -(void)assignDay {
@@ -1067,6 +1075,24 @@
 }
 
 -(void)loadStartViewProfile {
+    
+    [database open];
+    FMResultSet *results = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type = 'goal'"];
+    NSString *result;
+    while([results next]) {
+        result = [results stringForColumn:@"value"];
+    }
+    [database close];
+    
+    // retrieve saved profile pic of user
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *getImagePath = [documentsDirectory stringByAppendingPathComponent:@"profilePic.png"];
+    UIImage *myIcon = [UIImage imageWithContentsOfFile:getImagePath];
+    if (myIcon != NULL) {
+        [self.btnProfilePic setBackgroundImage:myIcon forState:UIControlStateNormal];
+    }
+    
     CGRect newFrame = self.vwProfile.frame;
     newFrame.origin.y = 68;
     self.vwProfile.hidden = NO;
@@ -1078,6 +1104,14 @@
                          self.vwProfile.frame = newFrame;
                      }
                      completion:nil];
+    
+    if ([result isEqualToString:@"Undefined"] || [result isEqualToString:@"Set"]) {
+        self.lblWorkoutDone.text = @"0";
+        self.lblWorkoutMissed.text = @"0";
+        self.lblDaysLeft.text = @"0";
+        
+        self.btnFullBodyPicks.hidden = YES;
+    }
 }
 
 -(void)setTitle:(NSString *)title {
@@ -2398,4 +2432,52 @@
     
     return tmpResult;
 }
+
+#pragma mark - Profile Functions
+
+- (IBAction)btnProfilePicClicked:(id)sender {
+    UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Pick from Gallery", nil];
+    picPicker.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    [picPicker showInView:self.view];
+}
+
+#pragma mark - UIActionSheet Delegate methods
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"%d", buttonIndex);
+    if (buttonIndex == 0) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
+#pragma mark - UIImagePicker Delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    //resize image
+    UIImage *myIcon = [DatabaseExtra imageWithImage:chosenImage scaledToSize:CGSizeMake(74, 74)];
+    
+    // save image locally
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:@"profilePic.png"];
+    NSData *imageData = UIImagePNGRepresentation(myIcon);
+    [imageData writeToFile:savedImagePath atomically:NO];
+    
+    //set button background image for selected image
+    [self.btnProfilePic setBackgroundImage:myIcon forState:UIControlStateNormal];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 @end
