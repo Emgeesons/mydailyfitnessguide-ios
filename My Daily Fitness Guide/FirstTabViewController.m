@@ -16,6 +16,8 @@
 #import "ExcerciseListViewController.h"
 #import "BodyStatsViewController.h"
 
+#import "AdvanceProfileViewController.h"
+
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 10.0f
@@ -23,7 +25,7 @@
 @interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate> {
     FMDatabase *database;
     NSString *weeklyDiet, *vacationDate, *goalState, *yesterdayName;
-    int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top;
+    int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top, profileTop;
     BOOL bTrainer, bNutritionist, bProfile;
     NSArray *dietTips, *trainerTips, *vacationTips;
     float webViewHeight;
@@ -77,6 +79,7 @@
 {
     [super viewDidLoad];
     top = 0;
+    profileTop = 151;
     
     // database initialization
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
@@ -1076,13 +1079,37 @@
 
 -(void)loadStartViewProfile {
     
+    profileTop = 151;
+    
     [database open];
-    FMResultSet *results = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type = 'goal'"];
-    NSString *result;
+    FMResultSet *results = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];
+    NSString *result, *feet, *inches;
     while([results next]) {
-        result = [results stringForColumn:@"value"];
+        if ([[results stringForColumn:@"type"] isEqualToString:@"goal"]) {
+            result = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"feet"]) {
+            feet = [results stringForColumn:@"value"];
+        } else if ([[results stringForColumn:@"type"] isEqualToString:@"inches"]) {
+            inches = [results stringForColumn:@"value"];
+        }
     }
     [database close];
+    
+    // set name here
+    self.lblName.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    
+    // set height here
+    self.lblHeight.text = [NSString stringWithFormat:@"%@ ft %@ in", feet, inches];
+    
+    // set age here
+    NSString *dob = [[NSUserDefaults standardUserDefaults] objectForKey:@"dob"];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[NSLocale systemLocale]];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate * date = [formatter dateFromString:dob];
+    
+    NSInteger age = [DatabaseExtra getAge:date];
+    self.lblAge.text = [NSString stringWithFormat:@"%d yrs", age];
     
     // retrieve saved profile pic of user
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1111,6 +1138,168 @@
         self.lblDaysLeft.text = @"0";
         
         self.btnFullBodyPicks.hidden = YES;
+    }
+    
+    // For goal is Indeterminate
+    else if ([result isEqualToString:@"Indeterminate"]) {
+        UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+        
+        UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 300, 54)];
+        [logWeight addGestureRecognizer:tapBodyStats];
+        
+        logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+        UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+        
+        UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+        lblLogWeight.text = @"Log your Body Stats";
+        lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [logWeight addSubview:alarmImage];
+        [logWeight addSubview:lblLogWeight];
+        [logWeight addSubview:arrowImage];
+        [self.viewBodyStats addSubview:logWeight];
+        
+        CGRect newFrame = self.viewBodyStats.frame;
+        newFrame.origin.y = 68;
+        self.viewBodyStats.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewBodyStats.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
+    else {
+        [database open];
+        FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
+        NSString *startDate, *endDate;
+        int month = 0;
+        
+        while([results next]) {
+            if ([[results stringForColumn:@"type"] isEqualToString:@"start_date"]) {
+                startDate = [results stringForColumn:@"value"];
+            } else if([[results stringForColumn:@"type"] isEqualToString:@"durationInMonth"]) {
+                month = [[results stringForColumn:@"value"] intValue];
+            }
+        }
+        [database close];
+        
+        NSDateFormatter *f = [[NSDateFormatter alloc] init];
+        [f setDateFormat:@"yyyy-MM-dd"];
+        endDate = [f stringFromDate:[NSDate date]];
+        int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+        NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays)];
+        self.lblDaysLeft.text = daysLeft;
+        
+        [database open];
+        FMResultSet *workDone = [database executeQuery:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true'"];
+        FMResultSet *todayWorkDone = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true' AND day = '%d'", numberOfDays]];
+        FMResultSet *workMissed = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true' AND day <= '%d'", numberOfDays]];
+        int countWorkDone = 0, todayCountWorkDone = 0, countWorkMissed = 0;
+        
+        while([workDone next]) {
+            countWorkDone = [[workDone stringForColumn:@"workoutDone"] intValue];
+        }
+        
+        while([todayWorkDone next]) {
+            todayCountWorkDone = [[todayWorkDone stringForColumn:@"workoutDone"] intValue];
+        }
+        
+        while([workMissed next]) {
+            countWorkMissed = [[workMissed stringForColumn:@"workoutDone"] intValue];
+        }
+        [database close];
+        
+        // set count of workout done here
+        self.lblWorkoutDone.text = [NSString stringWithFormat:@"%d", countWorkDone];
+        
+        // set count of workout missed here
+        self.lblWorkoutMissed.text = [NSString stringWithFormat:@"%d", (numberOfDays - countWorkMissed)];
+        
+        // check today's workout is logged or not, if logged -1 number of days left
+        if (todayCountWorkDone == 1) {
+            NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays - 1)];
+            self.lblDaysLeft.text = daysLeft;
+        }
+        
+        // set days left 0 for program = Maintenance/Indeterminate
+        if ([result isEqualToString:@"Maintenance"] || [result isEqualToString:@"Indeterminate"]) {
+            self.lblDaysLeft.text = @"0";
+        }
+        
+        //-------------------------- Add Log your weight Start -----------------
+        WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+        
+        if (![self checkMonthPresent:[week getMonth]]) {
+            UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+            
+            UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+            [logWeight addGestureRecognizer:tapBodyStats];
+            
+            logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+            UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+            alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+            
+            UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+            lblLogWeight.text = @"Log your Body Stats";
+            lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            
+            UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+            arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+            
+            [logWeight addSubview:alarmImage];
+            [logWeight addSubview:lblLogWeight];
+            [logWeight addSubview:arrowImage];
+            [self.profileScrollView addSubview:logWeight];
+            
+            // set the top value here
+            profileTop = profileTop + 64;
+        }
+        //-------------------------- Add Log your weight End -------------------
+        
+        //-------------------------- Add Set UP Advance Profile Start -----------------
+        if (numberOfDays >= 2 && numberOfDays < 30) {
+            UITapGestureRecognizer *tapAdvProfilw = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvanceProfile:)];
+            
+            UIView *advProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+            [advProfile addGestureRecognizer:tapAdvProfilw];
+            
+            advProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+            UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+            alarmImage.image = [UIImage imageNamed:@"ic_guidelines.png"];
+            
+            UILabel *lblAdvProfile = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 230, 25)];
+            lblAdvProfile.text = @"Set up your Advance Profile";
+            lblAdvProfile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+            
+            UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+            arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+            
+            [advProfile addSubview:alarmImage];
+            [advProfile addSubview:lblAdvProfile];
+            [advProfile addSubview:arrowImage];
+            [self.profileScrollView addSubview:advProfile];
+            
+            // set the top value here
+            profileTop = profileTop + 64;
+        }
+        //-------------------------- Add Set UP Advance Profile End -------------------
+        
+        float sizeOfContent = 0;
+        UIView *lLast = [self.profileScrollView.subviews lastObject];
+        NSInteger wd = lLast.frame.origin.y;
+        NSInteger ht = lLast.frame.size.height;
+        
+        sizeOfContent = wd+ht;
+        
+        self.profileScrollView.contentSize = CGSizeMake(self.profileScrollView.frame.size.width, sizeOfContent);
     }
 }
 
@@ -1498,6 +1687,13 @@
 -(void)tapBodyStats:(UITapGestureRecognizer *)recognizer {
     BodyStatsViewController *viewController = (BodyStatsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"bodyStatsViewController"];
     //viewController.screenType = @"trainer";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+-(void)tapAdvanceProfile:(UITapGestureRecognizer *)recognizer {
+    AdvanceProfileViewController *viewController = (AdvanceProfileViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"advanceProfile"];
     viewController.modalPresentationStyle = UIModalPresentationPageSheet;
     viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:viewController animated:YES completion:nil];

@@ -24,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDaysLeft;
 @property (weak, nonatomic) IBOutlet UIButton *btnFullBodyPicks;
 @property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblHeight;
+@property (weak, nonatomic) IBOutlet UIScrollView *profileScrollView;
 
 - (IBAction)btnProfilePicClicked:(id)sender;
 

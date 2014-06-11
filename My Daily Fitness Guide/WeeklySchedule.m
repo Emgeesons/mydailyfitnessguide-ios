@@ -80,7 +80,7 @@
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24)]];
     numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
-    NSLog(@"%d", numberOfDays);
+    //NSLog(@"%d", numberOfDays);
     return ((numberOfDays - 1)/30) + 1;
 }
 

@@ -78,7 +78,7 @@
 }
 
 -(void)addPic {
-    UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Pick from Gallery", @"Pick from Camera", nil];
+    UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose Existing", nil];
     picPicker.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [picPicker showInView:self.view];
 }
@@ -88,15 +88,15 @@
     //NSLog(@"%d", buttonIndex);
     if (buttonIndex == 0) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
+        //picker.delegate = self;
         picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:NULL];
     } else if (buttonIndex == 1) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
+        //picker.delegate = self;
         picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:NULL];
     }
 }

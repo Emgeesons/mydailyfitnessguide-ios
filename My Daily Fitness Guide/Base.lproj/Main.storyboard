@@ -2535,10 +2535,14 @@ Left</string>
                         <outlet property="btnProfile" destination="TPj-AO-VZZ" id="1Hl-sg-p6u"/>
                         <outlet property="btnProfilePic" destination="mbQ-a2-EOy" id="92B-XU-QTx"/>
                         <outlet property="btnTrainer" destination="o0N-Rt-1Fv" id="Su9-8O-CP5"/>
+                        <outlet property="lblAge" destination="hPh-QU-Uz4" id="60Y-cm-1M9"/>
                         <outlet property="lblBegin" destination="hnb-uz-wfl" id="pnd-Oi-69H"/>
                         <outlet property="lblDaysLeft" destination="cJ5-60-VmK" id="sXm-Ga-ZQ2"/>
+                        <outlet property="lblHeight" destination="dFX-H9-bFi" id="htT-oK-2g5"/>
+                        <outlet property="lblName" destination="md3-Ly-0ac" id="MS4-91-Ldx"/>
                         <outlet property="lblWorkoutDone" destination="MSI-II-pfc" id="rep-vl-kJb"/>
                         <outlet property="lblWorkoutMissed" destination="8aY-gj-0QE" id="59f-ch-nss"/>
+                        <outlet property="profileScrollView" destination="HVv-bD-Y2J" id="egZ-rj-831"/>
                         <outlet property="trainerScrollView" destination="tuT-ag-l4l" id="Cx2-Cm-kAD"/>
                         <outlet property="tvWeeklyDiet" destination="D7V-uc-CCW" id="A43-Q0-38K"/>
                         <outlet property="viewAchieved" destination="Tl8-PM-cmy" id="a61-Cw-ahe"/>
@@ -2849,6 +2853,138 @@ label</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nW4-TG-kkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-616" y="1710"/>
+        </scene>
+        <!--Advance Profile View Controller-->
+        <scene sceneID="oQ4-gT-mbI">
+            <objects>
+                <viewController storyboardIdentifier="advanceProfile" id="InV-Bz-mr5" customClass="AdvanceProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ln2-uh-uvW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="5CB-ok-cZn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Set up Advanced Profile" id="0rx-Bt-AZG">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="uyq-Lb-1en">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="InV-Bz-mr5" id="UWk-I9-8ab"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="7Tf-xK-Mfg">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="InV-Bz-mr5" id="Qnu-Re-nYb"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" id="NMP-bb-SOS">
+                                <rect key="frame" x="5" y="196" width="310" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="percent body fat:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IlW-EJ-YVQ">
+                                        <rect key="frame" x="7" y="8" width="101" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="9xX-rQ-CjD">
+                                        <rect key="frame" x="109" y="4" width="192" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="InV-Bz-mr5" id="lRm-Y0-VAH"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hIw-uN-Ikn">
+                                <rect key="frame" x="203" y="144" width="56" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="pounds_active.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnPoundsClicked:" destination="InV-Bz-mr5" eventType="touchUpInside" id="fyB-xI-1tV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Egi-16-Hft">
+                                <rect key="frame" x="259" y="144" width="56" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="kgs_active.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnKgdClicked:" destination="InV-Bz-mr5" eventType="touchUpInside" id="Igs-xy-F8d"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="aNF-jH-Jpm">
+                                <rect key="frame" x="5" y="144" width="194" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="skeletal muscle mass:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tbb-He-U7d">
+                                        <rect key="frame" x="7" y="8" width="125" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="WS7-mr-IOS">
+                                        <rect key="frame" x="135" y="4" width="52" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="InV-Bz-mr5" id="faQ-ea-Zln"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y5Z-Zh-7JW">
+                                <rect key="frame" x="31" y="76" width="258" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Complete your Profile and gain more">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnKg" destination="Egi-16-Hft" id="jMl-ym-aPU"/>
+                        <outlet property="btnPound" destination="hIw-uN-Ikn" id="Pzs-Ko-uGc"/>
+                        <outlet property="navBar" destination="5CB-ok-cZn" id="KLH-zj-aY7"/>
+                        <outlet property="navItem" destination="0rx-Bt-AZG" id="J3F-Cr-woW"/>
+                        <outlet property="txtPBF" destination="9xX-rQ-CjD" id="cdB-9G-6of"/>
+                        <outlet property="txtSMM" destination="WS7-mr-IOS" id="AJX-T3-saC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="67T-ee-hsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-608" y="2384"/>
         </scene>
         <!--Course Correction View Controller-->
         <scene sceneID="Ecw-WM-laC">

@@ -88,6 +88,7 @@
 		EC1F40FF19386FAA0051AA92 /* ic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1F40FE19386FAA0051AA92 /* ic_about@2x.png */; };
 		EC205E961934B53B001E4374 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E951934B53B001E4374 /* arrow@2x.png */; };
 		EC205E981934B547001E4374 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E971934B547001E4374 /* arrow.png */; };
+		EC223228194861ED004BF46F /* AdvanceProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223227194861ED004BF46F /* AdvanceProfileViewController.m */; };
 		EC251C7C192DAE6A0081F0CD /* DietResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */; };
 		EC251C7E192DD5120081F0CD /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7D192DD5120081F0CD /* start@2x.png */; };
 		EC251C80192DD52A0081F0CD /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7F192DD52A0081F0CD /* start.png */; };
@@ -516,6 +517,8 @@
 		EC1F40FE19386FAA0051AA92 /* ic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_about@2x.png"; sourceTree = "<group>"; };
 		EC205E951934B53B001E4374 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		EC205E971934B547001E4374 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		EC223226194861ED004BF46F /* AdvanceProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceProfileViewController.h; sourceTree = "<group>"; };
+		EC223227194861ED004BF46F /* AdvanceProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceProfileViewController.m; sourceTree = "<group>"; };
 		EC251C7A192DAE6A0081F0CD /* DietResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietResultViewController.h; sourceTree = "<group>"; };
 		EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietResultViewController.m; sourceTree = "<group>"; };
 		EC251C7D192DD5120081F0CD /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
@@ -1300,6 +1303,8 @@
 				ECD8B2471945D615007E1C85 /* GalleryViewController.m */,
 				EC29C41F194704BB00883BAB /* PhotoViewController.h */,
 				EC29C420194704BB00883BAB /* PhotoViewController.m */,
+				EC223226194861ED004BF46F /* AdvanceProfileViewController.h */,
+				EC223227194861ED004BF46F /* AdvanceProfileViewController.m */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -2169,6 +2174,7 @@
 				EC03025A192B58A900744A6A /* DietTableViewController.m in Sources */,
 				EC7D406219247B24001338E4 /* SideBarTableViewController.m in Sources */,
 				EC2C6F611930676000AEA06D /* GuidelinesViewController.m in Sources */,
+				EC223228194861ED004BF46F /* AdvanceProfileViewController.m in Sources */,
 				EC1175761939A48B00F98292 /* VacationViewController.m in Sources */,
 				EC251C7C192DAE6A0081F0CD /* DietResultViewController.m in Sources */,
 				EC7D405F19247A47001338E4 /* SWRevealViewController.m in Sources */,
