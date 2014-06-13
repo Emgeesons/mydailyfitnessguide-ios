@@ -59,9 +59,11 @@
 
 - (void) titleView {
     UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
-    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(70, 0, 300, 30)];
+    UILabel *title = [[UILabel alloc] initWithFrame: CGRectMake(60, 0, 300, 30)];
     
-    title.text = [NSString stringWithFormat:@"Howdy %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"name"]];
+    NSArray *nameArray = [[[NSUserDefaults standardUserDefaults] stringForKey:@"name"] componentsSeparatedByString:@" "];
+    
+    title.text = [NSString stringWithFormat:@"Howdy %@,", nameArray[0]];
     [title setTextColor:[UIColor whiteColor]];
     [title setFont:[UIFont boldSystemFontOfSize:titleFont]];
     
@@ -69,13 +71,17 @@
     UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
-    myImageView.frame = CGRectMake(30, 0, 30, 30);
+    myImageView.frame = CGRectMake(20, 0, 30, 30);
     
     [myView addSubview:title];
-    [myView setBackgroundColor:[UIColor  clearColor]];
+    [myView setBackgroundColor:[UIColor clearColor]];
     [myView addSubview:myImageView];
     self.navigationItem.titleView = myView;
 }
+
+/*-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}*/
 
 - (void)viewDidLoad
 {
@@ -84,6 +90,9 @@
     profileTop = 151;
     
     testWeight = @[@"100", @"50", @"75"];
+    
+    //[self setNeedsStatusBarAppearanceUpdate];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     self.btnLabelTrainer.titleLabel.textColor = [UIColor yellowColor];
     

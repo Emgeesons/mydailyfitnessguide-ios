@@ -46,6 +46,9 @@
     
     self.title = self.State;
     [self loadCities];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 -(void)setTitle:(NSString *)title {
@@ -108,7 +111,6 @@
     [manager POST:cityListURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [activityIndicator stopAnimating];
-        //NSLog(@"response %@", responseObject);
         
         NSDictionary *json = (NSDictionary *)responseObject;
         
@@ -127,7 +129,6 @@
                 [time addObject:[response objectForKey:@"timings"]];
             }
             [self.tableView reloadData];
-            //NSLog(@"%@", name);
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[json objectForKey:@"message"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -145,6 +146,7 @@
     
     if (cell == nil) {
         cell = [[CityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.delegate = self;
     cell.lblName.text = name[indexPath.row];

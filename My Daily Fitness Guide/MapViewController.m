@@ -43,6 +43,9 @@
     
     [self.mapView addAnnotation:point];
     [self.mapView setRegion:region animated:YES];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 -(void)setTitle:(NSString *)title {

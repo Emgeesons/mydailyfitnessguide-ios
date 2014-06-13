@@ -39,6 +39,9 @@
     
     self.navigationItem.rightBarButtonItem = nextButton;
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     [database open];
     FMResultSet *results = [database executeQuery:@"select * from medicalCondition"];
     

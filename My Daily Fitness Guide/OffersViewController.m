@@ -145,7 +145,7 @@
                 testWebview.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
                 
                 NSString *path = [[NSBundle mainBundle] pathForResource:@"im_boundary" ofType:@"png"];
-                NSString *htmlString = [NSString stringWithFormat:@"<html><body bgcolor='#f2f2f2'><h3>%@</h3>%@<img src=\"file://%@\"></body></html>",[response objectForKey:@"title"], [response objectForKey:@"description"], path];
+                NSString *htmlString = [NSString stringWithFormat:@"<html><body bgcolor='#f2f2f2'><h3>%@</h3><hr style=\"display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin-top:-10px;\">%@<img src=\"file://%@\"></body></html>",[response objectForKey:@"title"], [response objectForKey:@"description"], path];
                 [testWebview loadHTMLString:htmlString baseURL:nil];
                 
                 [self longPress:testWebview];
