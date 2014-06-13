@@ -63,9 +63,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 12) {
-        NSString *text = @"How to add Facebook and Twitter sharing to an iOS app";
-        NSURL *url = [NSURL URLWithString:@"http://roadfiresoftware.com/2014/02/how-to-add-facebook-and-twitter-sharing-to-an-ios-app/"];
-        UIImage *image = [UIImage imageNamed:@"call.png"];
+        NSString *text = @"Hi, I’m using My Daily Fitness Guide iPhone app from Gold’s Gym. Download it now from - ";
+        NSURL *url = [NSURL URLWithString:@"http://tinyurl.com/goldsgymindia-ios"];
+        UIImage *image = [UIImage imageNamed:@""];
         
         UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[text, url, image] applicationActivities:nil];
         
