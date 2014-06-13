@@ -32,7 +32,7 @@
 }
 
 - (IBAction)mapClicked:(id)sender {
-    [self.delegate mapPressed:self.map.latitude longitude:self.map.longitude];
+    [self.delegate mapPressed:self.map.latitude longitude:self.map.longitude title:self.map.title address:self.map.address];
 }
 
 - (IBAction)mailClicked:(id)sender {

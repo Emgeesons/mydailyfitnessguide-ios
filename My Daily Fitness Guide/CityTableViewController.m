@@ -158,6 +158,8 @@
     
     cell.map.latitude = latitude[indexPath.row];
     cell.map.longitude = longitude[indexPath.row];
+    cell.map.title = name[indexPath.row];
+    cell.map.address = address[indexPath.row];
     
     cell.lblTime.text = time[indexPath.row];
     
@@ -173,12 +175,12 @@
     return cell;
 }
 
--(void)mapPressed:(NSString *)lat longitude:(NSString *)longi {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+-(void)mapPressed:(NSString *)lat longitude:(NSString *)longi title:(NSString *)title address:(NSString *)add {
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     mapLat = lat;
     mapLongi = longi;
-    mapTitle = name[indexPath.row];
-    mapAddress = address[indexPath.row];
+    mapTitle = title;
+    mapAddress = add;
 }
 
 -(void)mailPressed:(NSString *)emailId {
@@ -189,7 +191,7 @@
 }
 
 -(void)callPressed:(NSString *)callString {
-    //NSLog(@"%@", callString);
+    NSLog(@"%@", callString);
     NSString *s = [callString stringByReplacingOccurrencesOfString:@" " withString:@""];
     //NSLog(@"%@", s);
     NSArray *splitNum = [s componentsSeparatedByString: @","];
@@ -253,7 +255,7 @@
     if (selectedNumber == NULL) {
         selectedNumber = numArray[0];
     }
-    NSLog(@"%@", selectedNumber);
+    //NSLog(@"%@", selectedNumber);
     NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", selectedNumber]];
     [[UIApplication sharedApplication] openURL:telURL];
     [sheet dismissWithClickedButtonIndex:0 animated:YES];

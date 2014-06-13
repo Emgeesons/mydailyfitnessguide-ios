@@ -11,7 +11,7 @@
 
 @protocol CityTableViewCellDelegate <NSObject>
 
--(void)mapPressed:(NSString *)latitude longitude:(NSString *)longitude;
+-(void)mapPressed:(NSString *)latitude longitude:(NSString *)longitude title:(NSString *)title address:(NSString *)address;
 -(void)mailPressed:(NSString *)emailId;
 -(void)callPressed:(NSString *)callString;
 
