@@ -35,6 +35,7 @@
 {
     [super viewDidLoad];
     
+    // Add UIToolBar to view with alpha 0.7 for transparency
     bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     bgToolbar.barStyle = UIBarStyleBlack;
     bgToolbar.alpha = 0.7;
@@ -49,23 +50,27 @@
     //initialize DatabaseExtra class
     d = [[DatabaseExtra alloc] init];
     
+    // set female button alpha to 0.5, so male is highlighted
     [self.btnFemale setAlpha:0.5f];
     
+    // set NEXT button clicked as NO for boolean value
     nextClick = NO;
+    // initialize age as zero
     age = 0;
     
+    // Add Logo to UINavigationBar
     UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
     UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
-    
     myImageView.frame = CGRectMake(0, 0, 30, 30);
     
     [myView setBackgroundColor:[UIColor  clearColor]];
     [myView addSubview:myImageView];
-    
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:myView];
-    //item.leftBarButtonItem = leftButton;
     self.navigationItem.leftBarButtonItem = leftButton;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignTextbox)];
+    [self.tableView addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,6 +141,7 @@
         
         [self resignTextbox];
         
+        // Open DatePicker when age textfield is clicked
         sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
         
         timePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake ( 0.0, 44.0, 0.0, 0.0)];

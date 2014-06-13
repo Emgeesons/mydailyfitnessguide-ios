@@ -79,10 +79,6 @@
     self.navigationItem.titleView = myView;
 }
 
-/*-(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}*/
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -91,7 +87,6 @@
     
     testWeight = @[@"100", @"50", @"75"];
     
-    //[self setNeedsStatusBarAppearanceUpdate];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     self.btnLabelTrainer.titleLabel.textColor = [UIColor yellowColor];
@@ -284,10 +279,6 @@
     NSDate *newDate1 = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
     NSString *yesterDayName = [dateFormatter stringFromDate:newDate1];
     yesterdayName = yesterDayName;
-    
-    //NSLog(@"%@", dayName);
-    
-    //NSLog(@"%d", numberOfDays);
     
     if (numberOfDays > 1) {
         if ([currentDayName isEqualToString:@"Mon"]) {
@@ -1218,13 +1209,13 @@
         [f setDateFormat:@"yyyy-MM-dd"];
         endDate = [f stringFromDate:[NSDate date]];
         int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
-        NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays)];
+        NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays - 1)];
         self.lblDaysLeft.text = daysLeft;
         
         [database open];
         FMResultSet *workDone = [database executeQuery:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true'"];
         FMResultSet *todayWorkDone = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true' AND day = '%d'", numberOfDays]];
-        FMResultSet *workMissed = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true' AND day <= '%d'", numberOfDays]];
+        FMResultSet *workMissed = [database executeQuery:[NSString stringWithFormat:@"SELECT count(*) AS workoutDone FROM dailyTicks WHERE tick = 'true' AND day < '%d'", numberOfDays]];
         int countWorkDone = 0, todayCountWorkDone = 0, countWorkMissed = 0;
         
         while([workDone next]) {
@@ -1248,8 +1239,11 @@
         
         // check today's workout is logged or not, if logged -1 number of days left
         if (todayCountWorkDone == 1) {
-            NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays - 1)];
+            NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays)];
             self.lblDaysLeft.text = daysLeft;
+            
+            // set count of workout missed here
+            self.lblWorkoutMissed.text = [NSString stringWithFormat:@"%d", (numberOfDays - 1 - countWorkMissed)];
         }
         
         // set days left 0 for program = Maintenance/Indeterminate
@@ -1779,7 +1773,7 @@
         } else if (indexPath.row == 2) {
             return webViewHeight;
         } else if (indexPath.row == 4 || indexPath.row == 6 || indexPath.row == 8) {
-            return 44;
+            return 54;
         }
     }
     return 20;

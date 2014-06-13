@@ -26,7 +26,7 @@
     navbar.tintColor = [UIColor whiteColor];
     [self.view addSubview:navbar];
     
-    // Add UINavigationItem to UINavigationBar
+    // Add Blank UINavigationItem to UINavigationBar
     UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@""];
     navbar.items = [NSArray arrayWithObject:item];
     
@@ -34,7 +34,8 @@
     UIBarButtonItem *agreeButton = [[UIBarButtonItem alloc] initWithTitle:@"AGREE" style:UIBarButtonItemStylePlain target:self action:@selector(agreeClicked)];
     item.rightBarButtonItem = agreeButton;
     
-    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
+    // Add Logo to UINavigationItem
+    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 50, 30)];
     UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     
@@ -54,11 +55,12 @@
 }
 
 -(void)agreeClicked {
+    // save agree button click value in NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setValue:@"agreeClicked" forKey:@"agree"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    // open registeration page with CATransition
     UIViewController *v = [self.storyboard instantiateViewControllerWithIdentifier:@"register"];
-    
     CATransition *transition = [CATransition animation];
     transition.duration = 0.8;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

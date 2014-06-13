@@ -1354,6 +1354,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EC5C5F7D194B04B5007D6553 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				ECD8B2461945D615007E1C85 /* GalleryViewController.h */,
+				ECD8B2471945D615007E1C85 /* GalleryViewController.m */,
+				EC29C41F194704BB00883BAB /* PhotoViewController.h */,
+				EC29C420194704BB00883BAB /* PhotoViewController.m */,
+				EC223226194861ED004BF46F /* AdvanceProfileViewController.h */,
+				EC223227194861ED004BF46F /* AdvanceProfileViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		EC5C5F7E194B04D2007D6553 /* Goal Undefined */ = {
+			isa = PBXGroup;
+			children = (
+				EC02DCAD192A015800BAD1D0 /* MedicalConditionViewController.h */,
+				EC02DCAE192A015800BAD1D0 /* MedicalConditionViewController.m */,
+				EC02DCB0192A0DC200BAD1D0 /* BMIViewController.h */,
+				EC02DCB1192A0DC200BAD1D0 /* BMIViewController.m */,
+				EC03024D192B38DC00744A6A /* DietRecallViewController.h */,
+				EC03024E192B38DC00744A6A /* DietRecallViewController.m */,
+				EC030258192B58A900744A6A /* DietTableViewController.h */,
+				EC030259192B58A900744A6A /* DietTableViewController.m */,
+				EC251C7A192DAE6A0081F0CD /* DietResultViewController.h */,
+				EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */,
+			);
+			name = "Goal Undefined";
+			sourceTree = "<group>";
+		};
 		EC7D405C19247A34001338E4 /* SideBarLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -1368,16 +1398,7 @@
 			children = (
 				EC7D406419247E4B001338E4 /* FirstTabViewController.h */,
 				EC7D406519247E4B001338E4 /* FirstTabViewController.m */,
-				EC02DCAD192A015800BAD1D0 /* MedicalConditionViewController.h */,
-				EC02DCAE192A015800BAD1D0 /* MedicalConditionViewController.m */,
-				EC02DCB0192A0DC200BAD1D0 /* BMIViewController.h */,
-				EC02DCB1192A0DC200BAD1D0 /* BMIViewController.m */,
-				EC03024D192B38DC00744A6A /* DietRecallViewController.h */,
-				EC03024E192B38DC00744A6A /* DietRecallViewController.m */,
-				EC030258192B58A900744A6A /* DietTableViewController.h */,
-				EC030259192B58A900744A6A /* DietTableViewController.m */,
-				EC251C7A192DAE6A0081F0CD /* DietResultViewController.h */,
-				EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */,
+				EC5C5F7E194B04D2007D6553 /* Goal Undefined */,
 				EC2C6F5F1930676000AEA06D /* GuidelinesViewController.h */,
 				EC2C6F601930676000AEA06D /* GuidelinesViewController.m */,
 				EC2C6F62193085BE00AEA06D /* DosAndDontsViewController.h */,
@@ -1388,12 +1409,7 @@
 				ECFE756C193C4E86002D3DD4 /* BodyStatsViewController.m */,
 				EC45AD69193C910A00455443 /* CourseCorrectionViewController.h */,
 				EC45AD6A193C910A00455443 /* CourseCorrectionViewController.m */,
-				ECD8B2461945D615007E1C85 /* GalleryViewController.h */,
-				ECD8B2471945D615007E1C85 /* GalleryViewController.m */,
-				EC29C41F194704BB00883BAB /* PhotoViewController.h */,
-				EC29C420194704BB00883BAB /* PhotoViewController.m */,
-				EC223226194861ED004BF46F /* AdvanceProfileViewController.h */,
-				EC223227194861ED004BF46F /* AdvanceProfileViewController.m */,
+				EC5C5F7D194B04B5007D6553 /* Profile */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
