@@ -12,6 +12,7 @@
 @interface OffersViewController () {
     UIActivityIndicatorView *activityIndicator;
     DatabaseExtra *d;
+    float webViewHeight;
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -34,6 +35,12 @@
     // Do any additional setup after loading the view.
     
     self.title = @"Offers";
+    
+    if (IsIphone5) {
+        webViewHeight = 340;
+    } else {
+        webViewHeight = 250;
+    }
     
     //initialize DatabaseExtra class
     d = [[DatabaseExtra alloc] init];
@@ -101,7 +108,6 @@
     [manager POST:offersURL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [activityIndicator stopAnimating];
-        //NSLog(@"response %@", responseObject);
         
         NSDictionary *json = (NSDictionary *)responseObject;
         
@@ -114,7 +120,6 @@
                 NSInteger imageCountData =[[response objectForKey:@"image"] count];
                 
                 UIView *v = [[UIView alloc] initWithFrame:CGRectMake(((self.scrollView.frame.size.width)*i), 0,self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
-                //v.backgroundColor = [UIColor colorWithHexString:BlueColor5];
                 
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 150)];
                 
@@ -136,7 +141,7 @@
                     imageView.image = [UIImage imageNamed:@"default_offers_events.png"];
                 }
                 
-                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 300, 250)];
+                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 300, webViewHeight)];
                 testWebview.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
                 
                 NSString *path = [[NSBundle mainBundle] pathForResource:@"im_boundary" ofType:@"png"];
@@ -180,7 +185,6 @@
     [webView addGestureRecognizer:longPress];
 }
 
-// I just need this for the selector in the gesture recognizer.
 - (void)handleLongPress {
     
 }

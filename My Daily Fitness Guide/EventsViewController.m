@@ -12,6 +12,7 @@
 @interface EventsViewController () {
     UIActivityIndicatorView *activityIndicator;
     DatabaseExtra *d;
+    float webViewHeight;
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
@@ -33,6 +34,12 @@
     // Do any additional setup after loading the view.
     
     self.title = @"Events";
+    
+    if (IsIphone5) {
+        webViewHeight = 340;
+    } else {
+        webViewHeight = 250;
+    }
     
     //initialize DatabaseExtra class
     d = [[DatabaseExtra alloc] init];
@@ -135,7 +142,7 @@
                     imageView.image = [UIImage imageNamed:@"default_offers_events.png"];
                 }
                 
-                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 300, 250)];
+                UIWebView *testWebview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 160, 300, webViewHeight)];
                 testWebview.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
                 
                 NSString *path = [[NSBundle mainBundle] pathForResource:@"im_boundary" ofType:@"png"];
