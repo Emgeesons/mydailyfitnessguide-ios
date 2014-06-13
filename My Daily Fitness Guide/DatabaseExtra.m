@@ -200,7 +200,7 @@
 }
 
 + (void)errorInConnection {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Oops! something goes wrong." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please make sure you are connected to the internet and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
 
@@ -224,6 +224,14 @@
                                                           toDate:endDate
                                                          options:0];
     return ([components day] + 1);
+}
+
++ (CAGradientLayer *) setGradietColourForView:(UIView *)view {
+    // set gradient background for view's
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#e8e8e8"] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+    return gradient;
 }
 
 @end

@@ -323,7 +323,7 @@ Cg
                                                             <rect key="frame" x="63" y="7" width="237" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="KuC-ub-zQx" id="LrL-iz-PId"/>
                                                             </connections>

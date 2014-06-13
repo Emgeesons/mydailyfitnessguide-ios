@@ -33,6 +33,18 @@
     // Add UIBarButtonItem to UINavigationItem
     UIBarButtonItem *agreeButton = [[UIBarButtonItem alloc] initWithTitle:@"AGREE" style:UIBarButtonItemStylePlain target:self action:@selector(agreeClicked)];
     item.rightBarButtonItem = agreeButton;
+    
+    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
+    UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    
+    myImageView.frame = CGRectMake(0, 0, 30, 30);
+    
+    [myView setBackgroundColor:[UIColor  clearColor]];
+    [myView addSubview:myImageView];
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:myView];
+    item.leftBarButtonItem = leftButton;
 }
 
 - (void)didReceiveMemoryWarning

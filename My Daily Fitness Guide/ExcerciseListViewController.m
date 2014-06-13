@@ -95,10 +95,7 @@
     view1.frame = CGRectMake(10, 0, 300, (top + 21 + ((mainArray.count - 1) * 44) + 50));
     
     // set gradient background for viewBg
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = view1.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#e8e8e8"] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-    [view1.layer insertSublayer:gradient atIndex:0];
+    [view1.layer insertSublayer:[DatabaseExtra setGradietColourForView:view1] atIndex:0];
     
     // check here mainArray's 1st element is blank or not
     if ([mainArray[0] isEqualToString:@""]) {
@@ -153,10 +150,7 @@
             view2.frame = CGRectMake(10, view1.frame.size.height + 10, 300, (tmp_top + 21 + ((secondArray.count - 1) * 44) + 50));
             
             // set gradient background for viewBg
-            CAGradientLayer *gradient = [CAGradientLayer layer];
-            gradient.frame = view2.bounds;
-            gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#e8e8e8"] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-            [view2.layer insertSublayer:gradient atIndex:0];
+            [view2.layer insertSublayer:[DatabaseExtra setGradietColourForView:view2] atIndex:0];
             
             //tmp_top = tmp_top - 15;
             NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:13]};

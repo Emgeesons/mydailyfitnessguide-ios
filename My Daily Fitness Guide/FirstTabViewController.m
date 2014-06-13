@@ -85,12 +85,11 @@
     
     testWeight = @[@"100", @"50", @"75"];
     
+    self.btnLabelTrainer.titleLabel.textColor = [UIColor yellowColor];
+    
     // set gradient background for view's
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = _viewStart.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#e8e8e8"] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-    [self.viewStart.layer insertSublayer:gradient atIndex:0];
-    [self.viewBegin.layer insertSublayer:gradient atIndex:0];
+    [self.viewStart.layer insertSublayer:[DatabaseExtra setGradietColourForView:self.viewStart] atIndex:0];
+    [self.viewBegin.layer insertSublayer:[DatabaseExtra setGradietColourForView:self.viewBegin] atIndex:0];
     
     // database initialization
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
@@ -1665,6 +1664,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Bedtime"];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *directory = [documentsDirectoryPath stringByAppendingPathComponent:@"gallery/"];
+    NSError *error = nil;
+    for (NSString *file in [fm contentsOfDirectoryAtPath:directory error:&error]) {
+        BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@%@", directory, file] error:&error];
+        if (!success || error) {
+            // it failed.
+        }
+    }
     
     [self hideAllViews];
     

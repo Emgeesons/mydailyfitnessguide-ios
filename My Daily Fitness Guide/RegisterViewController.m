@@ -15,6 +15,7 @@
     NSString *dob;
     NSInteger age;
     UIToolbar *bgToolbar;
+    NSDate *datePickerSelectedDate;
 }
 
 @end
@@ -36,6 +37,7 @@
     
     bgToolbar = [[UIToolbar alloc] initWithFrame:self.view.frame];
     bgToolbar.barStyle = UIBarStyleBlack;
+    bgToolbar.alpha = 0.7;
     bgToolbar.translucent = YES;
     
     // initialize activityIndicator and add it to view.
@@ -51,6 +53,19 @@
     
     nextClick = NO;
     age = 0;
+    
+    UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 300, 30)];
+    UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    
+    myImageView.frame = CGRectMake(0, 0, 30, 30);
+    
+    [myView setBackgroundColor:[UIColor  clearColor]];
+    [myView addSubview:myImageView];
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:myView];
+    //item.leftBarButtonItem = leftButton;
+    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -129,6 +144,10 @@
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
         [dateFormatter setLocale:[NSLocale currentLocale]];
         timePicker.maximumDate = [NSDate date];
+        
+        if (datePickerSelectedDate) {
+            [timePicker setDate:datePickerSelectedDate];
+        }
         
         //format datePicker mode. in this example time is used
         timePicker.datePickerMode = UIDatePickerModeDate;
@@ -243,6 +262,8 @@
     dob = [FormatDate stringFromDate:[timePicker date]];
     age = [DatabaseExtra getAge:[timePicker date]];
     
+    datePickerSelectedDate = [timePicker date];
+    
     self.txtAge.text = [NSString stringWithFormat:@"%ld yrs", (long)[DatabaseExtra getAge:[timePicker date]]];
     
     timePicker.frame=CGRectMake(0, 44, 320, 416);
@@ -269,7 +290,6 @@
         [self.view.superview insertSubview:bgToolbar aboveSubview:self.view];
         
         nextClick = YES;
-        [self.tableView setAlpha:0.5];
         
         NSString *gender;
         if (self.btnFemale.alpha == 0.5) {
@@ -291,7 +311,6 @@
             
             [activityIndicator stopAnimating];
             [bgToolbar removeFromSuperview];
-            //NSLog(@"response %@", responseObject);
             
             NSDictionary *json = (NSDictionary *)responseObject;
             
@@ -352,9 +371,6 @@
             [self.lblAge setTextColor:[UIColor redColor]];
         }
         
-        /*if (age < 13) {
-            [self.lblAge setTextColor:[UIColor redColor]];
-        }*/
     }
 }
 

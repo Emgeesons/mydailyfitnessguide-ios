@@ -8,8 +8,12 @@
 
 #import "SideBarTableViewController.h"
 #import "SWRevealViewController.h"
+#import "FirstTabViewController.h"
 
-@interface SideBarTableViewController ()
+@interface SideBarTableViewController () <UIAlertViewDelegate> {
+    UIAlertView *alertResetBody;
+    FMDatabase *database;
+}
 
 @end
 
@@ -32,7 +36,9 @@
     //self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    //menus = @[@"home", @"separator1", @"gymLocator"];
+    alertResetBody = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    
+    database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,22 +83,73 @@
         
         [controller setCompletionHandler:^(NSString *activityType, BOOL completed)
          {
-             //NSLog(@"Activity = %@",activityType);
-             //NSLog(@"Completed Status = %d",completed);
-             
              if (completed)
              {
                  UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Successfully Shared" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                  [objalert show];
                  objalert = nil;
-             }/* else
-             {
-                 UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Unable To Share" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                 [objalert show];
-                 objalert = nil;
-             }*/
+             }
          }];
+        [self loadHomePage];
+    } else if (indexPath.row == 9) {
+        [alertResetBody show];
     }
+}
+
+#pragma mark - UIAlertView Delegate methods
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == alertResetBody) {
+        if (buttonIndex == 0) {
+            [self loadHomePage];
+            
+        } else if (buttonIndex == 1) {
+            [database open];
+            [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Undefined", @"goal"];
+            [database executeUpdate:@"DELETE FROM dailyTicks"];
+            [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ?", @""];
+            [database executeUpdate:@"UPDATE achievementTable SET appear = ?, dateShown = ?", @"false", @""];
+            [database executeUpdate:@"UPDATE medicalCondition SET selected = ?", @"false"];
+            [database executeUpdate:@"DELETE FROM monthLog"];
+            [database close];
+
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"energy"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"carbohydrates"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"protiens"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fats"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fibre"];
+
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Breakfast"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Lunch"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Snacks"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Dinner"];
+            [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Bedtime"];
+
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+            NSFileManager *fm = [NSFileManager defaultManager];
+            NSString *directory = [documentsDirectoryPath stringByAppendingPathComponent:@"gallery/"];
+            NSError *error = nil;
+            for (NSString *file in [fm contentsOfDirectoryAtPath:directory error:&error]) {
+            BOOL success = [fm removeItemAtPath:[NSString stringWithFormat:@"%@/%@", directory, file] error:&error];
+                if (!success || error) {
+                    // it failed.
+                }
+            }
+            [self loadHomePage];
+        }
+    }
+}
+
+-(void)loadHomePage {
+    FirstTabViewController *dvc = (FirstTabViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"firstTab"];
+    UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+    [navController setViewControllers: @[dvc] animated: NO ];
+    
+    SWRevealViewController *revealController = self.revealViewController;
+    [revealController setFrontViewController:navController animated:YES];
 }
 
 #pragma mark - Navigation

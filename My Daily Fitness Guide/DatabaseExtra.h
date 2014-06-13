@@ -40,4 +40,6 @@
 
 + (NSInteger) numberOfDaysBetween:(NSString *)startDate and:(NSString *)endDate;
 
++ (CAGradientLayer *) setGradietColourForView:(UIView *)view;
+
 @end

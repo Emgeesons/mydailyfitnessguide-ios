@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SideBarTableViewController : UITableViewController {
-    NSArray *menus;
-}
+@interface SideBarTableViewController : UITableViewController
 
 @end

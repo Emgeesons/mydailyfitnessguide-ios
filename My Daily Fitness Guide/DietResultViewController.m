@@ -33,10 +33,8 @@
     self.title = @"Dietary Recall";
     
     // set gradient background color for view
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.viewBack.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithHexString:@"#e8e8e8"] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
-    [self.viewBack.layer insertSublayer:gradient atIndex:0];
+    [self.viewBack.layer insertSublayer:
+                                [DatabaseExtra setGradietColourForView:self.viewBack] atIndex:0];
     
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
