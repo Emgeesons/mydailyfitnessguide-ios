@@ -17,8 +17,7 @@
 #import "BodyStatsViewController.h"
 
 #import "AdvanceProfileViewController.h"
-
-#import "LCLineChartView.h"
+#import "GraphViewController.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -1283,10 +1282,10 @@
         
         //-------------------------- Add Set UP Advance Profile Start -----------------
         if (numberOfDays >= 2 && numberOfDays < 30) {
-            UITapGestureRecognizer *tapAdvProfilw = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvanceProfile:)];
+            UITapGestureRecognizer *tapAdvProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvanceProfile:)];
             
             UIView *advProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
-            [advProfile addGestureRecognizer:tapAdvProfilw];
+            [advProfile addGestureRecognizer:tapAdvProfile];
             
             advProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
             UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
@@ -1308,145 +1307,27 @@
             profileTop = profileTop + 64;
         }
         //-------------------------- Add Set UP Advance Profile End -------------------
-        //[self initPlot];
-        //-------------------------- Line Chart Start ---------------------------------
-        /*NSDateFormatter *formatter;
-        {
-            formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"yyyyMMMd" options:0 locale:[NSLocale currentLocale]]];
-        }
-        #define SECS_PER_DAY (86400)*/
-        // first sample chart view:
-        /*{
-            LCLineChartData *d1x = ({
-                LCLineChartData *d1 = [LCLineChartData new];
-                // el-cheapo next/prev day. Don't use this in your Real Code (use NSDateComponents or objc-utils instead)
-                NSDate *date1 = [[NSDate date] dateByAddingTimeInterval:((-3) * SECS_PER_DAY)];
-                NSDate *date2 = [[NSDate date] dateByAddingTimeInterval:((2) * SECS_PER_DAY)];
-                d1.xMin = [date1 timeIntervalSinceReferenceDate];
-                d1.xMax = [date2 timeIntervalSinceReferenceDate];
-                d1.title = @"Foobarbang";
-                d1.color = [UIColor redColor];
-                d1.itemCount = 6;
-                NSMutableArray *arr = [NSMutableArray array];
-                for(NSUInteger i = 0; i < 4; ++i) {
-                    [arr addObject:@(d1.xMin + (rand() / (float)RAND_MAX) * (d1.xMax - d1.xMin))];
-                }
-                [arr addObject:@(d1.xMin)];
-                [arr addObject:@(d1.xMax)];
-                [arr sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                    return [obj1 compare:obj2];
-                }];
-                NSMutableArray *arr2 = [NSMutableArray array];
-                for(NSUInteger i = 0; i < 6; ++i) {
-                    [arr2 addObject:@((rand() / (float)RAND_MAX) * 6)];
-                }
-                d1.getData = ^(NSUInteger item) {
-                    float x = [arr[item] floatValue];
-                    float y = [arr2[item] floatValue];
-                    NSString *label1 = [formatter stringFromDate:[date1 dateByAddingTimeInterval:x]];
-                    NSString *label2 = [NSString stringWithFormat:@"%f", y];
-                    return [LCLineChartDataItem dataItemWithX:x y:y xLabel:label1 dataLabel:label2];
-                };
-                
-                d1;
-            });
-            
-            LCLineChartData *d2x = ({
-                LCLineChartData *d1 = [LCLineChartData new];
-                NSDate *date1 = [[NSDate date] dateByAddingTimeInterval:((-3) * SECS_PER_DAY)];
-                NSDate *date2 = [[NSDate date] dateByAddingTimeInterval:((2) * SECS_PER_DAY)];
-                d1.xMin = [date1 timeIntervalSinceReferenceDate];
-                d1.xMax = [date2 timeIntervalSinceReferenceDate];
-                d1.title = @"Bar";
-                d1.color = [UIColor blueColor];
-                d1.itemCount = 8;
-                NSMutableArray *arr = [NSMutableArray array];
-                for(NSUInteger i = 0; i < d1.itemCount - 2; ++i) {
-                    [arr addObject:@(d1.xMin + (rand() / (float)RAND_MAX) * (d1.xMax - d1.xMin))];
-                }
-                [arr addObject:@(d1.xMin)];
-                [arr addObject:@(d1.xMax)];
-                [arr sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                    return [obj1 compare:obj2];
-                }];
-                NSMutableArray *arr2 = [NSMutableArray array];
-                for(NSUInteger i = 0; i < d1.itemCount; ++i) {
-                    [arr2 addObject:@((rand() / (float)RAND_MAX) * 6)];
-                }
-                d1.getData = ^(NSUInteger item) {
-                    float x = [arr[item] floatValue];
-                    float y = [arr2[item] floatValue];
-                    NSString *label1 = [formatter stringFromDate:[date1 dateByAddingTimeInterval:x]];
-                    NSString *label2 = [NSString stringWithFormat:@"%f", y];
-                    return [LCLineChartDataItem dataItemWithX:x y:y xLabel:label1 dataLabel:label2];
-                };
-                
-                d1;
-            });
-            
-            LCLineChartView *chartView = [[LCLineChartView alloc] initWithFrame:CGRectMake(20, 400, 500, 300)];
-            chartView.yMin = 0;
-            chartView.yMax = 6;
-            chartView.ySteps = @[@"1.0",@"2.0",@"3.0",@"4.0",@"5.0",@"A big label at 6.0"];
-            chartView.data = @[d1x,d2x];
-            
-            //    chartView.drawsDataPoints = NO; // Uncomment to turn off circles at data points.
-            //    chartView.drawsDataLines = NO; // Uncomment to turn off lines connecting data points.
-            //    chartView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0]; // Uncomment for custom background color.
-            
-            [self.profileScrollView addSubview:chartView];
-        }*/
         
-        // second sample chart view
-        /*{
-            LCLineChartData *d = [LCLineChartData new];
-            d.xMin = 0;
-            d.xMax = 12;
-            d.title = @"The title for the legend";
-            d.color = [UIColor redColor];
-            d.itemCount = 12;
-            
-            NSMutableArray *vals = [NSMutableArray new];
-            for(NSUInteger i = 0; i < 12; ++i) {
-                //[vals addObject:@((rand() / (float)RAND_MAX) * (12 - 1) + 1)];
-                [vals addObject:[NSString stringWithFormat:@"%d",i]];
-            }
-
-            d.getData = ^(NSUInteger item) {
-                float x = [vals[item] floatValue];
-                //float y = powf(2, x / 7);
-                float y = x + 50;
-                
-                NSLog(@"x ==> %f, y ==> %f", x, y);
-                
-                NSString *label1 = [NSString stringWithFormat:@"%d", item];
-                NSString *label2 = [NSString stringWithFormat:@"%f", y];
-                return [LCLineChartDataItem dataItemWithX:x y:y xLabel:label1 dataLabel:label2];
-            };
-            
-            LCLineChartView *chartView = [[LCLineChartView alloc] initWithFrame:CGRectMake(0, profileTop, 320, 300)];
-            chartView.yMin = 0;
-            chartView.yMax = 120;
-            chartView.smoothPlot = NO;
-            chartView.drawsDataPoints = NO;
-            
-            NSMutableArray *ysteps = [NSMutableArray new];
-            
-            for (int i = chartView.yMin; i <= chartView.yMax; i = i + 10) {
-                [ysteps addObject:[NSString stringWithFormat:@"%d",i]];
-            }
-            chartView.ySteps = ysteps;
-            
-            chartView.xStepsCount = 13;
-            chartView.data = @[d];
-            
-            chartView.axisLabelColor = [UIColor blueColor];
-            
-            [chartView showLegend:YES animated:YES];
-            
-            [self.profileScrollView addSubview:chartView];
-        }*/
+        UITapGestureRecognizer *tapGraphProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGraphProfile:)];
+        
+        UIView *graphProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+        [graphProfile addGestureRecognizer:tapGraphProfile];
+        
+        graphProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+        UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+        alarmImage.image = [UIImage imageNamed:@"ic_guidelines.png"];
+        
+        UILabel *lblGraphProfile = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 230, 25)];
+        lblGraphProfile.text = @"Graph Profile";
+        lblGraphProfile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+        
+        UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+        arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+        
+        [graphProfile addSubview:alarmImage];
+        [graphProfile addSubview:lblGraphProfile];
+        [graphProfile addSubview:arrowImage];
+        [self.profileScrollView addSubview:graphProfile];
         
         //-------------------------- Line Chart End -----------------------------------
         
@@ -1589,7 +1470,7 @@
     NSDate *stDate = [format dateFromString:start_date];
     NSDate *enDate = [stDate dateByAddingTimeInterval:60*60*24 * days];
     
-    [database executeUpdate:@"INSERT INTO monthLog(monthNumber, weight) VALUES(?, ?)" , @"1", [NSString stringWithFormat:@"%f", weight], nil];
+    [database executeUpdate:@"INSERT INTO monthLog(monthNumber, weight, pbf, smm) VALUES(?, ?, ?, ?)" , @"1", [NSString stringWithFormat:@"%f", weight], @"", @"", nil];
     
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Begun", @"goal"];
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", start_date, @"start_date"];
@@ -1864,6 +1745,13 @@
 
 -(void)tapAdvanceProfile:(UITapGestureRecognizer *)recognizer {
     AdvanceProfileViewController *viewController = (AdvanceProfileViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"advanceProfile"];
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+-(void)tapGraphProfile:(UITapGestureRecognizer *)recognizer {
+    GraphViewController *viewController = (GraphViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"graphViewController"];
     viewController.modalPresentationStyle = UIModalPresentationPageSheet;
     viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:viewController animated:YES completion:nil];
@@ -2424,7 +2312,7 @@
     [btnFacebook addTarget:self action:@selector(facebookShare:) forControlEvents:UIControlEventTouchUpInside];
     [weekView addSubview:btnFacebook];
     
-    btnFacebookLogin = [[FBLoginView alloc] initWithFrame:CGRectMake(90, lblSubMsg.frame.origin.y + lblSubMsg.frame.size.height + 5, 120, 25)];
+    btnFacebookLogin = [[FBLoginView alloc] initWithFrame:CGRectMake(42, lblSubMsg.frame.origin.y + lblSubMsg.frame.size.height + 5, 120, 25)];
     btnFacebookLogin.delegate = self;
     [weekView addSubview:btnFacebookLogin];
     
@@ -2845,215 +2733,5 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
-
-/*#pragma mark - CPTPlotDataSource methods
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    //return [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
-    return 12;
-}
-
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
-    NSInteger valueCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
-    switch (fieldEnum) {
-        case CPTScatterPlotFieldX:
-            if (index < valueCount) {
-                //NSLog(@"%@", [NSNumber numberWithUnsignedInteger:index]);
-                return [NSNumber numberWithUnsignedInteger:index];
-            }
-            break;
-            
-        case CPTScatterPlotFieldY:
-            if ([plot.identifier isEqual:CPDTickerSymbolAAPL] == YES) {
-                //NSLog(@"%@", [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolAAPL] objectAtIndex:index]);
-                return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolAAPL] objectAtIndex:index];
-            } else if ([plot.identifier isEqual:CPDTickerSymbolGOOG] == YES) {
-                return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolGOOG] objectAtIndex:index];
-            } else if ([plot.identifier isEqual:CPDTickerSymbolMSFT] == YES) {
-                return [[[CPDStockPriceStore sharedInstance] monthlyPrices:CPDTickerSymbolMSFT] objectAtIndex:index];
-            }
-            break;
-    }
-    return [NSDecimalNumber zero];
-}
-
-#pragma mark - Chart behavior
--(void)initPlot {
-    [self configureHost];
-    [self configureGraph];
-    [self configurePlots];
-    [self configureAxes];
-}
-
--(void)configureHost {
-    self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:CGRectMake(0, profileTop, 320, 400)];
-    self.hostView.allowPinchScaling = YES;
-    [self.profileScrollView addSubview:self.hostView];
-}
-
--(void)configureGraph {
-    // 1 - Create the graph
-    CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    [graph applyTheme:[CPTTheme themeNamed:kCPTPlainWhiteTheme]];
-    self.hostView.hostedGraph = graph;
-
-    // 2 - Set padding for plot area
-    [graph.plotAreaFrame setPaddingLeft:25.0f];
-    [graph.plotAreaFrame setPaddingBottom:20.0f];
-    // 3 - Enable user interactions for plot space
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
-    plotSpace.allowsUserInteraction = YES;
-}
-
--(void)configurePlots {
-    // 1 - Get graph and plot space
-    CPTGraph *graph = self.hostView.hostedGraph;
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) graph.defaultPlotSpace;
-    // 2 - Create the three plots
-    CPTScatterPlot *aaplPlot = [[CPTScatterPlot alloc] init];
-    aaplPlot.dataSource = self;
-    aaplPlot.identifier = CPDTickerSymbolAAPL;
-    CPTColor *aaplColor = [CPTColor redColor];
-    [graph addPlot:aaplPlot toPlotSpace:plotSpace];
-    CPTScatterPlot *googPlot = [[CPTScatterPlot alloc] init];
-    googPlot.dataSource = self;
-    googPlot.identifier = CPDTickerSymbolGOOG;
-    CPTColor *googColor = [CPTColor greenColor];
-    [graph addPlot:googPlot toPlotSpace:plotSpace];
-    CPTScatterPlot *msftPlot = [[CPTScatterPlot alloc] init];
-    msftPlot.dataSource = self;
-    msftPlot.identifier = CPDTickerSymbolMSFT;
-    CPTColor *msftColor = [CPTColor blueColor];
-    [graph addPlot:msftPlot toPlotSpace:plotSpace];
-    // 3 - Set up plot space
-    [plotSpace scaleToFitPlots:[NSArray arrayWithObjects:aaplPlot, googPlot, msftPlot, nil]];
-    CPTMutablePlotRange *xRange = [plotSpace.xRange mutableCopy];
-    [xRange expandRangeByFactor:CPTDecimalFromCGFloat(1.1f)];
-    plotSpace.xRange = xRange;
-    CPTMutablePlotRange *yRange = [plotSpace.yRange mutableCopy];
-    [yRange expandRangeByFactor:CPTDecimalFromCGFloat(1.2f)];
-    plotSpace.yRange = yRange;
-    // 4 - Create styles and symbols
-    CPTMutableLineStyle *aaplLineStyle = [aaplPlot.dataLineStyle mutableCopy];
-    aaplLineStyle.lineWidth = 2.5;
-    aaplLineStyle.lineColor = aaplColor;
-    aaplPlot.dataLineStyle = aaplLineStyle;
-    CPTMutableLineStyle *aaplSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-    aaplSymbolLineStyle.lineColor = aaplColor;
-    CPTPlotSymbol *aaplSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-    aaplSymbol.fill = [CPTFill fillWithColor:aaplColor];
-    aaplSymbol.lineStyle = aaplSymbolLineStyle;
-    aaplSymbol.size = CGSizeMake(6.0f, 6.0f);
-    aaplPlot.plotSymbol = aaplSymbol;
-    CPTMutableLineStyle *googLineStyle = [googPlot.dataLineStyle mutableCopy];
-    googLineStyle.lineWidth = 1.0;
-    googLineStyle.lineColor = googColor;
-    googPlot.dataLineStyle = googLineStyle;
-    CPTMutableLineStyle *googSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-    googSymbolLineStyle.lineColor = googColor;
-    CPTPlotSymbol *googSymbol = [CPTPlotSymbol starPlotSymbol];
-    googSymbol.fill = [CPTFill fillWithColor:googColor];
-    googSymbol.lineStyle = googSymbolLineStyle;
-    googSymbol.size = CGSizeMake(6.0f, 6.0f);
-    googPlot.plotSymbol = googSymbol;
-    CPTMutableLineStyle *msftLineStyle = [msftPlot.dataLineStyle mutableCopy];
-    msftLineStyle.lineWidth = 2.0;
-    msftLineStyle.lineColor = msftColor;
-    msftPlot.dataLineStyle = msftLineStyle;
-    CPTMutableLineStyle *msftSymbolLineStyle = [CPTMutableLineStyle lineStyle];
-    msftSymbolLineStyle.lineColor = msftColor;
-    CPTPlotSymbol *msftSymbol = [CPTPlotSymbol diamondPlotSymbol];
-    msftSymbol.fill = [CPTFill fillWithColor:msftColor];
-    msftSymbol.lineStyle = msftSymbolLineStyle;
-    msftSymbol.size = CGSizeMake(6.0f, 6.0f);
-    msftPlot.plotSymbol = msftSymbol;
-}
-
--(void)configureAxes {
-    // 1 - Create styles
-    CPTMutableTextStyle *axisTitleStyle = [CPTMutableTextStyle textStyle];
-    //axisTitleStyle.color = [CPTColor whiteColor];
-    axisTitleStyle.fontName = @"Helvetica-Bold";
-    axisTitleStyle.fontSize = 12.0f;
-    CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
-    axisLineStyle.lineWidth = 2.0f;
-    //axisLineStyle.lineColor = [CPTColor whiteColor];
-    CPTMutableTextStyle *axisTextStyle = [[CPTMutableTextStyle alloc] init];
-    //axisTextStyle.color = [CPTColor whiteColor];
-    axisTextStyle.fontName = @"Helvetica-Bold";
-    axisTextStyle.fontSize = 11.0f;
-    CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
-    //tickLineStyle.lineColor = [CPTColor whiteColor];
-    tickLineStyle.lineWidth = 2.0f;
-    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
-    //tickLineStyle.lineColor = [CPTColor blackColor];
-    tickLineStyle.lineWidth = 1.0f;
-    // 2 - Get axis set
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
-    // 3 - Configure x-axis
-    CPTAxis *x = axisSet.xAxis;
-    x.title = @"Day of Month";
-    x.titleTextStyle = axisTitleStyle;
-    x.titleOffset = 15.0f;
-    x.axisLineStyle = axisLineStyle;
-    x.labelingPolicy = CPTAxisLabelingPolicyNone;
-    x.labelTextStyle = axisTextStyle;
-    x.majorTickLineStyle = axisLineStyle;
-    x.majorTickLength = 4.0f;
-    x.tickDirection = CPTSignNegative;
-    CGFloat dateCount = [[[CPDStockPriceStore sharedInstance] datesInMonth] count];
-    NSMutableSet *xLabels = [NSMutableSet setWithCapacity:dateCount];
-    NSMutableSet *xLocations = [NSMutableSet setWithCapacity:dateCount];
-    NSInteger i = 0;
-    for (NSString *date in [[CPDStockPriceStore sharedInstance] datesInMonth]) {
-        CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:date  textStyle:x.labelTextStyle];
-        CGFloat location = i++;
-        label.tickLocation = CPTDecimalFromCGFloat(location);
-        label.offset = x.majorTickLength;
-        if (label) {
-            [xLabels addObject:label];
-            [xLocations addObject:[NSNumber numberWithFloat:location]];
-        }
-    }
-    x.axisLabels = xLabels;
-    x.majorTickLocations = xLocations;
-    // 4 - Configure y-axis
-    CPTAxis *y = axisSet.yAxis;
-    y.title = @"Price";
-    y.titleTextStyle = axisTitleStyle;
-    y.titleOffset = -40.0f;
-    y.axisLineStyle = axisLineStyle;
-    y.majorGridLineStyle = gridLineStyle;
-    y.labelingPolicy = CPTAxisLabelingPolicyNone;
-    y.labelTextStyle = axisTextStyle;
-    y.labelOffset = 16.0f;
-    y.majorTickLineStyle = axisLineStyle;
-    y.majorTickLength = 4.0f;
-    y.minorTickLength = 2.0f;
-    y.tickDirection = CPTSignPositive;
-    NSInteger majorIncrement = 100;
-    NSInteger minorIncrement = 50;
-    CGFloat yMax = 700.0f;  // should determine dynamically based on max price
-    NSMutableSet *yLabels = [NSMutableSet set];
-    NSMutableSet *yMajorLocations = [NSMutableSet set];
-    NSMutableSet *yMinorLocations = [NSMutableSet set];
-    for (NSInteger j = minorIncrement; j <= yMax; j += minorIncrement) {
-        NSUInteger mod = j % majorIncrement;
-        if (mod == 0) {
-            CPTAxisLabel *label = [[CPTAxisLabel alloc] initWithText:[NSString stringWithFormat:@"%i", j] textStyle:y.labelTextStyle];
-            NSDecimal location = CPTDecimalFromInteger(j);
-            label.tickLocation = location;
-            label.offset = -y.majorTickLength - y.labelOffset;
-            if (label) {
-                [yLabels addObject:label];
-            }
-            [yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
-        } else {
-            [yMinorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:CPTDecimalFromInteger(j)]];
-        }
-    }
-    y.axisLabels = yLabels;    
-    y.majorTickLocations = yMajorLocations;
-    y.minorTickLocations = yMinorLocations;
-}*/
 
 @end

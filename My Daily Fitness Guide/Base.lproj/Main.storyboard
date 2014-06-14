@@ -2155,6 +2155,61 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-616" y="320"/>
         </scene>
+        <!--Graph View Controller-->
+        <scene sceneID="593-GD-nzp">
+            <objects>
+                <viewController storyboardIdentifier="graphViewController" id="63p-yq-SfZ" customClass="GraphViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wEn-cv-SRd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="JZR-Gq-cv8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Graph" id="6sj-y5-pfr">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="7MI-7B-jsH">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="63p-yq-SfZ" id="Zx2-FV-G9o"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="rYb-sP-VIO">
+                                <rect key="frame" x="99" y="81" width="123" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Kgs"/>
+                                    <segment title="Pounds"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ChangeSegment:" destination="63p-yq-SfZ" eventType="valueChanged" id="M7B-MP-1lP"/>
+                                </connections>
+                            </segmentedControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="II1-rK-zOQ">
+                                <rect key="frame" x="0.0" y="126" width="320" height="442"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="JZR-Gq-cv8" id="AO8-p7-0xe"/>
+                        <outlet property="navItem" destination="6sj-y5-pfr" id="LvV-Wy-Rjm"/>
+                        <outlet property="scrollView" destination="II1-rK-zOQ" id="HfQ-L2-ZPt"/>
+                        <outlet property="segmentedControl" destination="rYb-sP-VIO" id="lr8-bw-7ok"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jwA-CF-Ans" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-227" y="345"/>
+        </scene>
         <!--First Tab View Controller-->
         <scene sceneID="qND-NT-wwI">
             <objects>

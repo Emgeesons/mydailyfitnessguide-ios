@@ -89,20 +89,6 @@
 		EC205E961934B53B001E4374 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E951934B53B001E4374 /* arrow@2x.png */; };
 		EC205E981934B547001E4374 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E971934B547001E4374 /* arrow.png */; };
 		EC223228194861ED004BF46F /* AdvanceProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223227194861ED004BF46F /* AdvanceProfileViewController.m */; };
-		EC22323019487291004BF46F /* LCInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22322B19487291004BF46F /* LCInfoView.m */; };
-		EC22323119487291004BF46F /* LCLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22322D19487291004BF46F /* LCLegendView.m */; };
-		EC22323219487291004BF46F /* LCLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22322F19487291004BF46F /* LCLineChartView.m */; };
-		EC22324A19487623004BF46F /* InnerShadowDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323519487623004BF46F /* InnerShadowDrawing.m */; };
-		EC22324B19487623004BF46F /* UIColor+HelperAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323719487623004BF46F /* UIColor+HelperAdditions.m */; };
-		EC22324C19487623004BF46F /* UIControl+DLBlockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323919487623004BF46F /* UIControl+DLBlockAdditions.m */; };
-		EC22324D19487623004BF46F /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323B19487623004BF46F /* UIImage+Additions.m */; };
-		EC22324E19487623004BF46F /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323D19487623004BF46F /* UIImage+Alpha.m */; };
-		EC22324F19487623004BF46F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22323F19487623004BF46F /* UIImage+Resize.m */; };
-		EC22325019487623004BF46F /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22324119487623004BF46F /* UIImage+RoundedCorner.m */; };
-		EC22325119487623004BF46F /* UIKit+DrawingHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22324319487623004BF46F /* UIKit+DrawingHelpers.m */; };
-		EC22325219487623004BF46F /* UITabBarController+HideableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22324519487623004BF46F /* UITabBarController+HideableTabBar.m */; };
-		EC22325319487623004BF46F /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22324719487623004BF46F /* UIView+Additions.m */; };
-		EC22325419487623004BF46F /* UIView+Sliding.m in Sources */ = {isa = PBXBuildFile; fileRef = EC22324919487623004BF46F /* UIView+Sliding.m */; };
 		EC251C7C192DAE6A0081F0CD /* DietResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */; };
 		EC251C7E192DD5120081F0CD /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7D192DD5120081F0CD /* start@2x.png */; };
 		EC251C80192DD52A0081F0CD /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = EC251C7F192DD52A0081F0CD /* start.png */; };
@@ -416,6 +402,11 @@
 		ECF5EC4419330FBC009EDFA6 /* dietTips.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC4319330FBC009EDFA6 /* dietTips.plist */; };
 		ECF5EC461933472D009EDFA6 /* quotes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC451933472D009EDFA6 /* quotes@2x.png */; };
 		ECF5EC4819334738009EDFA6 /* quotes.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF5EC4719334738009EDFA6 /* quotes.png */; };
+		ECF7B1A5194C037B00E92E30 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7B1A4194C037B00E92E30 /* GraphViewController.m */; };
+		ECF7B1AF194C0A8F00E92E30 /* BEMAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7B1A8194C0A8F00E92E30 /* BEMAnimations.m */; };
+		ECF7B1B0194C0A8F00E92E30 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7B1AA194C0A8F00E92E30 /* BEMCircle.m */; };
+		ECF7B1B1194C0A8F00E92E30 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7B1AC194C0A8F00E92E30 /* BEMLine.m */; };
+		ECF7B1B2194C0A8F00E92E30 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF7B1AE194C0A8F00E92E30 /* BEMSimpleLineGraphView.m */; };
 		ECFD7938192C6CBC00464EE4 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD791D192C6CBC00464EE4 /* MASCompositeConstraint.m */; };
 		ECFD7939192C6CBC00464EE4 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7920192C6CBC00464EE4 /* MASConstraint.m */; };
 		ECFD793A192C6CBC00464EE4 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD7922192C6CBC00464EE4 /* MASConstraintMaker.m */; };
@@ -534,34 +525,6 @@
 		EC205E971934B547001E4374 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		EC223226194861ED004BF46F /* AdvanceProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceProfileViewController.h; sourceTree = "<group>"; };
 		EC223227194861ED004BF46F /* AdvanceProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceProfileViewController.m; sourceTree = "<group>"; };
-		EC22322A19487291004BF46F /* LCInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCInfoView.h; sourceTree = "<group>"; };
-		EC22322B19487291004BF46F /* LCInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCInfoView.m; sourceTree = "<group>"; };
-		EC22322C19487291004BF46F /* LCLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLegendView.h; sourceTree = "<group>"; };
-		EC22322D19487291004BF46F /* LCLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLegendView.m; sourceTree = "<group>"; };
-		EC22322E19487291004BF46F /* LCLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLineChartView.h; sourceTree = "<group>"; };
-		EC22322F19487291004BF46F /* LCLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLineChartView.m; sourceTree = "<group>"; };
-		EC22323419487623004BF46F /* InnerShadowDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerShadowDrawing.h; sourceTree = "<group>"; };
-		EC22323519487623004BF46F /* InnerShadowDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerShadowDrawing.m; sourceTree = "<group>"; };
-		EC22323619487623004BF46F /* UIColor+HelperAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HelperAdditions.h"; sourceTree = "<group>"; };
-		EC22323719487623004BF46F /* UIColor+HelperAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HelperAdditions.m"; sourceTree = "<group>"; };
-		EC22323819487623004BF46F /* UIControl+DLBlockAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+DLBlockAdditions.h"; sourceTree = "<group>"; };
-		EC22323919487623004BF46F /* UIControl+DLBlockAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+DLBlockAdditions.m"; sourceTree = "<group>"; };
-		EC22323A19487623004BF46F /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
-		EC22323B19487623004BF46F /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
-		EC22323C19487623004BF46F /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
-		EC22323D19487623004BF46F /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
-		EC22323E19487623004BF46F /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		EC22323F19487623004BF46F /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
-		EC22324019487623004BF46F /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
-		EC22324119487623004BF46F /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		EC22324219487623004BF46F /* UIKit+DrawingHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+DrawingHelpers.h"; sourceTree = "<group>"; };
-		EC22324319487623004BF46F /* UIKit+DrawingHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+DrawingHelpers.m"; sourceTree = "<group>"; };
-		EC22324419487623004BF46F /* UITabBarController+HideableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+HideableTabBar.h"; sourceTree = "<group>"; };
-		EC22324519487623004BF46F /* UITabBarController+HideableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+HideableTabBar.m"; sourceTree = "<group>"; };
-		EC22324619487623004BF46F /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
-		EC22324719487623004BF46F /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
-		EC22324819487623004BF46F /* UIView+Sliding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sliding.h"; sourceTree = "<group>"; };
-		EC22324919487623004BF46F /* UIView+Sliding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sliding.m"; sourceTree = "<group>"; };
 		EC251C7A192DAE6A0081F0CD /* DietResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietResultViewController.h; sourceTree = "<group>"; };
 		EC251C7B192DAE6A0081F0CD /* DietResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietResultViewController.m; sourceTree = "<group>"; };
 		EC251C7D192DD5120081F0CD /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
@@ -932,6 +895,16 @@
 		ECF5EC4319330FBC009EDFA6 /* dietTips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dietTips.plist; sourceTree = "<group>"; };
 		ECF5EC451933472D009EDFA6 /* quotes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quotes@2x.png"; sourceTree = "<group>"; };
 		ECF5EC4719334738009EDFA6 /* quotes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quotes.png; sourceTree = "<group>"; };
+		ECF7B1A3194C037B00E92E30 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		ECF7B1A4194C037B00E92E30 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
+		ECF7B1A7194C0A8F00E92E30 /* BEMAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimations.h; sourceTree = "<group>"; };
+		ECF7B1A8194C0A8F00E92E30 /* BEMAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimations.m; sourceTree = "<group>"; };
+		ECF7B1A9194C0A8F00E92E30 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
+		ECF7B1AA194C0A8F00E92E30 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
+		ECF7B1AB194C0A8F00E92E30 /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
+		ECF7B1AC194C0A8F00E92E30 /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
+		ECF7B1AD194C0A8F00E92E30 /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
+		ECF7B1AE194C0A8F00E92E30 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		ECFD791C192C6CBC00464EE4 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		ECFD791D192C6CBC00464EE4 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		ECFD791E192C6CBC00464EE4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1226,49 +1199,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		EC2232291948723C004BF46F /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				EC22323319487623004BF46F /* UIKitAdditions */,
-				EC22322A19487291004BF46F /* LCInfoView.h */,
-				EC22322B19487291004BF46F /* LCInfoView.m */,
-				EC22322C19487291004BF46F /* LCLegendView.h */,
-				EC22322D19487291004BF46F /* LCLegendView.m */,
-				EC22322E19487291004BF46F /* LCLineChartView.h */,
-				EC22322F19487291004BF46F /* LCLineChartView.m */,
-			);
-			name = Demo;
-			sourceTree = "<group>";
-		};
-		EC22323319487623004BF46F /* UIKitAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				EC22323419487623004BF46F /* InnerShadowDrawing.h */,
-				EC22323519487623004BF46F /* InnerShadowDrawing.m */,
-				EC22323619487623004BF46F /* UIColor+HelperAdditions.h */,
-				EC22323719487623004BF46F /* UIColor+HelperAdditions.m */,
-				EC22323819487623004BF46F /* UIControl+DLBlockAdditions.h */,
-				EC22323919487623004BF46F /* UIControl+DLBlockAdditions.m */,
-				EC22323A19487623004BF46F /* UIImage+Additions.h */,
-				EC22323B19487623004BF46F /* UIImage+Additions.m */,
-				EC22323C19487623004BF46F /* UIImage+Alpha.h */,
-				EC22323D19487623004BF46F /* UIImage+Alpha.m */,
-				EC22323E19487623004BF46F /* UIImage+Resize.h */,
-				EC22323F19487623004BF46F /* UIImage+Resize.m */,
-				EC22324019487623004BF46F /* UIImage+RoundedCorner.h */,
-				EC22324119487623004BF46F /* UIImage+RoundedCorner.m */,
-				EC22324219487623004BF46F /* UIKit+DrawingHelpers.h */,
-				EC22324319487623004BF46F /* UIKit+DrawingHelpers.m */,
-				EC22324419487623004BF46F /* UITabBarController+HideableTabBar.h */,
-				EC22324519487623004BF46F /* UITabBarController+HideableTabBar.m */,
-				EC22324619487623004BF46F /* UIView+Additions.h */,
-				EC22324719487623004BF46F /* UIView+Additions.m */,
-				EC22324819487623004BF46F /* UIView+Sliding.h */,
-				EC22324919487623004BF46F /* UIView+Sliding.m */,
-			);
-			path = UIKitAdditions;
-			sourceTree = "<group>";
-		};
 		EC42178419232C6000B162D8 = {
 			isa = PBXGroup;
 			children = (
@@ -1363,6 +1293,8 @@
 				EC29C420194704BB00883BAB /* PhotoViewController.m */,
 				EC223226194861ED004BF46F /* AdvanceProfileViewController.h */,
 				EC223227194861ED004BF46F /* AdvanceProfileViewController.m */,
+				ECF7B1A3194C037B00E92E30 /* GraphViewController.h */,
+				ECF7B1A4194C037B00E92E30 /* GraphViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1533,7 +1465,7 @@
 		ECDB8AAC1923431800CA2137 /* Supporting Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				EC2232291948723C004BF46F /* Demo */,
+				ECF7B1A6194C0A8F00E92E30 /* Graph Classes */,
 				ECFD7943192C6D9400464EE4 /* MVCustomAlertView.h */,
 				ECFD7944192C6D9400464EE4 /* MVCustomAlertView.m */,
 				ECFD7945192C6D9400464EE4 /* MVPickerAlertView.h */,
@@ -1752,6 +1684,22 @@
 				ECEA1199192386BC00823952 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		ECF7B1A6194C0A8F00E92E30 /* Graph Classes */ = {
+			isa = PBXGroup;
+			children = (
+				ECF7B1A7194C0A8F00E92E30 /* BEMAnimations.h */,
+				ECF7B1A8194C0A8F00E92E30 /* BEMAnimations.m */,
+				ECF7B1A9194C0A8F00E92E30 /* BEMCircle.h */,
+				ECF7B1AA194C0A8F00E92E30 /* BEMCircle.m */,
+				ECF7B1AB194C0A8F00E92E30 /* BEMLine.h */,
+				ECF7B1AC194C0A8F00E92E30 /* BEMLine.m */,
+				ECF7B1AD194C0A8F00E92E30 /* BEMSimpleLineGraphView.h */,
+				ECF7B1AE194C0A8F00E92E30 /* BEMSimpleLineGraphView.m */,
+			);
+			name = "Graph Classes";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		ECFD791B192C6CBC00464EE4 /* Masonry */ = {
@@ -2221,15 +2169,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF7B1B2194C0A8F00E92E30 /* BEMSimpleLineGraphView.m in Sources */,
 				EC0F18C0193477E50038F8A4 /* WeeklySchedule.m in Sources */,
 				ECEA11A8192386BC00823952 /* UIProgressView+AFNetworking.m in Sources */,
-				EC22323119487291004BF46F /* LCLegendView.m in Sources */,
 				ECEA11A9192386BC00823952 /* UIRefreshControl+AFNetworking.m in Sources */,
 				EC51E8511924E7120061E9F4 /* CityTableViewCell.m in Sources */,
-				EC22324F19487623004BF46F /* UIImage+Resize.m in Sources */,
 				ECEA11AA192386BC00823952 /* UIWebView+AFNetworking.m in Sources */,
 				EC7D406E19248725001338E4 /* StateTableViewController.m in Sources */,
-				EC22325119487623004BF46F /* UIKit+DrawingHelpers.m in Sources */,
 				ECFD793A192C6CBC00464EE4 /* MASConstraintMaker.m in Sources */,
 				ECFD793D192C6CBC00464EE4 /* MASViewConstraint.m in Sources */,
 				ECDB8AAA192341DC00CA2137 /* UIColor+Extra.m in Sources */,
@@ -2238,23 +2184,19 @@
 				ECFD7940192C6CBC00464EE4 /* View+MASAdditions.m in Sources */,
 				EC4217A719232C6000B162D8 /* ViewController.m in Sources */,
 				EC29C41D1946D4C300883BAB /* GalleryCell.m in Sources */,
-				EC22325219487623004BF46F /* UITabBarController+HideableTabBar.m in Sources */,
-				EC22324C19487623004BF46F /* UIControl+DLBlockAdditions.m in Sources */,
 				EC73FAEC1924C7B90007DD0C /* CityTableViewController.m in Sources */,
 				ECEA119B192386BC00823952 /* AFHTTPRequestOperationManager.m in Sources */,
 				EC4217A119232C6000B162D8 /* AppDelegate.m in Sources */,
 				ECEA119F192386BC00823952 /* AFURLConnectionOperation.m in Sources */,
 				ECFD793F192C6CBC00464EE4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				ECDB8AB01923433000CA2137 /* Reachability.m in Sources */,
-				EC22323019487291004BF46F /* LCInfoView.m in Sources */,
 				ECEA11A4192386BC00823952 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				EC42179D19232C6000B162D8 /* main.m in Sources */,
 				EC086AD3192720B60094AD35 /* T&CViewController.m in Sources */,
+				ECF7B1AF194C0A8F00E92E30 /* BEMAnimations.m in Sources */,
 				ECEA11A0192386BC00823952 /* AFURLRequestSerialization.m in Sources */,
 				ECDB8ABE1923434C00CA2137 /* FMDatabaseAdditions.m in Sources */,
-				EC22324E19487623004BF46F /* UIImage+Alpha.m in Sources */,
 				ECEA119C192386BC00823952 /* AFHTTPSessionManager.m in Sources */,
-				EC22324D19487623004BF46F /* UIImage+Additions.m in Sources */,
 				ECD8B2481945D615007E1C85 /* GalleryViewController.m in Sources */,
 				ECEA119A192386BC00823952 /* AFHTTPRequestOperation.m in Sources */,
 				ECDB8AC11923434C00CA2137 /* FMResultSet.m in Sources */,
@@ -2263,6 +2205,8 @@
 				EC02DCB2192A0DC200BAD1D0 /* BMIViewController.m in Sources */,
 				ECFD793B192C6CBC00464EE4 /* MASLayoutConstraint.m in Sources */,
 				EC49E75919262E1200D87337 /* EventsViewController.m in Sources */,
+				ECF7B1B0194C0A8F00E92E30 /* BEMCircle.m in Sources */,
+				ECF7B1B1194C0A8F00E92E30 /* BEMLine.m in Sources */,
 				ECFD7938192C6CBC00464EE4 /* MASCompositeConstraint.m in Sources */,
 				ECFD7941192C6CBC00464EE4 /* MVModalTransition.m in Sources */,
 				ECFD793E192C6CBC00464EE4 /* NSArray+MASAdditions.m in Sources */,
@@ -2274,7 +2218,6 @@
 				EC2C6F64193085BE00AEA06D /* DosAndDontsViewController.m in Sources */,
 				EC02DCAF192A015800BAD1D0 /* MedicalConditionViewController.m in Sources */,
 				ECEA119D192386BC00823952 /* AFNetworkReachabilityManager.m in Sources */,
-				EC22324B19487623004BF46F /* UIColor+HelperAdditions.m in Sources */,
 				ECEA11A2192386BC00823952 /* AFURLSessionManager.m in Sources */,
 				EC29C4241947069100883BAB /* PhotoCell.m in Sources */,
 				ECDB8ABF1923434C00CA2137 /* FMDatabasePool.m in Sources */,
@@ -2282,24 +2225,20 @@
 				ECFD793C192C6CBC00464EE4 /* MASViewAttribute.m in Sources */,
 				EC7D406619247E4B001338E4 /* FirstTabViewController.m in Sources */,
 				EC4EC98E19375E7100AA7A2E /* ExcerciseListViewController.m in Sources */,
+				ECF7B1A5194C037B00E92E30 /* GraphViewController.m in Sources */,
 				ECEA11A5192386BC00823952 /* UIAlertView+AFNetworking.m in Sources */,
 				ECCA45301925CE91002F19AE /* CustomButton.m in Sources */,
-				EC22323219487291004BF46F /* LCLineChartView.m in Sources */,
 				ECBD1024192E0BF30007D0DC /* DietPlan.m in Sources */,
 				ECFD7947192C6D9400464EE4 /* MVCustomAlertView.m in Sources */,
 				EC03025A192B58A900744A6A /* DietTableViewController.m in Sources */,
 				EC7D406219247B24001338E4 /* SideBarTableViewController.m in Sources */,
-				EC22325319487623004BF46F /* UIView+Additions.m in Sources */,
 				EC2C6F611930676000AEA06D /* GuidelinesViewController.m in Sources */,
 				EC223228194861ED004BF46F /* AdvanceProfileViewController.m in Sources */,
 				EC1175761939A48B00F98292 /* VacationViewController.m in Sources */,
 				EC251C7C192DAE6A0081F0CD /* DietResultViewController.m in Sources */,
-				EC22324A19487623004BF46F /* InnerShadowDrawing.m in Sources */,
 				EC7D405F19247A47001338E4 /* SWRevealViewController.m in Sources */,
-				EC22325419487623004BF46F /* UIView+Sliding.m in Sources */,
 				ECDB8AD019236BFE00CA2137 /* RegisterViewController.m in Sources */,
 				EC03024F192B38DC00744A6A /* DietRecallViewController.m in Sources */,
-				EC22325019487623004BF46F /* UIImage+RoundedCorner.m in Sources */,
 				ECDB8AC01923434C00CA2137 /* FMDatabaseQueue.m in Sources */,
 				ECDB8AA9192341DC00CA2137 /* UIBarButtonItem+projectButtons.m in Sources */,
 				ECEA11A1192386BC00823952 /* AFURLResponseSerialization.m in Sources */,
