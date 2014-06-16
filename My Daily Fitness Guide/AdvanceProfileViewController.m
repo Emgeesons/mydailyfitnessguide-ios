@@ -81,19 +81,21 @@
         return;
     }
     
-    NSString *weightType;
+    NSString *weightType, *smmWeight;
     if (self.btnPound.alpha == 0.5) {
         // kgs is selected
         weightType = @"kgs";
+        smmWeight = self.txtSMM.text;
     } else {
         // pounds is selected
         weightType = @"pounds";
+        smmWeight = [NSString stringWithFormat:@"%f", [self.txtSMM.text doubleValue] / KGS_CONVERSION];
     }
     
     [database open];
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", weightType, @"weightType"];
     
-    [database executeUpdate:@"UPDATE monthLog SET pbf = ?, smm = ? WHERE monthNumber = 1", self.txtPBF.text, self.txtSMM.text];
+    [database executeUpdate:@"UPDATE monthLog SET pbf = ?, smm = ? WHERE monthNumber = 1", self.txtPBF.text, smmWeight];
     [database close];
     
     [self backButtonPressed:nil];

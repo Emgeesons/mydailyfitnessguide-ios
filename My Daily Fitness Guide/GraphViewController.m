@@ -54,7 +54,7 @@
     } else {
         // pounds selected
         [self.segmentedControl setSelectedSegmentIndex:1];
-        multiplier = 2.20462;
+        multiplier = KGS_CONVERSION;
     }
     
     [self loadGraph];
@@ -242,7 +242,7 @@
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = 'weightType'", @"kgs"];
         [database close];
     } else if(self.segmentedControl.selectedSegmentIndex == 1){
-        multiplier = 2.20462;
+        multiplier = KGS_CONVERSION;
         [database open];
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = 'weightType'", @"pounds"];
         [database close];

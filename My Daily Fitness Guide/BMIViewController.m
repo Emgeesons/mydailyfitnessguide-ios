@@ -279,7 +279,7 @@
             weight = [self.txtWeight.text doubleValue];
         } else {
             // pounds is selected
-            weight = [self.txtWeight.text doubleValue]/2.20462;
+            weight = [self.txtWeight.text doubleValue]/KGS_CONVERSION;
         }
         bmi = weight/(height * height);
         

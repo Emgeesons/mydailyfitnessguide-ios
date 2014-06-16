@@ -87,20 +87,24 @@
         return;
     }
     
-    NSString *weightType;
+    NSString *weightType, *smmWeight, *weight;
     if (self.btnPound.alpha == 0.5) {
         // kgs is selected
         weightType = @"kgs";
+        smmWeight = self.txtSMM.text;
+        weight = self.txtWeight.text;
     } else {
         // pounds is selected
         weightType = @"pounds";
+        smmWeight = [NSString stringWithFormat:@"%f", [self.txtSMM.text doubleValue] / KGS_CONVERSION];
+        weight = [NSString stringWithFormat:@"%f", [self.txtWeight.text doubleValue] / KGS_CONVERSION];
     }
     
     int month = [week getMonth];
     
     [database open];
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", weightType, @"weightType"];
-    [database executeUpdate:@"INSERT INTO monthLog(monthNumber, weight, pbf, smm) VALUES(?, ?, ?, ?)" , [NSString stringWithFormat:@"%d", month], self.txtWeight.text, self.txtPBF.text, self.txtSMM.text, nil];
+    [database executeUpdate:@"INSERT INTO monthLog(monthNumber, weight, pbf, smm) VALUES(?, ?, ?, ?)" , [NSString stringWithFormat:@"%d", month], weight, self.txtPBF.text, smmWeight, nil];
     
     // get goal, program, beginWeight
     FMResultSet *results = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];

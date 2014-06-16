@@ -2376,6 +2376,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
 				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/My",
@@ -2400,6 +2401,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "My Daily Fitness Guide/My Daily Fitness Guide-Prefix.pch";
 				INFOPLIST_FILE = "My Daily Fitness Guide/My Daily Fitness Guide-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/My",

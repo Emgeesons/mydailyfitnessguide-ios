@@ -368,7 +368,7 @@
             weightType = @"kg(s)";
         } else {
             weightType = @"pound(s)";
-            beginWeight = beginWeight * 2.20462;
+            beginWeight = beginWeight * KGS_CONVERSION;
         }
         
         self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f in %d month(s)", programType, beginWeight, [month intValue]];
@@ -991,7 +991,7 @@
             weightType = @"kg(s)";
         } else {
             weightType = @"pound(s)";
-            beginWeight = beginWeight * 2.20462;
+            beginWeight = beginWeight * KGS_CONVERSION;
         }
         
         self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f in %d month(s)", programType, beginWeight, [month intValue]];
@@ -1108,7 +1108,11 @@
     self.lblName.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     
     // set height here
-    self.lblHeight.text = [NSString stringWithFormat:@"%@ ft %@ in", feet, inches];
+    if (feet == NULL && inches == NULL) {
+        self.lblHeight.text = [NSString stringWithFormat:@"0 ft"];
+    } else {
+        self.lblHeight.text = [NSString stringWithFormat:@"%@ ft %@ in", feet, inches];
+    }
     
     // set age here
     NSString *dob = [[NSUserDefaults standardUserDefaults] objectForKey:@"dob"];

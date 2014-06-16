@@ -38,6 +38,8 @@
 #define BlueColor5 @"#77abf0"
 #define BlueColor6 @"#8eb9f3"
 
+#define KGS_CONVERSION 2.20462
+
 #define IsIphone5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #endif
