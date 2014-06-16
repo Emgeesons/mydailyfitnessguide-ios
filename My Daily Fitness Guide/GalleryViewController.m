@@ -67,12 +67,15 @@
     NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *dataPath = [[docPaths objectAtIndex:0] stringByAppendingPathComponent:@"/gallery"];
     filelist= [fm contentsOfDirectoryAtPath:dataPath error:nil];
+    NSLog(@"%d", filelist.count);
     int filesCount = [filelist count];
     
     if (filesCount == 0) {
+        self.imageView.hidden = NO;
         self.collectionView.hidden = YES;
     } else {
         self.imageView.hidden = YES;
+        self.collectionView.hidden = NO;
     }
     [self.collectionView reloadData];
 }
@@ -88,13 +91,13 @@
     //NSLog(@"%d", buttonIndex);
     if (buttonIndex == 0) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        //picker.delegate = self;
+        picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:NULL];
     } else if (buttonIndex == 1) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        //picker.delegate = self;
+        picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:NULL];
@@ -104,7 +107,6 @@
 #pragma mark - UIImagePicker Delegate methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     NSDate *date = [NSDate date];
     
@@ -123,6 +125,8 @@
     [imageData writeToFile:savedImagePath atomically:NO];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [self loadImages];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

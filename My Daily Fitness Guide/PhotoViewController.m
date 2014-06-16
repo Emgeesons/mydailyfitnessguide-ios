@@ -171,6 +171,10 @@
             self.navItem.leftBarButtonItem = lblName;
         }
     }];
+    
+    if (self.dataArray.count == 0) {
+        [self btnDoneClicked];
+    }
 }
 
 @end

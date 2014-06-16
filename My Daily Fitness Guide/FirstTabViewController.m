@@ -2704,7 +2704,7 @@
     //NSLog(@"%d", buttonIndex);
     if (buttonIndex == 0) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        //picker.delegate = self;
+        picker.delegate = self;
         picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
