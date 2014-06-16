@@ -36,7 +36,7 @@
     [self.navBar setBounds:CGRectMake(0, 0, 320, 81)];
     [self.navBar setBarTintColor:[UIColor blackColor]];
     
-    self.navItem.title = @"Log your Body Stats";
+    self.navItem.title = @"Body Stats";
     
     UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneButtonPressed)];
     

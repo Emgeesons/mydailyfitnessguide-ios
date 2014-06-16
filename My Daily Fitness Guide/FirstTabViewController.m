@@ -371,7 +371,7 @@
             beginWeight = beginWeight * KGS_CONVERSION;
         }
         
-        self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f in %d month(s)", programType, beginWeight, [month intValue]];
+        self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f %@ in %d month(s)", programType, beginWeight, weightType, [month intValue]];
         
         CGRect newFrame = self.viewBegin.frame;
         newFrame.origin.y = 68;
@@ -1109,7 +1109,7 @@
     
     // set height here
     if (feet == NULL && inches == NULL) {
-        self.lblHeight.text = [NSString stringWithFormat:@"0 ft"];
+        self.lblHeight.text = [NSString stringWithFormat:@""];
     } else {
         self.lblHeight.text = [NSString stringWithFormat:@"%@ ft %@ in", feet, inches];
     }
@@ -1238,7 +1238,7 @@
         self.lblWorkoutDone.text = [NSString stringWithFormat:@"%d", countWorkDone];
         
         // set count of workout missed here
-        self.lblWorkoutMissed.text = [NSString stringWithFormat:@"%d", (numberOfDays - countWorkMissed)];
+        self.lblWorkoutMissed.text = [NSString stringWithFormat:@"%d", (numberOfDays - countWorkMissed - 1)];
         
         // check today's workout is logged or not, if logged -1 number of days left
         if (todayCountWorkDone == 1) {
@@ -1250,7 +1250,7 @@
         }
         
         // set days left 0 for program = Maintenance/Indeterminate
-        if ([result isEqualToString:@"Maintenance"] || [result isEqualToString:@"Indeterminate"]) {
+        if ([result isEqualToString:@"Maintenance"] || [result isEqualToString:@"Indeterminate"] || [self.lblDaysLeft.text intValue] <= 0) {
             self.lblDaysLeft.text = @"0";
         }
         
@@ -1260,7 +1260,7 @@
         if (![self checkMonthPresent:[week getMonth]]) {
             UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
             
-            UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+            UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 20, 300, 54)];
             [logWeight addGestureRecognizer:tapBodyStats];
             
             logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
@@ -1280,7 +1280,7 @@
             [self.profileScrollView addSubview:logWeight];
             
             // set the top value here
-            profileTop = profileTop + 64;
+            profileTop = profileTop + 74;
         }
         //-------------------------- Add Log your weight End -------------------
         
@@ -1288,7 +1288,7 @@
         if (numberOfDays >= 2 && numberOfDays < 30) {
             UITapGestureRecognizer *tapAdvProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvanceProfile:)];
             
-            UIView *advProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+            UIView *advProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 20, 300, 54)];
             [advProfile addGestureRecognizer:tapAdvProfile];
             
             advProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
@@ -1308,13 +1308,13 @@
             [self.profileScrollView addSubview:advProfile];
             
             // set the top value here
-            profileTop = profileTop + 64;
+            profileTop = profileTop + 74;
         }
         //-------------------------- Add Set UP Advance Profile End -------------------
         
         UITapGestureRecognizer *tapGraphProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGraphProfile:)];
         
-        UIView *graphProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 10, 300, 54)];
+        UIView *graphProfile = [[UIView alloc] initWithFrame:CGRectMake(10, profileTop + 20, 300, 54)];
         [graphProfile addGestureRecognizer:tapGraphProfile];
         
         graphProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
@@ -1322,7 +1322,7 @@
         alarmImage.image = [UIImage imageNamed:@"ic_guidelines.png"];
         
         UILabel *lblGraphProfile = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 230, 25)];
-        lblGraphProfile.text = @"Graph Profile";
+        lblGraphProfile.text = @"View Body Stats";
         lblGraphProfile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
         
         UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
@@ -2694,7 +2694,7 @@
 #pragma mark - Profile Functions
 
 - (IBAction)btnProfilePicClicked:(id)sender {
-    UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Pick from Gallery", nil];
+    UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Existing", nil];
     picPicker.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [picPicker showInView:self.view];
 }

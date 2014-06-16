@@ -162,12 +162,12 @@
         toolbarPicker.backgroundColor = [UIColor whiteColor];
         [toolbarPicker sizeToFit];
         
-        UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+        UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(255, 0, 60, 44)];
         [bbitem setTitle:@"done" forState:UIControlStateNormal];
         [bbitem setTitleColor:self.btnPound.tintColor forState:UIControlStateNormal];
         [bbitem addTarget:self action:@selector(doneClicked) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(250, 0, 60, 44)];
+        UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 60, 44)];
         [bbitem1 setTitle:@"cancel" forState:UIControlStateNormal];
         [bbitem1 setTitleColor:self.btnPound.tintColor forState:UIControlStateNormal];
         [bbitem1 addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];

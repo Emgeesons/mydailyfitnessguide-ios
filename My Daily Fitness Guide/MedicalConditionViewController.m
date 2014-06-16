@@ -53,6 +53,21 @@
         [selection addObject:[results stringForColumn:@"selected"]];
     }
     [database close];
+    
+    // reset the diet selected
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"energy"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"carbohydrates"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"protiens"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fats"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"fibre"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Breakfast"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Lunch"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Snacks"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Dinner"];
+    [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Bedtime"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)setTitle:(NSString *)title {

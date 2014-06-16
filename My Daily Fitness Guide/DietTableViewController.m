@@ -37,13 +37,16 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
     selectedFood = [[NSMutableDictionary alloc] init];
     
     NSDictionary *tmpDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:self.dietType];
     if (tmpDictionary.count > 0) {
-        selectedFood = [[NSUserDefaults standardUserDefaults] objectForKey:self.dietType];
+        selectedFood = [[[NSUserDefaults standardUserDefaults] objectForKey:self.dietType] mutableCopy];
     }
     
     hours = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12"];
@@ -55,7 +58,7 @@
                 @"51", @"52", @"53", @"54", @"55", @"56", @"57", @"58", @"59"];
     dayTime = @[@"AM", @"PM"];
     
-    servings = @[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
+    servings = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
     servLabel = @[@"servings"];
     
     self.title = self.dietType;
@@ -159,7 +162,7 @@
     //if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     //}
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = food[indexPath.row];
     NSString *tmpString = [selectedFood objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
     
@@ -186,7 +189,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     selectedIndexPath = indexPath;
-    
+    //NSLog(@"%d", selectedIndexPath.row);
     sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     [sheet addSubview:pickerView];
@@ -204,12 +207,12 @@
     toolbarPicker.backgroundColor = [UIColor whiteColor];
     [toolbarPicker sizeToFit];
     
-    UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(255, 0, 60, 44)];
     [bbitem setTitle:@"done" forState:UIControlStateNormal];
     [bbitem setTitleColor:bbitem.tintColor forState:UIControlStateNormal];
     [bbitem addTarget:self action:@selector(doneClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(250, 0, 60, 44)];
+    UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 60, 44)];
     [bbitem1 setTitle:@"cancel" forState:UIControlStateNormal];
     [bbitem1 setTitleColor:bbitem.tintColor forState:UIControlStateNormal];
     [bbitem1 addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -265,6 +268,8 @@
     double energy = 0.0, carbohydrates = 0.0, protiens = 0.0, fats = 0.0, fibre = 0.0;
     
     number = servings[selectedNumber];
+    //NSLog(@"%d", selectedIndexPath.row);
+    //[selectedFood removeObjectForKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
     [selectedFood setObject:number forKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
 
     // calculate energy, carbohydrates, protiens, fats, fibre
