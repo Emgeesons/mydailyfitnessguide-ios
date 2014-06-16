@@ -1578,6 +1578,8 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectoryPath = [paths objectAtIndex:0];
     NSFileManager *fm = [NSFileManager defaultManager];

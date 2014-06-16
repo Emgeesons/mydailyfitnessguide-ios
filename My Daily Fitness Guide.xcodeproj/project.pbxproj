@@ -84,6 +84,7 @@
 		EC1DF44F1941891C00CCC777 /* btn_reset_body_stats.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1DF44D1941891C00CCC777 /* btn_reset_body_stats.png */; };
 		EC1DF4521941893800CCC777 /* btn_maintain_weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1DF4501941893800CCC777 /* btn_maintain_weight@2x.png */; };
 		EC1DF4531941893800CCC777 /* btn_reset_body_stats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1DF4511941893800CCC777 /* btn_reset_body_stats@2x.png */; };
+		EC1EF874194EEBA000ADD22C /* DietaryRecallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EF873194EEBA000ADD22C /* DietaryRecallTableViewCell.m */; };
 		EC1F40FD19386F970051AA92 /* ic_about.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1F40FC19386F970051AA92 /* ic_about.png */; };
 		EC1F40FF19386FAA0051AA92 /* ic_about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1F40FE19386FAA0051AA92 /* ic_about@2x.png */; };
 		EC205E961934B53B001E4374 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC205E951934B53B001E4374 /* arrow@2x.png */; };
@@ -519,6 +520,8 @@
 		EC1DF44D1941891C00CCC777 /* btn_reset_body_stats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_reset_body_stats.png; sourceTree = "<group>"; };
 		EC1DF4501941893800CCC777 /* btn_maintain_weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_maintain_weight@2x.png"; sourceTree = "<group>"; };
 		EC1DF4511941893800CCC777 /* btn_reset_body_stats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_reset_body_stats@2x.png"; sourceTree = "<group>"; };
+		EC1EF872194EEBA000ADD22C /* DietaryRecallTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DietaryRecallTableViewCell.h; sourceTree = "<group>"; };
+		EC1EF873194EEBA000ADD22C /* DietaryRecallTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DietaryRecallTableViewCell.m; sourceTree = "<group>"; };
 		EC1F40FC19386F970051AA92 /* ic_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_about.png; sourceTree = "<group>"; };
 		EC1F40FE19386FAA0051AA92 /* ic_about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_about@2x.png"; sourceTree = "<group>"; };
 		EC205E951934B53B001E4374 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
@@ -1412,6 +1415,8 @@
 				EC29C41C1946D4C300883BAB /* GalleryCell.m */,
 				EC29C4221947069100883BAB /* PhotoCell.h */,
 				EC29C4231947069100883BAB /* PhotoCell.m */,
+				EC1EF872194EEBA000ADD22C /* DietaryRecallTableViewCell.h */,
+				EC1EF873194EEBA000ADD22C /* DietaryRecallTableViewCell.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -2194,6 +2199,7 @@
 				EC42179D19232C6000B162D8 /* main.m in Sources */,
 				EC086AD3192720B60094AD35 /* T&CViewController.m in Sources */,
 				ECF7B1AF194C0A8F00E92E30 /* BEMAnimations.m in Sources */,
+				EC1EF874194EEBA000ADD22C /* DietaryRecallTableViewCell.m in Sources */,
 				ECEA11A0192386BC00823952 /* AFURLRequestSerialization.m in Sources */,
 				ECDB8ABE1923434C00CA2137 /* FMDatabaseAdditions.m in Sources */,
 				ECEA119C192386BC00823952 /* AFHTTPSessionManager.m in Sources */,

@@ -10,9 +10,11 @@
 #import "MVCustomAlertView.h"
 #import "MVPickerAlertView.h"
 
+#import "DietaryRecallTableViewCell.h"
+
 @interface DietTableViewController () {
     FMDatabase *database;
-    NSMutableArray *food, *ids;
+    NSMutableArray *food, *ids, *calcValue;
     NSMutableDictionary *selectedFood;
     NSArray *hours, *minutes, *dayTime, *servings, *servLabel;
     NSInteger selectedNumber;
@@ -97,6 +99,7 @@
 -(void)loadFood {
     food = [[NSMutableArray alloc] init];
     ids = [[NSMutableArray alloc] init];
+    calcValue = [[NSMutableArray alloc] init];
     
     NSString *foodTime, *vegType, *sqlQuery, *type;
     
@@ -121,7 +124,7 @@
     }
     
     // create SELECT query
-    sqlQuery = [NSString stringWithFormat:@"SELECT id, trim(food) as food FROM dietaryRecall WHERE %@ %@ ORDER BY food ASC", foodTime, type];
+    sqlQuery = [NSString stringWithFormat:@"SELECT id, calcValue, trim(food) as food FROM dietaryRecall WHERE %@ %@ ORDER BY food ASC", foodTime, type];
     
     [database open];
     FMResultSet *results = [database executeQuery:sqlQuery];
@@ -129,6 +132,7 @@
     while([results next]) {
         [food addObject:[results stringForColumn:@"food"]];
         [ids addObject:[results stringForColumn:@"id"]];
+        [calcValue addObject:[results stringForColumn:@"calcValue"]];
     }
     [database close];
 }
@@ -157,14 +161,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    DietaryRecallTableViewCell *cell = (DietaryRecallTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     //if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[DietaryRecallTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     //}
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = food[indexPath.row];
     NSString *tmpString = [selectedFood objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    cell.foodID = [ids[indexPath.row] integerValue];
+    cell.foodName = food[indexPath.row];
+    cell.servingValue = [calcValue[indexPath.row] integerValue];
     
     UIButton *tmpButton = [[UIButton alloc] init];
     
@@ -188,8 +195,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    DietaryRecallTableViewCell *tmpCell = (DietaryRecallTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
+    int oldValue = tmpCell.servingValue;
+    NSLog(@"%d", oldValue);
+    
     selectedIndexPath = indexPath;
-    //NSLog(@"%d", selectedIndexPath.row);
     sheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     pickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     [sheet addSubview:pickerView];
@@ -198,12 +209,11 @@
     pickerView.dataSource = self;
     pickerView.showsSelectionIndicator = YES;
     
-    /*if (feet != 0) {
-        [pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%d", feet]] inComponent:0 animated:YES];
-    }*/
+    if (oldValue != 0) {
+        [pickerView selectRow:(oldValue - 1) inComponent:0 animated:YES];
+    }
     
     UIView *toolbarPicker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    //toolbarPicker.backgroundColor = [UIColor grayColor];
     toolbarPicker.backgroundColor = [UIColor whiteColor];
     [toolbarPicker sizeToFit];
     
@@ -268,6 +278,9 @@
     double energy = 0.0, carbohydrates = 0.0, protiens = 0.0, fats = 0.0, fibre = 0.0;
     
     number = servings[selectedNumber];
+    
+    DietaryRecallTableViewCell *tmpCell = (DietaryRecallTableViewCell *)[self.tableView cellForRowAtIndexPath:selectedIndexPath];
+    
     //NSLog(@"%d", selectedIndexPath.row);
     //[selectedFood removeObjectForKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
     [selectedFood setObject:number forKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
@@ -275,7 +288,7 @@
     // calculate energy, carbohydrates, protiens, fats, fibre
     [database open];
     NSInteger oldValue = 0;
-    FMResultSet *r = [database executeQuery:[NSString stringWithFormat:@"SELECT energy, cho, protiens, fats, fibre, calcValue FROM dietaryRecall WHERE id = %d", (selectedIndexPath.row + 1)]];
+    FMResultSet *r = [database executeQuery:[NSString stringWithFormat:@"SELECT energy, cho, protiens, fats, fibre, calcValue FROM dietaryRecall WHERE id = %ld", (long)tmpCell.foodID]];
     while([r next]) {
         oldValue = [[r stringForColumn:@"calcValue"] integerValue];
         energy = [[r stringForColumn:@"energy"] doubleValue];
@@ -329,6 +342,18 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+    NSLog(@"Energy ==> %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"energy"]);
+    NSLog(@"Carbohydrates ==> %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"carbohydrates"]);
+    NSLog(@"Protiens ==> %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"protiens"]);
+    NSLog(@"Fats ==> %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"fats"]);
+    NSLog(@"Fibre ==> %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"fibre"]);
+    
+    // update database and save current selected value
+    [database open];
+    [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ? WHERE id = ?", number, [NSString stringWithFormat:@"%d", tmpCell.foodID]];
+    [database close];
+    
+    [self loadFood];
     [self.tableView reloadData];
     
     selectedNumber = NSNotFound;

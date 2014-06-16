@@ -345,6 +345,8 @@
                 [self presentViewController:v animated:NO completion:nil];
             } else {
                 nextClick = NO;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[json objectForKey:@"message"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [activityIndicator stopAnimating];

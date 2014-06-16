@@ -129,6 +129,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:NULL forKey:@"Bedtime"];
 
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectoryPath = [paths objectAtIndex:0];
