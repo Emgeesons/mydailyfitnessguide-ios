@@ -60,7 +60,7 @@
                 @"51", @"52", @"53", @"54", @"55", @"56", @"57", @"58", @"59"];
     dayTime = @[@"AM", @"PM"];
     
-    servings = @[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
+    servings = @[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10"];
     servLabel = @[@"servings"];
     
     self.title = self.dietType;
@@ -175,10 +175,9 @@
     
     UIButton *tmpButton = [[UIButton alloc] init];
     
-    if (tmpString != NULL) {
+    if (tmpString != NULL && ![tmpString isEqualToString:@"0"]) {
         UIView *roundView = [[UIView alloc] initWithFrame:CGRectMake(280, 10, 25, 25)];
         roundView.backgroundColor = tmpButton.tintColor;
-        //roundView.backgroundColor = [UIColor grayColor];
         roundView.layer.cornerRadius = 12;
         
         UILabel *tmpLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -210,7 +209,7 @@
     pickerView.showsSelectionIndicator = YES;
     
     if (oldValue != 0) {
-        [pickerView selectRow:(oldValue - 1) inComponent:0 animated:YES];
+        [pickerView selectRow:oldValue inComponent:0 animated:YES];
     }
     
     UIView *toolbarPicker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
