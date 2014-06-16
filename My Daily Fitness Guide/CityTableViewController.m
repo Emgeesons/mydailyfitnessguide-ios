@@ -220,11 +220,11 @@
     toolbarPicker.backgroundColor = [UIColor grayColor];
     [toolbarPicker sizeToFit];
     
-    UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    UIButton *bbitem = [[UIButton alloc] initWithFrame:CGRectMake(255, 0, 60, 44)];
     [bbitem setTitle:@"Call" forState:UIControlStateNormal];
     [bbitem addTarget:self action:@selector(callClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(250, 0, 60, 44)];
+    UIButton *bbitem1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 60, 44)];
     [bbitem1 setTitle:@"Cancel" forState:UIControlStateNormal];
     [bbitem1 setTitleColor:[UIColor colorWithHexString:@"#FE2E2E"] forState:UIControlStateNormal];
     [bbitem1 addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];

@@ -93,6 +93,9 @@
         [self loadHomePage];
     } else if (indexPath.row == 9) {
         [alertResetBody show];
+    } else if(indexPath.row == 13) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Rate_Us_URL]];
+        [self loadHomePage];
     }
 }
 

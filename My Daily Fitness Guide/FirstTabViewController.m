@@ -246,6 +246,14 @@
     CGRect profileFrame = self.vwProfile.frame;
     profileFrame.origin.y = 200;
     self.vwProfile.frame = profileFrame;
+    
+    [self.view sendSubviewToBack:self.viewStart];
+    [self.view sendSubviewToBack:self.viewBegin];
+    [self.view sendSubviewToBack:self.viewWeeklyDiet];
+    [self.view sendSubviewToBack:self.vwTrainerWeeklySchedule];
+    [self.view sendSubviewToBack:self.viewBodyStats];
+    [self.view sendSubviewToBack:self.viewAchieved];
+    [self.view sendSubviewToBack:self.viewNotAchieved];
 }
 
 -(void)assignDay {
@@ -1136,6 +1144,8 @@
     CGRect newFrame = self.vwProfile.frame;
     newFrame.origin.y = 68;
     self.vwProfile.hidden = NO;
+    
+    [self.view sendSubviewToBack:self.vwProfile];
     
     [UIView animateWithDuration:0.7f
                           delay:0.0f

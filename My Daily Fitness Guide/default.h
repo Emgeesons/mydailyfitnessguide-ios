@@ -40,6 +40,8 @@
 
 #define KGS_CONVERSION 2.20462
 
+#define Rate_Us_URL @"http://www.google.com"
+
 #define IsIphone5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #endif
