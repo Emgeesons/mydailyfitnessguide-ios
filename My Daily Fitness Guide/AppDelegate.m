@@ -57,6 +57,8 @@
     
     [self createGalleryFolder];
     
+    [self setInderminateStage];
+    
     return YES;
 }
 
@@ -171,6 +173,35 @@
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error];
+}
+
+-(void)setInderminateStage {
+    FMDatabase *database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
+    [database open];
+    NSString *goal, *end_date;
+    FMResultSet *res = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];
+    while ([res next]) {
+        if ([[res stringForColumn:@"type"] isEqualToString:@"goal"]) {
+            goal = [res stringForColumn:@"value"];
+        } else if ([[res stringForColumn:@"type"] isEqualToString:@"endDate"]) {
+            end_date = [res stringForColumn:@"value"];
+        }
+    }
+    [database close];
+    
+    if ([goal isEqualToString:@"Begun"]) {
+        // check date here
+        NSDateFormatter *f = [[NSDateFormatter alloc] init];
+        [f setDateFormat:@"yyyy-MM-dd"];
+        NSString *endDate = [f stringFromDate:[NSDate date]];
+        int numberOfDays = [DatabaseExtra numberOfDaysBetween:endDate and:end_date];
+        //NSLog(@"%d", numberOfDays);
+        if (numberOfDays < 1) {
+            [database open];
+            [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Indeterminate", @"goal"];
+            [database close];
+        }
+    }
 }
 
 @end
