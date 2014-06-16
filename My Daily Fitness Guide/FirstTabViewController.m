@@ -1284,6 +1284,17 @@
         }
         //-------------------------- Add Log your weight End -------------------
         
+        [database open];
+        
+        FMResultSet *monthLog = [database executeQuery:@"SELECT pbf, smm FROM monthLog WHERE monthNumber = '1'"];
+        NSString *pbfInitialValue, *smmInitialValue;
+        while([monthLog next]) {
+            pbfInitialValue = [monthLog stringForColumn:@"pbf"];
+            smmInitialValue = [monthLog stringForColumn:@"smm"];
+        }
+        
+        [database close];
+        
         //-------------------------- Add Set UP Advance Profile Start -----------------
         if (numberOfDays >= 2 && numberOfDays < 30) {
             UITapGestureRecognizer *tapAdvProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAdvanceProfile:)];
@@ -1305,10 +1316,14 @@
             [advProfile addSubview:alarmImage];
             [advProfile addSubview:lblAdvProfile];
             [advProfile addSubview:arrowImage];
-            [self.profileScrollView addSubview:advProfile];
             
-            // set the top value here
-            profileTop = profileTop + 74;
+            if ([pbfInitialValue isEqualToString:@"" ] && [smmInitialValue isEqualToString:@""]) {
+                [self.profileScrollView addSubview:advProfile];
+                
+                // set the top value here
+                profileTop = profileTop + 74;
+            }
+            
         }
         //-------------------------- Add Set UP Advance Profile End -------------------
         
