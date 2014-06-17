@@ -91,6 +91,8 @@
         // update data in table
         [database open];
         
+        [self updateBMI];
+        
         NSString *weightType;
         if (self.btnPound.alpha == 0.5) {
             // kgs is selected

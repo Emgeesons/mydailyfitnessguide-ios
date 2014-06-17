@@ -187,7 +187,7 @@
 
 -(void)mailPressed:(NSString *)emailId {
     NSString *recipients = emailId;
-    NSString *e = [NSString stringWithFormat:@"%@", recipients];
+    NSString *e = [NSString stringWithFormat:@"mailto:%@", recipients];
     e = [e stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:e]];
 }
