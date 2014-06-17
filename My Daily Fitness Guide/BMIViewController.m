@@ -248,7 +248,7 @@
 
 -(void)doneClicked {
     self.txtHeight.text = heightString;
-    heightString = @"";
+    //heightString = @"";
     
     [sheet dismissWithClickedButtonIndex:0 animated:YES];
 }
