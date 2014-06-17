@@ -58,14 +58,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 16;
+    return 15;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 12) {
+    if (indexPath.row == 11) {
         NSString *text = @"Hi, I’m using My Daily Fitness Guide iPhone app from Gold’s Gym. Download it now from - ";
         NSURL *url = [NSURL URLWithString:@"http://tinyurl.com/goldsgymindia-ios"];
-        UIImage *image = [UIImage imageNamed:@""];
+        UIImage *image = [UIImage imageNamed:@"call.png"];
         
         UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[text, url, image] applicationActivities:nil];
         
@@ -93,7 +93,7 @@
         [self loadHomePage];
     } else if (indexPath.row == 9) {
         [alertResetBody show];
-    } else if(indexPath.row == 13) {
+    } else if(indexPath.row == 12) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Rate_Us_URL]];
         [self loadHomePage];
     }

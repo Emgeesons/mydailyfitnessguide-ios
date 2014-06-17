@@ -857,30 +857,8 @@ Cg
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="gymLocator" rowHeight="60" id="6fa-GD-rW2">
-                                        <rect key="frame" x="0.0" y="418" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6fa-GD-rW2" id="kFg-1r-KgR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Metrics Setting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Ti-qH-tTB">
-                                                    <rect key="frame" x="46" y="12" width="113" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_nav_metrics_setting.png" id="2yV-Vp-JCO">
-                                                    <rect key="frame" x="10" y="12" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separator1" rowHeight="1" id="SyC-Wy-E7L">
-                                        <rect key="frame" x="0.0" y="478" width="320" height="1"/>
+                                        <rect key="frame" x="0.0" y="418" width="320" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SyC-Wy-E7L" id="IH8-Qe-ISk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -896,7 +874,7 @@ Cg
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="gymLocator" rowHeight="60" id="Ojn-cY-W07">
-                                        <rect key="frame" x="0.0" y="479" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="419" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ojn-cY-W07" id="Oll-1O-mDG">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -918,7 +896,7 @@ Cg
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="gymLocator" id="eNF-1K-D3K">
-                                        <rect key="frame" x="0.0" y="539" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="479" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNF-1K-D3K" id="Vu2-c3-qa7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -940,7 +918,7 @@ Cg
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="gymLocator" rowHeight="60" id="X4W-Lv-xmR">
-                                        <rect key="frame" x="0.0" y="583" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="523" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X4W-Lv-xmR" id="05A-GW-kyb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -965,7 +943,7 @@ Cg
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="separator1" rowHeight="1" id="Syk-i8-lIO">
-                                        <rect key="frame" x="0.0" y="643" width="320" height="1"/>
+                                        <rect key="frame" x="0.0" y="583" width="320" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Syk-i8-lIO" id="zgV-iK-kgF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
@@ -3905,7 +3883,6 @@ label</string>
         <image name="ic_nav_going_on_vacation.png" width="16" height="16"/>
         <image name="ic_nav_gym_locator.png" width="16" height="16"/>
         <image name="ic_nav_home.png" width="16" height="16"/>
-        <image name="ic_nav_metrics_setting.png" width="16" height="16"/>
         <image name="ic_nav_offers.png" width="16" height="16"/>
         <image name="ic_nav_rate_us.png" width="16" height="16"/>
         <image name="ic_nav_reset_body_stats.png" width="16" height="16"/>
@@ -3928,7 +3905,7 @@ label</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="SKo-4L-KeR"/>
         <segue reference="cL1-4l-TGi"/>
+        <segue reference="UFJ-h6-1OJ"/>
     </inferredMetricsTieBreakers>
 </document>
