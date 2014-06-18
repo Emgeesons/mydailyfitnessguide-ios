@@ -35,8 +35,8 @@
     [self.navBar setBounds:CGRectMake(0, 0, 320, 81)];
     [self.navBar setBarTintColor:[UIColor blackColor]];
     
-    UIButton *btnAddPic = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 45, 30)];
-    [btnAddPic setBackgroundImage:[UIImage imageNamed:@"a_icon1.png"] forState:UIControlStateNormal];
+    UIButton *btnAddPic = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
+    [btnAddPic setBackgroundImage:[UIImage imageNamed:@"ic_add_photo.png"] forState:UIControlStateNormal];
     [btnAddPic addTarget:self action:@selector(addPic) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:btnAddPic];

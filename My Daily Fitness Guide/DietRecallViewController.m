@@ -104,6 +104,20 @@
     if (tmpBedtime.count > 0) {
         [self.btnBedtime setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
+    
+    NSInteger intEnergy = [[[NSUserDefaults standardUserDefaults] objectForKey:@"energy"] integerValue];
+    NSInteger intCarbo = [[[NSUserDefaults standardUserDefaults] objectForKey:@"carbohydrates"] integerValue];
+    NSInteger intPro = [[[NSUserDefaults standardUserDefaults] objectForKey:@"protiens"] integerValue];
+    NSInteger intFats = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fats"] integerValue];
+    NSInteger intFibre = [[[NSUserDefaults standardUserDefaults] objectForKey:@"fibre"] integerValue];
+    
+    if (intEnergy <= 0 && intCarbo <= 0 && intPro <= 0 && intFats <= 0 && intFibre <= 0) {
+        [self.btnBreakfast setBackgroundImage:[UIImage imageNamed:@"btn_add.png"] forState:UIControlStateNormal];
+        [self.btnlunch setBackgroundImage:[UIImage imageNamed:@"btn_add.png"] forState:UIControlStateNormal];
+        [self.Snacks setBackgroundImage:[UIImage imageNamed:@"btn_add.png"] forState:UIControlStateNormal];
+        [self.btnDinner setBackgroundImage:[UIImage imageNamed:@"btn_add.png"] forState:UIControlStateNormal];
+        [self.btnBedtime setBackgroundImage:[UIImage imageNamed:@"btn_add.png"] forState:UIControlStateNormal];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
