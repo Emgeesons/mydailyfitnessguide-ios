@@ -2384,115 +2384,6 @@ perfect shape</string>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="HVv-bD-Y2J">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="437"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mbQ-a2-EOy">
-                                                <rect key="frame" x="10" y="5" width="84" height="84"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="default_profile.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnProfilePicClicked:" destination="uNM-UB-rtA" eventType="touchUpInside" id="L0t-Mq-OYq"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="md3-Ly-0ac">
-                                                <rect key="frame" x="100" y="10" width="202" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 yrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hPh-QU-Uz4">
-                                                <rect key="frame" x="100" y="30" width="51" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 ft 10 in" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dFX-H9-bFi">
-                                                <rect key="frame" x="154" y="30" width="70" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1uw-Cj-Jxy">
-                                                <rect key="frame" x="100" y="56" width="110" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="btn_full_body_pics.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="sqN-Sv-2kI" kind="modal" id="Qj7-gv-FNF"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fx4-fc-ssY">
-                                                <rect key="frame" x="0.0" y="100" width="320" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.86797299589999999" green="0.86797299589999999" blue="0.86797299589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Xe7-JI-00i">
-                                                <rect key="frame" x="0.0" y="150" width="320" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.86797299589999999" green="0.86797299589999999" blue="0.86797299589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QHe-c5-vQ7">
-                                                <rect key="frame" x="106" y="100" width="1" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.86797299589999999" green="0.86797299589999999" blue="0.86797299589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QTu-XF-kVv">
-                                                <rect key="frame" x="213" y="100" width="1" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.86797299589999999" green="0.86797299589999999" blue="0.86797299589999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MSI-II-pfc">
-                                                <rect key="frame" x="0.0" y="110" width="50" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5JV-1N-wsb">
-                                                <rect key="frame" x="55" y="111" width="49" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Workouts
-Done</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8aY-gj-0QE">
-                                                <rect key="frame" x="106" y="110" width="50" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ngr-z5-kQb">
-                                                <rect key="frame" x="160" y="111" width="49" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Workouts
-Missed</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cJ5-60-VmK">
-                                                <rect key="frame" x="226" y="110" width="50" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iER-vQ-Hhh">
-                                                <rect key="frame" x="286" y="111" width="30" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Days
-Left</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2557,7 +2448,6 @@ Left</string>
                     </view>
                     <navigationItem key="navigationItem" id="2Rn-4H-eQQ"/>
                     <connections>
-                        <outlet property="btnFullBodyPicks" destination="1uw-Cj-Jxy" id="nLk-1g-LYR"/>
                         <outlet property="btnIamgeProfile" destination="H7n-Gk-tOh" id="Jaf-8v-tkY"/>
                         <outlet property="btnImageNutritionist" destination="EBp-mv-n6L" id="bV0-gc-nCe"/>
                         <outlet property="btnImageTrainer" destination="1LN-bd-aW4" id="i7V-Pn-WEp"/>
@@ -2566,15 +2456,8 @@ Left</string>
                         <outlet property="btnLabelTrainer" destination="nex-yy-NOI" id="K1F-AW-h1A"/>
                         <outlet property="btnNutritionist" destination="6ZP-Oa-YYt" id="d5e-y0-iK3"/>
                         <outlet property="btnProfile" destination="TPj-AO-VZZ" id="1Hl-sg-p6u"/>
-                        <outlet property="btnProfilePic" destination="mbQ-a2-EOy" id="92B-XU-QTx"/>
                         <outlet property="btnTrainer" destination="o0N-Rt-1Fv" id="Su9-8O-CP5"/>
-                        <outlet property="lblAge" destination="hPh-QU-Uz4" id="60Y-cm-1M9"/>
                         <outlet property="lblBegin" destination="hnb-uz-wfl" id="pnd-Oi-69H"/>
-                        <outlet property="lblDaysLeft" destination="cJ5-60-VmK" id="sXm-Ga-ZQ2"/>
-                        <outlet property="lblHeight" destination="dFX-H9-bFi" id="htT-oK-2g5"/>
-                        <outlet property="lblName" destination="md3-Ly-0ac" id="MS4-91-Ldx"/>
-                        <outlet property="lblWorkoutDone" destination="MSI-II-pfc" id="rep-vl-kJb"/>
-                        <outlet property="lblWorkoutMissed" destination="8aY-gj-0QE" id="59f-ch-nss"/>
                         <outlet property="profileScrollView" destination="HVv-bD-Y2J" id="egZ-rj-831"/>
                         <outlet property="trainerScrollView" destination="tuT-ag-l4l" id="Cx2-Cm-kAD"/>
                         <outlet property="tvWeeklyDiet" destination="D7V-uc-CCW" id="A43-Q0-38K"/>
@@ -2650,7 +2533,7 @@ Left</string>
         <!--Gallery View Controller-->
         <scene sceneID="Rjr-an-gWv">
             <objects>
-                <viewController id="sqN-Sv-2kI" customClass="GalleryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="galleryViewController" id="sqN-Sv-2kI" customClass="GalleryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jlj-wq-szn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3865,7 +3748,6 @@ label</string>
     <resources>
         <image name="bmi.png" width="300" height="63"/>
         <image name="btn_add.png" width="24" height="24"/>
-        <image name="btn_full_body_pics.png" width="105" height="24"/>
         <image name="btn_get_started.png" width="135" height="34"/>
         <image name="btn_lets_begin.png" width="135" height="34"/>
         <image name="btn_maintain_weight.png" width="135" height="34"/>
@@ -3873,7 +3755,6 @@ label</string>
         <image name="bullet.png" width="4" height="4"/>
         <image name="call.png" width="18" height="18"/>
         <image name="default_full_body_picture.png" width="300" height="340"/>
-        <image name="default_profile.png" width="88" height="88"/>
         <image name="female_active.png" width="35" height="32"/>
         <image name="goal_completed.png" width="245" height="245"/>
         <image name="goal_not_completed.png" width="245" height="245"/>

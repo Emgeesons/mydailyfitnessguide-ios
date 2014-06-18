@@ -19,14 +19,14 @@
 @property (weak, nonatomic) IBOutlet UITableView *tvWeeklyDiet;
 
 @property (weak, nonatomic) IBOutlet UIView *vwProfile;
-@property (weak, nonatomic) IBOutlet UILabel *lblWorkoutDone;
-@property (weak, nonatomic) IBOutlet UILabel *lblWorkoutMissed;
-@property (weak, nonatomic) IBOutlet UILabel *lblDaysLeft;
-@property (weak, nonatomic) IBOutlet UIButton *btnFullBodyPicks;
-@property (weak, nonatomic) IBOutlet UIButton *btnProfilePic;
-@property (weak, nonatomic) IBOutlet UILabel *lblName;
-@property (weak, nonatomic) IBOutlet UILabel *lblAge;
-@property (weak, nonatomic) IBOutlet UILabel *lblHeight;
+@property (strong, nonatomic) IBOutlet UILabel *lblWorkoutDone;
+@property (strong, nonatomic) IBOutlet UILabel *lblWorkoutMissed;
+@property (strong, nonatomic) IBOutlet UILabel *lblDaysLeft;
+@property (strong, nonatomic) IBOutlet UIButton *btnFullBodyPicks;
+@property (strong, nonatomic) IBOutlet UIButton *btnProfilePic;
+@property (strong, nonatomic) IBOutlet UILabel *lblName;
+@property (strong, nonatomic) IBOutlet UILabel *lblAge;
+@property (strong, nonatomic) IBOutlet UILabel *lblHeight;
 @property (weak, nonatomic) IBOutlet UIScrollView *profileScrollView;
 
 - (IBAction)btnProfilePicClicked:(id)sender;

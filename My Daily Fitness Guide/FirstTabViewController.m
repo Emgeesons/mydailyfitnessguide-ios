@@ -18,6 +18,7 @@
 
 #import "AdvanceProfileViewController.h"
 #import "GraphViewController.h"
+#import "GalleryViewController.h"
 
 #define FONT_SIZE 14.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -1112,6 +1113,89 @@
     }
     [database close];
     
+    // remove all subviews from scrollview
+    [self.profileScrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    /******************************** Add Btn Profile Pic Here ***************************/
+    self.btnProfilePic = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 84, 84)];
+    [self.btnProfilePic addTarget:self action:@selector(btnProfilePicClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnProfilePic setBackgroundImage:[UIImage imageNamed:@"default_profile.png"] forState:UIControlStateNormal];
+    [self.profileScrollView addSubview:self.btnProfilePic];
+    
+    /******************************** Add Name Here ***************************/
+    self.lblName = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 202, 21)];
+    [self.profileScrollView addSubview:self.lblName];
+    
+    /******************************** Add age Here ***************************/
+    self.lblAge = [[UILabel alloc] initWithFrame:CGRectMake(100, 30, 51, 21)];
+    [self.profileScrollView addSubview:self.lblAge];
+    
+    /******************************** Add Height Here ***************************/
+    self.lblHeight = [[UILabel alloc] initWithFrame:CGRectMake(154, 30, 70, 21)];
+    [self.profileScrollView addSubview:self.lblHeight];
+    
+    /******************************** Add Full Body Pics Here ***************************/
+    self.btnFullBodyPicks = [[UIButton alloc] initWithFrame:CGRectMake(100, 56, 110, 26)];
+    [self.btnFullBodyPicks addTarget:self action:@selector(openGallery) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnFullBodyPicks setBackgroundImage:[UIImage imageNamed:@"btn_full_body_pics.png"] forState:UIControlStateNormal];
+    [self.profileScrollView addSubview:self.btnFullBodyPicks];
+    
+    /******************************** Add Upper line Here ***************************/
+    UIImageView *imageUpper = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 320, 1)];
+    imageUpper.backgroundColor = [UIColor lightGrayColor];
+    [self.profileScrollView addSubview:imageUpper];
+    
+    /******************************** Add lower line Here ***************************/
+    UIImageView *imageLower = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, 320, 1)];
+    imageLower.backgroundColor = imageUpper.backgroundColor;
+    [self.profileScrollView addSubview:imageLower];
+    
+    /******************************** Add middle 1 Here ***************************/
+    UIImageView *imageMiddle1 = [[UIImageView alloc] initWithFrame:CGRectMake(106, 100, 1, 50)];
+    imageMiddle1.backgroundColor = imageUpper.backgroundColor;
+    [self.profileScrollView addSubview:imageMiddle1];
+    
+    /******************************** Add middle 2 Here ***************************/
+    UIImageView *imageMiddle2 = [[UIImageView alloc] initWithFrame:CGRectMake(213, 100, 1, 50)];
+    imageMiddle2.backgroundColor = imageUpper.backgroundColor;
+    [self.profileScrollView addSubview:imageMiddle2];
+    
+    /******************************** Add Count label of WorkoutDone Here ***************************/
+    self.lblWorkoutDone = [[UILabel alloc] initWithFrame:CGRectMake(0, 110, 50, 30)];
+    self.lblWorkoutDone.textAlignment = NSTextAlignmentRight;
+    self.lblWorkoutDone.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28];
+    [self.profileScrollView addSubview:self.lblWorkoutDone];
+    
+    /****************************** Add Count label of WorkoutMissed Here ***************************/
+    self.lblWorkoutMissed = [[UILabel alloc] initWithFrame:CGRectMake(106, 110, 50, 30)];
+    self.lblWorkoutMissed.textAlignment = self.lblWorkoutDone.textAlignment;
+    self.lblWorkoutMissed.font = self.lblWorkoutDone.font;
+    [self.profileScrollView addSubview:self.lblWorkoutMissed];
+    
+    /******************************** Add Count label of DaysLeft Here ***************************/
+    self.lblDaysLeft = [[UILabel alloc] initWithFrame:CGRectMake(226, 110, 50, 30)];
+    self.lblDaysLeft.textAlignment = self.lblWorkoutDone.textAlignment;
+    self.lblDaysLeft.font = self.lblWorkoutDone.font;
+    [self.profileScrollView addSubview:self.lblDaysLeft];
+    
+    UILabel *lblWorkDone = [[UILabel alloc] initWithFrame:CGRectMake(55, 111, 49, 28)];
+    lblWorkDone.text = @"Workouts\nDone";
+    lblWorkDone.numberOfLines = 0;
+    lblWorkDone.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11];
+    [self.profileScrollView addSubview:lblWorkDone];
+    
+    UILabel *lblWorkMiss = [[UILabel alloc] initWithFrame:CGRectMake(160, 111, 49, 28)];
+    lblWorkMiss.text = @"Workouts\nMissed";
+    lblWorkMiss.numberOfLines = 0;
+    lblWorkMiss.font = lblWorkDone.font;
+    [self.profileScrollView addSubview:lblWorkMiss];
+    
+    UILabel *lblDayLeft = [[UILabel alloc] initWithFrame:CGRectMake(286, 111, 49, 28)];
+    lblDayLeft.text = @"Days\nLeft";
+    lblDayLeft.numberOfLines = 0;
+    lblDayLeft.font = lblWorkDone.font;
+    [self.profileScrollView addSubview:lblDayLeft];
+    
     // set name here
     self.lblName.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     
@@ -1783,6 +1867,13 @@
 
 -(void)tapGraphProfile:(UITapGestureRecognizer *)recognizer {
     GraphViewController *viewController = (GraphViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"graphViewController"];
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+-(void)openGallery {
+    GalleryViewController *viewController = (GalleryViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"galleryViewController"];
     viewController.modalPresentationStyle = UIModalPresentationPageSheet;
     viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:viewController animated:YES completion:nil];
@@ -2724,11 +2815,13 @@
     UIActionSheet *picPicker = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Existing", nil];
     picPicker.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     [picPicker showInView:self.view];
+    
+    self.btnLabelTrainer.titleLabel.textColor = [UIColor whiteColor];
+    self.btnLabelProfile.titleLabel.textColor = [UIColor yellowColor];
 }
 
 #pragma mark - UIActionSheet Delegate methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //NSLog(@"%d", buttonIndex);
     if (buttonIndex == 0) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -2737,6 +2830,11 @@
         
         [self presentViewController:picker animated:YES completion:NULL];
     }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    self.btnLabelProfile.titleLabel.textColor = [UIColor yellowColor];
+    self.btnLabelTrainer.titleLabel.textColor = [UIColor whiteColor];
 }
 
 #pragma mark - UIImagePicker Delegate methods
