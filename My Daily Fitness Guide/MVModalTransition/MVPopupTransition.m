@@ -47,7 +47,7 @@
 
         // Snapshot
         toView.frame = endFrame;
-        move = [toView snapshotViewAfterScreenUpdates:YES];
+        //move = [toView snapshotViewAfterScreenUpdates:YES];
         move.frame = beginFrame;
         move.alpha = 0.0f;
 
@@ -55,7 +55,7 @@
 
     } else {
         // Snapshot
-        move = [fromView snapshotViewAfterScreenUpdates:YES];
+        //move = [fromView snapshotViewAfterScreenUpdates:YES];
         move.frame = endFrame;
         move.alpha = 1.0f;
         [fromView removeFromSuperview];
