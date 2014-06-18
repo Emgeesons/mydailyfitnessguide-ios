@@ -78,31 +78,31 @@
     // for Breakfast
     NSDictionary *tmpBreakfast = [[NSUserDefaults standardUserDefaults] objectForKey:@"Breakfast"];
     if (tmpBreakfast.count > 0) {
-        [self.btnBreakfast setBackgroundImage:[UIImage imageNamed:@"tick_mark.png"] forState:UIControlStateNormal];
+        [self.btnBreakfast setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
     
     // for Lunch
     NSDictionary *tmpLunch = [[NSUserDefaults standardUserDefaults] objectForKey:@"Lunch"];
     if (tmpLunch.count > 0) {
-        [self.btnlunch setBackgroundImage:[UIImage imageNamed:@"tick_mark.png"] forState:UIControlStateNormal];
+        [self.btnlunch setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
     
     // for Snacks
     NSDictionary *tmpSnacks = [[NSUserDefaults standardUserDefaults] objectForKey:@"Snacks"];
     if (tmpSnacks.count > 0) {
-        [self.Snacks setBackgroundImage:[UIImage imageNamed:@"tick_mark.png"] forState:UIControlStateNormal];
+        [self.Snacks setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
     
     // for Dinner
     NSDictionary *tmpDinner = [[NSUserDefaults standardUserDefaults] objectForKey:@"Dinner"];
     if (tmpDinner.count > 0) {
-        [self.btnDinner setBackgroundImage:[UIImage imageNamed:@"tick_mark.png"] forState:UIControlStateNormal];
+        [self.btnDinner setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
     
     // for Bedtime
     NSDictionary *tmpBedtime = [[NSUserDefaults standardUserDefaults] objectForKey:@"Bedtime"];
     if (tmpBedtime.count > 0) {
-        [self.btnBedtime setBackgroundImage:[UIImage imageNamed:@"tick_mark.png"] forState:UIControlStateNormal];
+        [self.btnBedtime setBackgroundImage:[UIImage imageNamed:@"tick_mark_green.png"] forState:UIControlStateNormal];
     }
 }
 

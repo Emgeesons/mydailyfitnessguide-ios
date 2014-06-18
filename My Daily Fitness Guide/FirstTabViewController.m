@@ -1428,7 +1428,7 @@
         
         graphProfile.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
         UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
-        alarmImage.image = [UIImage imageNamed:@"ic_guidelines.png"];
+        alarmImage.image = [UIImage imageNamed:@"ic_view_body_stats.png"];
         
         UILabel *lblGraphProfile = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 230, 25)];
         lblGraphProfile.text = @"View Body Stats";

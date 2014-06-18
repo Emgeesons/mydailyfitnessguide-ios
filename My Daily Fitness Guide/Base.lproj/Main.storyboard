@@ -2150,7 +2150,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Graph" id="6sj-y5-pfr">
+                                    <navigationItem title="Body Stats" id="6sj-y5-pfr">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="7MI-7B-jsH">
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="63p-yq-SfZ" id="Zx2-FV-G9o"/>

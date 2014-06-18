@@ -176,7 +176,21 @@
         [self.monthArray addObject:[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:0 + i]]]; // Dates for the X-Axis of the graph
     }
     
-    graphWeight = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, 0, 300, 150)];
+    UIButton *tmpButton = [[UIButton alloc] init];
+    
+    /***************************** Add Weight Label here *************************/
+    UILabel *lblWeight = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 20)];
+    lblWeight.text = @"Weight";
+    lblWeight.textColor = tmpButton.tintColor;
+    [self.scrollView addSubview:lblWeight];
+    
+    /***************************** Add Weight Divider Image here *************************/
+    UIImageView *imgWeight = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblWeight.frame.origin.y + lblWeight.frame.size.height + 5, 320, 1)];
+    imgWeight.backgroundColor = [UIColor lightGrayColor];
+    [self.scrollView addSubview:imgWeight];
+    
+    /***************************** Add Weight Graph here *************************/
+    graphWeight = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, imgWeight.frame.origin.y + imgWeight.frame.size.height + 10, 300, 150)];
     graphWeight.delegate = self;
     [self.scrollView addSubview:graphWeight];
     
@@ -192,24 +206,19 @@
     graphWeight.enablePopUpReport = YES;
     graphWeight.enableBezierCurve = YES;
     
-    graphPBF = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, 200, 300, 150)];
-    graphPBF.delegate = self;
-    [self.scrollView addSubview:graphPBF];
+    /***************************** Add SMM Label here *************************/
+    UILabel *lblSMM = [[UILabel alloc] initWithFrame:CGRectMake(10, graphWeight.frame.origin.y + graphWeight.frame.size.height + 30, 250, 20)];
+    lblSMM.text = @"Skeletal Muscle Mass (SMM)";
+    lblSMM.textColor = tmpButton.tintColor;
+    [self.scrollView addSubview:lblSMM];
     
-    // Customization of the graph
-    graphPBF.delegate = self;
-    graphPBF.colorTop = [UIColor colorWithHexString:@"#e8e8e8"];
-    graphPBF.colorBottom = [UIColor colorWithHexString:@"#e8e8e8"];
-    graphPBF.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
-    graphPBF.colorLine = [UIColor greenColor];
-    graphPBF.colorXaxisLabel = [UIColor blackColor];
-    graphPBF.widthLine = 3.0;
-    graphPBF.enableTouchReport = YES;
-    graphPBF.enablePopUpReport = YES;
-    graphPBF.enableBezierCurve = YES;
+    /***************************** Add SMM Divider Image here *************************/
+    UIImageView *imgSMM = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblSMM.frame.origin.y + lblSMM.frame.size.height + 5, 320, 1)];
+    imgSMM.backgroundColor = [UIColor lightGrayColor];
+    [self.scrollView addSubview:imgSMM];
     
-    
-    graphSMM = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, 400, 300, 150)];
+    /***************************** Add SMM Graph here *************************/
+    graphSMM = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, imgSMM.frame.origin.y + imgSMM.frame.size.height + 10, 300, 150)];
     graphSMM.delegate = self;
     [self.scrollView addSubview:graphSMM];
     
@@ -218,12 +227,41 @@
     graphSMM.colorTop = [UIColor colorWithHexString:@"#e8e8e8"];
     graphSMM.colorBottom = [UIColor colorWithHexString:@"#e8e8e8"];
     graphSMM.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
-    graphSMM.colorLine = [UIColor blueColor];
+    graphSMM.colorLine = [UIColor greenColor];
     graphSMM.colorXaxisLabel = [UIColor blackColor];
     graphSMM.widthLine = 3.0;
     graphSMM.enableTouchReport = YES;
     graphSMM.enablePopUpReport = YES;
     graphSMM.enableBezierCurve = YES;
+    
+    
+    /***************************** Add PBF Label here *************************/
+    UILabel *lblPBF = [[UILabel alloc] initWithFrame:CGRectMake(10, graphSMM.frame.origin.y + graphSMM.frame.size.height + 30, 250, 20)];
+    lblPBF.text = @"Percent body Fat (PBF)";
+    lblPBF.textColor = tmpButton.tintColor;
+    [self.scrollView addSubview:lblPBF];
+    
+    /***************************** Add PBF Divider Image here *************************/
+    UIImageView *imgPBF = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblPBF.frame.origin.y + lblPBF.frame.size.height + 5, 320, 1)];
+    imgPBF.backgroundColor = [UIColor lightGrayColor];
+    [self.scrollView addSubview:imgPBF];
+    
+    /***************************** Add PBF Graph here *************************/
+    graphPBF = [[BEMSimpleLineGraphView alloc] initWithFrame:CGRectMake(10, imgPBF.frame.origin.y + imgPBF.frame.size.height + 10, 300, 150)];
+    graphPBF.delegate = self;
+    [self.scrollView addSubview:graphPBF];
+    
+    // Customization of the graph
+    graphPBF.delegate = self;
+    graphPBF.colorTop = [UIColor colorWithHexString:@"#e8e8e8"];
+    graphPBF.colorBottom = [UIColor colorWithHexString:@"#e8e8e8"];
+    graphPBF.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+    graphPBF.colorLine = [UIColor blueColor];
+    graphPBF.colorXaxisLabel = [UIColor blackColor];
+    graphPBF.widthLine = 3.0;
+    graphPBF.enableTouchReport = YES;
+    graphPBF.enablePopUpReport = YES;
+    graphPBF.enableBezierCurve = YES;
     
     float sizeOfContent = 0;
     UIView *lLast = [self.scrollView.subviews lastObject];
