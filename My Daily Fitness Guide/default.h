@@ -31,6 +31,9 @@
 #define offersURL @"http://www.goldsgymindia.com/ws/ws.asmx/Offers"
 #define eventsURL @"http://www.goldsgymindia.com/ws/ws.asmx/Events"
 
+#define buyMemberShipURL @"http://goldsgymindia.com/sc.asp"
+#define vipPass @"http://goldsgymindia.com/"
+
 #define BlueColor1 @"#18509b"
 #define BlueColor2 @"#2f67b1"
 #define BlueColor3 @"#457dc7"

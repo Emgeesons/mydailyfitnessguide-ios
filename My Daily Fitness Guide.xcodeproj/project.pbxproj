@@ -295,6 +295,8 @@
 		EC705D9D1938A1B20012E81E /* s_59@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC705D611938A1B20012E81E /* s_59@2x.jpg */; };
 		EC705D9E1938A1B20012E81E /* s_60@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EC705D621938A1B20012E81E /* s_60@2x.jpg */; };
 		EC73FAEC1924C7B90007DD0C /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73FAEB1924C7B90007DD0C /* CityTableViewController.m */; };
+		EC7AEE3919529CB000445354 /* BuyMembershipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7AEE3819529CB000445354 /* BuyMembershipViewController.m */; };
+		EC7AEE3C19529CC400445354 /* VIPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7AEE3B19529CC400445354 /* VIPViewController.m */; };
 		EC7D405F19247A47001338E4 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7D405E19247A47001338E4 /* SWRevealViewController.m */; };
 		EC7D406219247B24001338E4 /* SideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7D406119247B24001338E4 /* SideBarTableViewController.m */; };
 		EC7D406619247E4B001338E4 /* FirstTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7D406519247E4B001338E4 /* FirstTabViewController.m */; };
@@ -767,6 +769,10 @@
 		EC705D621938A1B20012E81E /* s_60@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "s_60@2x.jpg"; sourceTree = "<group>"; };
 		EC73FAEA1924C7B90007DD0C /* CityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		EC73FAEB1924C7B90007DD0C /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
+		EC7AEE3719529CB000445354 /* BuyMembershipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyMembershipViewController.h; sourceTree = "<group>"; };
+		EC7AEE3819529CB000445354 /* BuyMembershipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyMembershipViewController.m; sourceTree = "<group>"; };
+		EC7AEE3A19529CC400445354 /* VIPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIPViewController.h; sourceTree = "<group>"; };
+		EC7AEE3B19529CC400445354 /* VIPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIPViewController.m; sourceTree = "<group>"; };
 		EC7D405D19247A47001338E4 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		EC7D405E19247A47001338E4 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EC7D406019247B24001338E4 /* SideBarTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarTableViewController.h; sourceTree = "<group>"; };
@@ -1484,6 +1490,10 @@
 				EC086AD2192720B60094AD35 /* T&CViewController.m */,
 				EC1175741939A48B00F98292 /* VacationViewController.h */,
 				EC1175751939A48B00F98292 /* VacationViewController.m */,
+				EC7AEE3719529CB000445354 /* BuyMembershipViewController.h */,
+				EC7AEE3819529CB000445354 /* BuyMembershipViewController.m */,
+				EC7AEE3A19529CC400445354 /* VIPViewController.h */,
+				EC7AEE3B19529CC400445354 /* VIPViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2260,6 +2270,7 @@
 				ECFD793A192C6CBC00464EE4 /* MASConstraintMaker.m in Sources */,
 				ECFD793D192C6CBC00464EE4 /* MASViewConstraint.m in Sources */,
 				ECDB8AAA192341DC00CA2137 /* UIColor+Extra.m in Sources */,
+				EC7AEE3919529CB000445354 /* BuyMembershipViewController.m in Sources */,
 				EC45AD6B193C910A00455443 /* CourseCorrectionViewController.m in Sources */,
 				ECFD7942192C6CBC00464EE4 /* MVPopupTransition.m in Sources */,
 				ECFD7940192C6CBC00464EE4 /* View+MASAdditions.m in Sources */,
@@ -2325,6 +2336,7 @@
 				ECDB8AA9192341DC00CA2137 /* UIBarButtonItem+projectButtons.m in Sources */,
 				ECEA11A1192386BC00823952 /* AFURLResponseSerialization.m in Sources */,
 				ECCA45371925E133002F19AE /* MapViewController.m in Sources */,
+				EC7AEE3C19529CC400445354 /* VIPViewController.m in Sources */,
 				ECEA11A6192386BC00823952 /* UIButton+AFNetworking.m in Sources */,
 				ECDB8ABD1923434C00CA2137 /* FMDatabase.m in Sources */,
 				EC29C421194704BB00883BAB /* PhotoViewController.m in Sources */,

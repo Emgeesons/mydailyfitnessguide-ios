@@ -66,7 +66,7 @@
     if (indexPath.row == 11) {
         NSString *text = @"Hi, I’m using My Daily Fitness Guide iPhone app from Gold’s Gym. Download it now from - ";
         NSURL *url = [NSURL URLWithString:@"http://tinyurl.com/goldsgymindia-ios"];
-        UIImage *image = [UIImage imageNamed:@"call.png"];
+        UIImage *image = [UIImage imageNamed:@"app_icon_120x120.png"];
         
         UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:@[text, url, image] applicationActivities:nil];
         
@@ -86,7 +86,7 @@
          {
              if (completed)
              {
-                 UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Successfully Shared" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 UIAlertView *objalert = [[UIAlertView alloc]initWithTitle:nil message:@"Successfully Shared" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                  [objalert show];
                  objalert = nil;
              }
