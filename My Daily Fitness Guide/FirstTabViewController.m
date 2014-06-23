@@ -147,15 +147,6 @@
     
     // count the selected medicalCondition and display number of rows.
     [database open];
-    FMResultSet *results = [database executeQuery:@"SELECT count(selected) as selected FROM medicalCondition WHERE selected='true' AND dietMod = 'yes'"];
-    while([results next]) {
-        if ([[results stringForColumn:@"selected"] intValue] == 0) {
-            numberOfRowsNutritionistTableView = 5;
-        } else {
-            numberOfRowsNutritionistTableView = 7;
-        }
-    }
-    
     FMResultSet *vacationResult = [database executeQuery:@"SELECT type, value FROM fitnessMainData"];
     while([vacationResult next]) {
         if ([[vacationResult stringForColumn:@"type"] isEqualToString:@"vacationDate"]) {
@@ -1509,6 +1500,19 @@
     self.btnLabelTrainer.titleLabel.textColor = [UIColor whiteColor];
     self.btnLabelNutritionist.titleLabel.textColor = [UIColor yellowColor];
     self.btnLabelProfile.titleLabel.textColor = [UIColor whiteColor];
+    
+    // count the selected medicalCondition and display number of rows.
+    [database open];
+    FMResultSet *results = [database executeQuery:@"SELECT count(selected) as selected FROM medicalCondition WHERE selected='true' AND dietMod = 'yes'"];
+    while([results next]) {
+        if ([[results stringForColumn:@"selected"] intValue] == 0) {
+            numberOfRowsNutritionistTableView = 5;
+        } else {
+            numberOfRowsNutritionistTableView = 7;
+        }
+    }
+    
+    [database close];
     
     // set bNutritionist as YES and rest NO
     bTrainer = NO;
