@@ -32,13 +32,16 @@
 {
     [super viewDidLoad];
     
+    // Set background color of tableView
     //self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#555555"];
     //self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
+    // Create alertBox for Reset Body Stats
     alertResetBody = [[UIAlertView alloc] initWithTitle:nil message:@"Are you sure?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
     
+    // Initialize database
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
 }
 
@@ -105,9 +108,11 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView == alertResetBody) {
         if (buttonIndex == 0) {
+            // Load home page when user pressed Cancel Button
             [self loadHomePage];
             
         } else if (buttonIndex == 1) {
+            // Reset all data regarding user's workout
             [database open];
             [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Undefined", @"goal"];
             [database executeUpdate:@"DELETE FROM dailyTicks"];
@@ -131,8 +136,10 @@
 
             [[NSUserDefaults standardUserDefaults] synchronize];
             
+            // Cancel all localnotification
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
+            // Delete all user's body picks from gallery folder
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectoryPath = [paths objectAtIndex:0];
             NSFileManager *fm = [NSFileManager defaultManager];
@@ -144,12 +151,19 @@
                     // it failed.
                 }
             }
+            
+            // load home page
             [self loadHomePage];
         }
     }
 }
 
 -(void)loadHomePage {
+    
+    /*
+     Function for loading Home Page after Resetting body stats
+     */
+    
     FirstTabViewController *dvc = (FirstTabViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"firstTab"];
     UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
     [navController setViewControllers: @[dvc] animated: NO ];
@@ -164,6 +178,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+        // Open Other linked Pages
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         
         swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {

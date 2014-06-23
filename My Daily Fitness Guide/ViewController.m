@@ -37,11 +37,13 @@
     UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 50, 30)];
     UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
     
+    // Create ImageView for Logo
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
     myImageView.frame = CGRectMake(0, 0, 30, 30);
     [myView setBackgroundColor:[UIColor  clearColor]];
     [myView addSubview:myImageView];
     
+    // Set logo to left side of navigation bar
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:myView];
     item.leftBarButtonItem = leftButton;
 }
