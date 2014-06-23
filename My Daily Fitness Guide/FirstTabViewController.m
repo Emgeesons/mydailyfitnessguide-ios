@@ -1003,7 +1003,7 @@
             beginWeight = beginWeight * KGS_CONVERSION;
         }
         
-        self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f in %d month(s)", programType, beginWeight, [month intValue]];
+        self.lblBegin.text = [NSString stringWithFormat:@"You need to %@ %.2f %@ in %d month(s)", programType, beginWeight, weightType, [month intValue]];
         
         CGRect newFrame = self.viewBegin.frame;
         newFrame.origin.y = 68;
@@ -1772,7 +1772,7 @@
             return 54;
         }
     }
-    return 20;
+    return 10;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

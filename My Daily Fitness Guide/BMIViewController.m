@@ -154,8 +154,13 @@
         pickerView.dataSource = self;
         pickerView.showsSelectionIndicator = YES;
         
-        if (feet != 0 && inches != 0) {
+        if (feet != 0 ) {
             [pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%d", feet]] inComponent:0 animated:YES];
+            //[pickerView selectRow:[inch indexOfObject:[NSString stringWithFormat:@"%d", inches]] inComponent:2 animated:YES];
+        }
+        
+        if (inches != 0) {
+            //[pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%d", feet]] inComponent:0 animated:YES];
             [pickerView selectRow:[inch indexOfObject:[NSString stringWithFormat:@"%d", inches]] inComponent:2 animated:YES];
         }
         

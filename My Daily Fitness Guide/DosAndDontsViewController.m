@@ -41,7 +41,7 @@
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     htmlString = [[NSMutableString alloc] init];
 
-    [htmlString appendFormat:@"<html><head><style>ul {padding-left: 20px; margin-top: 2px; margin-left: 10px;} h5 { margin-bottom: 2px; padding-left: 5px; margin-left:5px; font-size:20px;} h4 { margin-top: -6px; margin-bottom: -12px; text-align: center;} div {background: -webkit-linear-gradient(top, #e8e8e8, #ffffff);} li {margin-top:13px;} hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin-top:-2px;}</style></head><body>"];
+    [htmlString appendFormat:@"<html><head><style>ul {padding-left: 20px; margin-top: 2px; margin-left: 10px;} h5 { margin-bottom: 2px; padding-left: 5px; margin-left:5px; font-size:17px;} h4 { margin-top: -6px; margin-bottom: -12px; text-align: center;} div {background: -webkit-linear-gradient(top, #e8e8e8, #ffffff);} li {margin-top:13px;} hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin-top:-2px;}</style></head><body>"];
     
     [database open];
     if ([self.screenType isEqualToString:@"nutritionist"]) {
