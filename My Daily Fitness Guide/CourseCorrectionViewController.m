@@ -38,8 +38,8 @@
     
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
-    //[[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"courseCorrection"];
-    //[[NSUserDefaults standardUserDefaults] synchronize];
+    [[NSUserDefaults standardUserDefaults] setObject:@"yes" forKey:@"courseCorrection"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self.navBar setBounds:CGRectMake(0, 0, 320, 81)];
     [self.navBar setBarTintColor:[UIColor blackColor]];
@@ -137,7 +137,7 @@
             alert.message = @"That's not very good. Looks like you need to concentrate on your program more if you want to see good results.\nContinue with your schedule as mentioned and add 15 - 20 mins to your cardio session to see better results.";
         }
         
-        alert.message = @"";
+        //alert.message = @"";
     } else if ([string isEqualToString:@"Muscle"]) {
         alert.message = @"That's great, You are very close to your goal. Continue with your workouts.";
     } else if ([string isEqualToString:@"Don't Know"]) {

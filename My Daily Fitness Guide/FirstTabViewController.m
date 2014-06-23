@@ -1059,6 +1059,21 @@
                          completion:nil];
     }
     
+    // For goal is Not Achieved
+    if ([result isEqualToString:@"Not Achieved"]) {
+        CGRect newFrame = self.viewNotAchieved.frame;
+        newFrame.origin.y = 68;
+        self.viewNotAchieved.hidden = NO;
+        
+        [UIView animateWithDuration:0.7f
+                              delay:0.0f
+                            options: UIViewAnimationOptionTransitionCrossDissolve
+                         animations:^{
+                             self.viewNotAchieved.frame = newFrame;
+                         }
+                         completion:nil];
+    }
+    
     // For goal is Set
     else if ([result isEqualToString:@"Begun"]  || [result isEqualToString:@"Maintenance"]) {
         CGRect newFrame = self.viewWeeklyDiet.frame;
@@ -1514,6 +1529,14 @@
     
     [database close];
     
+    WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+    
+    if (![self checkMonthPresent:[week getMonth]]) {
+        numberOfRowsNutritionistTableView = numberOfRowsNutritionistTableView + 2;
+    }
+    
+    NSLog(@"total Rows ==> %d", numberOfRowsNutritionistTableView);
+    
     // set bNutritionist as YES and rest NO
     bTrainer = NO;
     bNutritionist = YES;
@@ -1744,21 +1767,74 @@
             
             [cell.contentView addSubview:yellowView];
         } else if (indexPath.row == 2) {
-            // call function for disabling long press on uiwebview
-            [self longPress:webView];
-            [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, webViewHeight)];
-            [cell.contentView addSubview:webView];
+            WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+            if (![self checkMonthPresent:[week getMonth]]) {
+                UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapBodyStats:)];
+                
+                UIView *logWeight = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 54)];
+                [logWeight addGestureRecognizer:tapBodyStats];
+                
+                logWeight.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"green_panel.png"]];
+                UIImageView *alarmImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+                alarmImage.image = [UIImage imageNamed:@"ic_log.png"];
+                
+                UILabel *lblLogWeight = [[UILabel alloc] initWithFrame:CGRectMake(50, 15, 200, 25)];
+                lblLogWeight.text = @"Log your Body Stats";
+                lblLogWeight.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
+                
+                UIImageView *arrowImage = [[UIImageView alloc] initWithFrame:CGRectMake(280, 20, 7, 15)];
+                arrowImage.image = [UIImage imageNamed:@"arrow.png"];
+                
+                [logWeight addSubview:alarmImage];
+                [logWeight addSubview:lblLogWeight];
+                [logWeight addSubview:arrowImage];
+                [cell.contentView addSubview:logWeight];
+            } else {
+                // call function for disabling long press on uiwebview
+                [self longPress:webView];
+                [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, webViewHeight)];
+                [cell.contentView addSubview:webView];
+            }
             
         } else if (indexPath.row == 4) {
-            cell.textLabel.text = @"Guidelines";
-            cell.imageView.image = [UIImage imageNamed:@"ic_guidelines.png"];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+            WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+            if (![self checkMonthPresent:[week getMonth]]) {
+                // call function for disabling long press on uiwebview
+                [self longPress:webView];
+                [webView setFrame:CGRectMake(0, 0, CELL_CONTENT_WIDTH, webViewHeight)];
+                [cell.contentView addSubview:webView];
+            } else {
+                UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeekGuide:)];
+                cell.textLabel.text = @"Guidelines";
+                cell.imageView.image = [UIImage imageNamed:@"ic_guidelines.png"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+                [cell addGestureRecognizer:tapBodyStats];
+            }
         } else if (indexPath.row == 6) {
+            WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+            if (![self checkMonthPresent:[week getMonth]]) {
+                UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeekGuide:)];
+                cell.textLabel.text = @"Guidelines";
+                cell.imageView.image = [UIImage imageNamed:@"ic_guidelines.png"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+                [cell addGestureRecognizer:tapBodyStats];
+            } else {
+                UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeekDAD:)];
+                cell.textLabel.text = @"Do's and Dont's";
+                cell.imageView.image = [UIImage imageNamed:@"ic_dos_and_donts.png"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+                [cell addGestureRecognizer:tapBodyStats];
+            }
+        } else if (indexPath.row == 8) {
+            UITapGestureRecognizer *tapBodyStats = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapWeekDAD:)];
             cell.textLabel.text = @"Do's and Dont's";
             cell.imageView.image = [UIImage imageNamed:@"ic_dos_and_donts.png"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+            [cell addGestureRecognizer:tapBodyStats];
         }
         
         return cell;
@@ -1771,32 +1847,24 @@
         if (indexPath.row == 0) {
             return 100;
         } else if (indexPath.row == 2) {
-            return webViewHeight;
-        } else if (indexPath.row == 4 || indexPath.row == 6 || indexPath.row == 8) {
+            WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+            if (![self checkMonthPresent:[week getMonth]]) {
+                return 54;
+            } else {
+                return webViewHeight;
+            }
+        } else if (indexPath.row == 4) {
+            WeeklySchedule *week = [[WeeklySchedule alloc] initialize];
+            if (![self checkMonthPresent:[week getMonth]]) {
+                return webViewHeight;
+            } else {
+                return 54;
+            }
+        }else if(indexPath.row == 6 || indexPath.row == 8) {
             return 54;
         }
     }
     return 10;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.tvWeeklyDiet) {
-        if (indexPath.row == 4) {
-            // open Guidelines
-            GuidelinesViewController *viewController = (GuidelinesViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"guidelinesViewController"];
-            viewController.screenType = @"nutritionist";
-            viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-            viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:viewController animated:YES completion:nil];
-        } else if (indexPath.row == 6) {
-            // open do's and don't
-            DosAndDontsViewController *viewController = (DosAndDontsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"dosAndDontsViewController"];
-            viewController.screenType = @"nutritionist";
-            viewController.modalPresentationStyle = UIModalPresentationPageSheet;
-            viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentViewController:viewController animated:YES completion:nil];
-        }
-    }
 }
 
 #pragma mark - UIWebView Long Press Disable methods
@@ -1835,6 +1903,24 @@
 }
 
 #pragma mark - Tap Recogniser
+
+- (void)tapWeekDAD:(UITapGestureRecognizer *)recognizer {
+    // open do's and don't
+    DosAndDontsViewController *viewController = (DosAndDontsViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"dosAndDontsViewController"];
+    viewController.screenType = @"nutritionist";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)tapWeekGuide:(UITapGestureRecognizer *)recognizer {
+    // open Guidelines
+    GuidelinesViewController *viewController = (GuidelinesViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"guidelinesViewController"];
+    viewController.screenType = @"nutritionist";
+    viewController.modalPresentationStyle = UIModalPresentationPageSheet;
+    viewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:viewController animated:YES completion:nil];
+}
 
 - (void)tapDAD:(UITapGestureRecognizer *)recognizer {
     // open do's and don't
