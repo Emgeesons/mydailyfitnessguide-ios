@@ -130,11 +130,11 @@
     [database open];
     if (theCell.accessoryType == UITableViewCellAccessoryNone) {
         theCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [database executeUpdate:@"UPDATE medicalCondition SET selected = ? WHERE id = ?", @"true", [NSString stringWithFormat:@"%d",(indexPath.row + 1)]];
+        [database executeUpdate:@"UPDATE medicalCondition SET selected = ? WHERE id = ?", @"true", [NSString stringWithFormat:@"%ld",(long)(indexPath.row + 1)]];
         selection[indexPath.row] = @"true";
     } else if (theCell.accessoryType == UITableViewCellAccessoryCheckmark) {
         theCell.accessoryType = UITableViewCellAccessoryNone;
-        [database executeUpdate:@"UPDATE medicalCondition SET selected = ? WHERE id = ?", @"false",[NSString stringWithFormat:@"%d",(indexPath.row + 1)]];
+        [database executeUpdate:@"UPDATE medicalCondition SET selected = ? WHERE id = ?", @"false",[NSString stringWithFormat:@"%ld",(long)(indexPath.row + 1)]];
         selection[indexPath.row] = @"false";
     }
     [database close];

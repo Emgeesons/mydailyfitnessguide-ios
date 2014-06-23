@@ -193,7 +193,7 @@
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setDateFormat:@"yyyy-MM-dd"];
         NSString *endDate = [f stringFromDate:[NSDate date]];
-        int numberOfDays = [DatabaseExtra numberOfDaysBetween:endDate and:end_date];
+        int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:endDate and:end_date];
         //NSLog(@"%d", numberOfDays);
         if (numberOfDays < 1) {
             [database open];

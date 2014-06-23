@@ -190,7 +190,7 @@
     //}
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = food[indexPath.row];
-    NSString *tmpString = [selectedFood objectForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    NSString *tmpString = [selectedFood objectForKey:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
     cell.foodID = [ids[indexPath.row] integerValue];
     cell.foodName = food[indexPath.row];
     cell.servingValue = [calcValue[indexPath.row] integerValue];
@@ -218,7 +218,7 @@
     
     DietaryRecallTableViewCell *tmpCell = (DietaryRecallTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
-    int oldValue = tmpCell.servingValue;
+    int oldValue = (int)tmpCell.servingValue;
     NSLog(@"%d", oldValue);
     
     selectedIndexPath = indexPath;
@@ -304,7 +304,7 @@
     
     //NSLog(@"%d", selectedIndexPath.row);
     //[selectedFood removeObjectForKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
-    [selectedFood setObject:number forKey:[NSString stringWithFormat:@"%d", selectedIndexPath.row]];
+    [selectedFood setObject:number forKey:[NSString stringWithFormat:@"%ld", (long)selectedIndexPath.row]];
 
     // calculate energy, carbohydrates, protiens, fats, fibre
     [database open];
@@ -371,7 +371,7 @@
     
     // update database and save current selected value
     [database open];
-    [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ? WHERE id = ?", number, [NSString stringWithFormat:@"%d", tmpCell.foodID]];
+    [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ? WHERE id = ?", number, [NSString stringWithFormat:@"%ld", (long)tmpCell.foodID]];
     [database close];
     
     [self loadFood];

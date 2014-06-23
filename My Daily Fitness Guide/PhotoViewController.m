@@ -146,7 +146,7 @@
     for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         btn.fbTitle = self.dataArray[indexPath.row];
-        row = indexPath.row;
+        row = (int)indexPath.row;
     }
     
     [self.collectionView performBatchUpdates:^{

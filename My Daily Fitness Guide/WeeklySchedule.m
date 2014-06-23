@@ -60,7 +60,7 @@
     endDate = [f stringFromDate:[NSDate date]];
     numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     //NSLog(@"%d", numberOfDays);
-    return ((numberOfDays - 1)/30) + 1;
+    return (int)(((numberOfDays - 1)/30) + 1);
 }
 
 -(int)getMonthNotification {
@@ -81,7 +81,7 @@
     endDate = [f stringFromDate:[NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24)]];
     numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     //NSLog(@"%d", numberOfDays);
-    return ((numberOfDays - 1)/30) + 1;
+    return (int)(((numberOfDays - 1)/30) + 1);
 }
 
 -(NSString *)getDietType {
@@ -242,7 +242,7 @@
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
-    int days = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    int days = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     

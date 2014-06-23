@@ -103,8 +103,8 @@
         }
         
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", weightType, @"weightType"];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?",[NSString stringWithFormat:@"%d", feet], @"feet"];
-        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%d", inches], @"inches"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?",[NSString stringWithFormat:@"%ld", (long)feet], @"feet"];
+        [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%ld", (long)inches], @"inches"];
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", bmi], @"bmi"];
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", programType, @"programType"];
         [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", [NSString stringWithFormat:@"%f", newIBW], @"kgsLossGain"];
@@ -155,13 +155,13 @@
         pickerView.showsSelectionIndicator = YES;
         
         if (feet != 0 ) {
-            [pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%d", feet]] inComponent:0 animated:YES];
+            [pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%ld", (long)feet]] inComponent:0 animated:YES];
             //[pickerView selectRow:[inch indexOfObject:[NSString stringWithFormat:@"%d", inches]] inComponent:2 animated:YES];
         }
         
         if (inches != 0) {
             //[pickerView selectRow:[ft indexOfObject:[NSString stringWithFormat:@"%d", feet]] inComponent:0 animated:YES];
-            [pickerView selectRow:[inch indexOfObject:[NSString stringWithFormat:@"%d", inches]] inComponent:2 animated:YES];
+            [pickerView selectRow:[inch indexOfObject:[NSString stringWithFormat:@"%ld", (long)inches]] inComponent:2 animated:YES];
         }
         
         UIView *toolbarPicker = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];

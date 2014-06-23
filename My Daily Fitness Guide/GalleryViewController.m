@@ -10,7 +10,7 @@
 #import "GalleryCell.h"
 #import "PhotoViewController.h"
 
-@interface GalleryViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout> {
+@interface GalleryViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate> {
     NSArray *filelist;
 }
 
@@ -67,8 +67,8 @@
     NSArray *docPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *dataPath = [[docPaths objectAtIndex:0] stringByAppendingPathComponent:@"/gallery"];
     filelist= [fm contentsOfDirectoryAtPath:dataPath error:nil];
-    NSLog(@"%d", filelist.count);
-    int filesCount = [filelist count];
+    NSLog(@"%lu", (unsigned long)filelist.count);
+    int filesCount = (int)[filelist count];
     
     if (filesCount == 0) {
         self.imageView.hidden = NO;

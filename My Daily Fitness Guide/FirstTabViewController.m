@@ -24,7 +24,7 @@
 #define CELL_CONTENT_WIDTH 320.0f
 #define CELL_CONTENT_MARGIN 10.0f
 
-@interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate> {
+@interface FirstTabViewController () <FBLoginViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     FMDatabase *database;
     NSString *weeklyDiet, *vacationDate, *goalState, *yesterdayName;
     int randomNutritionist, randomTrainer, numberOfRowsNutritionistTableView, top, profileTop;
@@ -191,7 +191,7 @@
     if ([startDate isEqualToString:@""] || startDate == NULL) {
         // Do nothing
     } else {
-        int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+        int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
         if (numberOfDays > 1) {
             // update database and empty the vacation date
             [database open];
@@ -202,8 +202,8 @@
     }
     
     // generate random numbers here
-    randomTrainer = arc4random_uniform(trainerTips.count) + 0;
-    randomNutritionist = arc4random_uniform(dietTips.count) + 0;
+    randomTrainer = arc4random_uniform((int)trainerTips.count) + 0;
+    randomNutritionist = arc4random_uniform((int)dietTips.count) + 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -260,7 +260,7 @@
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
     // Get number of days from start_date to current day
-    int numberOfDays = [DatabaseExtra numberOfDaysBetween:start_date and:endDate];
+    int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:start_date and:endDate];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EE"];
@@ -597,7 +597,7 @@
             NSDateFormatter *f = [[NSDateFormatter alloc] init];
             [f setDateFormat:@"yyyy-MM-dd"];
             endDate = [f stringFromDate:[NSDate date]];
-            int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+            int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
             //NSLog(@"%d", numberOfDays);
             if (numberOfDays > 1) {
                 // set the top value here
@@ -1222,7 +1222,7 @@
     NSDate * date = [formatter dateFromString:dob];
     
     NSInteger age = [DatabaseExtra getAge:date];
-    self.lblAge.text = [NSString stringWithFormat:@"%d yrs", age];
+    self.lblAge.text = [NSString stringWithFormat:@"%ld yrs", (long)age];
     
     // retrieve saved profile pic of user
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -1313,7 +1313,7 @@
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setDateFormat:@"yyyy-MM-dd"];
         endDate = [f stringFromDate:[NSDate date]];
-        int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+        int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
         NSString *daysLeft = [NSString stringWithFormat:@"%d", (month * 30) - (numberOfDays - 1)];
         self.lblDaysLeft.text = daysLeft;
         
@@ -1599,7 +1599,7 @@
     double weight = 0.0;
     while([res next]) {
         if ([[res stringForColumn:@"type"] isEqualToString:@"durationInMonth"]) {
-            month = [[res stringForColumn:@"value"] integerValue];
+            month = (int)[[res stringForColumn:@"value"] integerValue];
         } else if ([[res stringForColumn:@"type"] isEqualToString:@"weight"]) {
             weight = [[res stringForColumn:@"value"] doubleValue];
         }
@@ -2134,7 +2134,7 @@
                          NSDateFormatter *f = [[NSDateFormatter alloc] init];
                          [f setDateFormat:@"yyyy-MM-dd"];
                          endDate = [f stringFromDate:[NSDate date]];
-                         int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+                         int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
                          
                          if (day >= numberOfDays) {
                              NSDate *tmpDate = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24 * (day + 1))];
@@ -2502,7 +2502,7 @@
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
-    int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
+    int numberOfDays = (int)[DatabaseExtra numberOfDaysBetween:startDate and:endDate];
     
     UIView *weekView = [[UIView alloc] initWithFrame:CGRectMake(0, top + 5, 300, 200)];
     weekView.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
@@ -2568,7 +2568,7 @@
                 }
             } else {
                 // for next 2 days
-                int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieveWeek and:endDate];
+                int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieveWeek and:endDate];
                 if (numberOdDaysBetweenDateShown <=3) {
                     // show the UI
                     [self.trainerScrollView addSubview:weekView];
@@ -2614,7 +2614,7 @@
                 }
             } else {
                 // for next 2 days
-                int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieveMonth and:endDate];
+                int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieveMonth and:endDate];
                 if (numberOdDaysBetweenDateShown <=3) {
                     // show the UI
                     [self.trainerScrollView addSubview:weekView];
@@ -2658,7 +2658,7 @@
             [database close];
         } else {
             // for next 2 days
-            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve25 and:endDate];
+            int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieve25 and:endDate];
             if (numberOdDaysBetweenDateShown <=3) {
                 // show the UI
                 [self.trainerScrollView addSubview:weekView];
@@ -2689,7 +2689,7 @@
             [database close];
         } else {
             // for next 2 days
-            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve50 and:endDate];
+            int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieve50 and:endDate];
             if (numberOdDaysBetweenDateShown <=3) {
                 // show the UI
                 [self.trainerScrollView addSubview:weekView];
@@ -2720,7 +2720,7 @@
             [database close];
         } else {
             // for next 2 days
-            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve75 and:endDate];
+            int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieve75 and:endDate];
             if (numberOdDaysBetweenDateShown <=3) {
                 // show the UI
                 [self.trainerScrollView addSubview:weekView];
@@ -2751,7 +2751,7 @@
             [database close];
         } else {
             // for next 2 days
-            int numberOdDaysBetweenDateShown = [DatabaseExtra numberOfDaysBetween:dateAchieve100 and:endDate];
+            int numberOdDaysBetweenDateShown = (int)[DatabaseExtra numberOfDaysBetween:dateAchieve100 and:endDate];
             if (numberOdDaysBetweenDateShown <=3) {
                 // show the UI
                 [self.trainerScrollView addSubview:weekView];

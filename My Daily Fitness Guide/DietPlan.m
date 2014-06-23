@@ -45,7 +45,7 @@
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
     NSInteger numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
-    int tmpWeek = numberOfDays/7;
+    int tmpWeek = (int)numberOfDays/7;
     
     if ((numberOfDays % 7) == 0) {
         // current week
