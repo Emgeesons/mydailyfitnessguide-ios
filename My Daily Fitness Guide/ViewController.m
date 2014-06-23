@@ -18,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     // Add UINavigationBar to view
     UINavigationBar *navbar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 63)];
@@ -37,10 +36,9 @@
     // Add Logo to UINavigationItem
     UIView *myView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 50, 30)];
     UIImage *image = [UIImage imageNamed:@"nav_bar_icon.png"];
+    
     UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
-    
     myImageView.frame = CGRectMake(0, 0, 30, 30);
-    
     [myView setBackgroundColor:[UIColor  clearColor]];
     [myView addSubview:myImageView];
     

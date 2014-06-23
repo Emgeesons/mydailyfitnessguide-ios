@@ -14,14 +14,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
+    // Copy database file if not present
     [self createCopyOfDatabaseIfNeeded];
     
+    // Get Agree Button clicked from NSUserDefaults
     NSString *agree = [[NSUserDefaults standardUserDefaults] stringForKey:@"agree"];
     if (agree == NULL) {
         // do nothing and show disclaimer page
     } else {
+        // Check if user is logged in
         if ([[NSUserDefaults standardUserDefaults] stringForKey:@"loggedIn"] == NULL || [[[NSUserDefaults standardUserDefaults] stringForKey:@"loggedIn"] isEqualToString:@"false"]) {
             // show register page
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -51,9 +52,7 @@
     
     //[[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    NSLog(@"Notification count ==> %d", [[[UIApplication sharedApplication] scheduledLocalNotifications] count]);
-    
-    //NSLog(@"%@", [[UIApplication sharedApplication] scheduledLocalNotifications]);
+    //NSLog(@"Notification count ==> %d", [[[UIApplication sharedApplication] scheduledLocalNotifications] count]);
     
     [self createGalleryFolder];
     

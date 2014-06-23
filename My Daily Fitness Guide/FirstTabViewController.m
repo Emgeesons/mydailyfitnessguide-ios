@@ -32,7 +32,7 @@
     NSArray *dietTips, *trainerTips, *vacationTips;
     float webViewHeight;
     UIWebView *webView;
-    UITableView *scheduleTableChild;
+    //UITableView *scheduleTableChild;
     CustomButton *btnMonTick, *btnTueTick, *btnWedTick, *btnThurTick, *btnFriTick, *btnSatTick, *btnSunTick, *btnYesterdayTick;
     int mon, tue, wed, thur, fri, sat, sun, yesterdaysDay;
     
@@ -42,7 +42,6 @@
     CustomButton *btnFacebook;
     
     UIAlertView *alertImagePick;
-    NSArray *testWeight;
 }
 @end
 
@@ -82,13 +81,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    top = 0;
-    profileTop = 151;
     
-    testWeight = @[@"100", @"50", @"75"];
-    
+    // Set Statusbar color white
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
+    // Set Trainer label color to yellow
     self.btnLabelTrainer.titleLabel.textColor = [UIColor yellowColor];
     
     // set gradient background for view's
@@ -98,7 +94,7 @@
     // database initialization
     database = [FMDatabase databaseWithPath:[DatabaseExtra dbPath]];
     
-    // Find out the path of Religion
+    // Find out the path of dietTips
     NSString *path = [[NSBundle mainBundle] pathForResource:@"dietTips" ofType:@"plist"];
     
     // Load the file content and read the data into arrays
@@ -111,20 +107,18 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
     
-    // set left side navigation button
+    // Create left side navigation button
     UIButton *btnMenu = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 20)];
     [btnMenu setBackgroundImage:[UIImage imageNamed:navigationImage] forState:UIControlStateNormal];
     [btnMenu addTarget:self.revealViewController action:@selector(revealToggle:) forControlEvents:UIControlEventTouchUpInside];
-    
+    // Set left side navigation button
     UIBarButtonItem * menuButton = [[UIBarButtonItem alloc] initWithCustomView:btnMenu];
     self.navigationItem.leftBarButtonItem = menuButton;
     
-    // Set the gesture
+    // Set the gesture for nevigation drawer
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [self titleView];
-    
-    //self.title = [NSString stringWithFormat:@"Howdy %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"name"]];
     
     // Add tap gesture on views of bottom tab
     UITapGestureRecognizer *tapTrainer = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -163,22 +157,24 @@
     bNutritionist = NO;
     bProfile = NO;
     
-    //initialize scheduleTableChild
+    /*//initialize scheduleTableChild
     scheduleTableChild = [[UITableView alloc] initWithFrame:CGRectMake(10, 40, 280, 300)];
     scheduleTableChild.delegate = self;
     scheduleTableChild.dataSource = self;
-    scheduleTableChild.scrollEnabled = NO;
+    scheduleTableChild.scrollEnabled = NO;*/
     
-    // alertview for taking image pick
+    // Create alertview for taking image pick
     alertImagePick = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@" " otherButtonTitles:@"Pick from Gallery", @"Cancel",nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    // Hide All UIView's
     [self hideAllViews];
+    // Position View below
     [self positionViewbelow];
     
+    // Get start_date of vacation
     [database open];
-    
     FMResultSet *results = [database executeQuery:@"SELECT value,type FROM fitnessMainData"];
     NSString *startDate, *endDate;
     
@@ -193,7 +189,7 @@
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
     if ([startDate isEqualToString:@""] || startDate == NULL) {
-        
+        // Do nothing
     } else {
         int numberOfDays = [DatabaseExtra numberOfDaysBetween:startDate and:endDate];
         if (numberOfDays > 1) {
@@ -211,6 +207,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    // Position View below
     [self positionViewbelow];
     
     // load startScreen based on value present in database
@@ -249,6 +246,7 @@
 }
 
 -(void)assignDay {
+    // Get start_date of workout started
     NSString *start_date, *endDate;
     [database open];
     FMResultSet *results = [database executeQuery:@"SELECT value FROM fitnessMainData WHERE type = 'start_date'"];
@@ -261,17 +259,21 @@
     NSDateFormatter *f = [[NSDateFormatter alloc] init];
     [f setDateFormat:@"yyyy-MM-dd"];
     endDate = [f stringFromDate:[NSDate date]];
+    // Get number of days from start_date to current day
     int numberOfDays = [DatabaseExtra numberOfDaysBetween:start_date and:endDate];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EE"];
+    // Get day name of workout started
     NSString *dayName = [dateFormatter stringFromDate:[f dateFromString:start_date]];
     
     // set yesterdaysDay here
     yesterdaysDay = numberOfDays - 1;
     
+    // Get current day
     NSDate *now = [NSDate date];
     
+    // Get current day name
     NSString *currentDayName = [dateFormatter stringFromDate:now];
     
     int daysToAdd = -1;
