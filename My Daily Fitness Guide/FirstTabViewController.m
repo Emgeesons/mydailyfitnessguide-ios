@@ -2541,7 +2541,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/perfect_week.png";
         btnFacebook.fbTitle = @"Had A Perfect Week at The Gym with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         
         if (numberOfDays >= 7) {
             // check here last 7, 8, 9 days tick in database.
@@ -2589,7 +2589,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/perfect_month.png";
         btnFacebook.fbTitle = @"Had a Perfect Month at The Gym with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         //NSLog(@"%d", numberOfDays);
         if (numberOfDays >= 30) {
             // check here last 30, 31, 32 days tick in database.
@@ -2646,7 +2646,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/25_percent.png";
         btnFacebook.fbTitle = @"Just Completed 25% of My Goal with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         
         if ([achieve25 isEqualToString:@"false"]) {
             // Add UI here
@@ -2677,7 +2677,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/50_percent.png";
         btnFacebook.fbTitle = @"Just Completed 50% of My Goal with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         
         if ([achieve50 isEqualToString:@"false"]) {
             // Add UI here
@@ -2708,7 +2708,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/75_percent.png";
         btnFacebook.fbTitle = @"Just Completed 75% of My Goal with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         
         if ([achieve75 isEqualToString:@"false"]) {
             // Add UI here
@@ -2739,7 +2739,7 @@
         btnFacebook.fbImage = @"http://www.emgeesonsdevelopment.in/goldsgym/mobile1.0/achievementImages/goal_achieved.png";
         btnFacebook.fbTitle = @"Completed My Goal with The Gold's Gym iOS App";
         btnFacebook.fbDescription = @"My Daily Fitness Guide - The All New iPhone Gold's Gym App acts as your personal trainer and nutritionist. Download it today.";
-        btnFacebook.fbLink = @"http://www.google.com";
+        btnFacebook.fbLink = Rate_Us_URL;
         
         if ([achieve100 isEqualToString:@"false"]) {
             // Add UI here
