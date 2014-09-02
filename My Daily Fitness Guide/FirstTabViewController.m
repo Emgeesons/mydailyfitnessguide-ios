@@ -1670,6 +1670,7 @@
 - (IBAction)btnResetBodyClicked:(id)sender {
     [database open];
     [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"Undefined", @"goal"];
+    [database executeUpdate:@"UPDATE fitnessMainData SET value = ? WHERE type = ?", @"veg", @"vegNonVeg"];
     [database executeUpdate:@"DELETE FROM dailyTicks"];
     [database executeUpdate:@"UPDATE dietaryRecall SET calcValue = ?", @""];
     [database executeUpdate:@"UPDATE achievementTable SET appear = ?, dateShown = ?", @"false", @""];
