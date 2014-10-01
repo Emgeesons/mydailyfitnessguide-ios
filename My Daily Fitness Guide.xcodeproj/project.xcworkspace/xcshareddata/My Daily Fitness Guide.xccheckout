@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B030203E-33F0-4A5C-AD7F-E31946A4E677</string>
+	<string>F2551D48-3B80-49AD-8437-387DD72BE290</string>
 	<key>IDESourceControlProjectName</key>
 	<string>My Daily Fitness Guide</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</key>
-		<string>https://github.com/Emgeesons/mydailyfitnessguide-ios.git</string>
+		<key>AF79F613-0859-4A7A-BC05-E6FC6821DEA9</key>
+		<string>https://github.com/Emgeesons/mydailyfitnessguide-ios</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>My Daily Fitness Guide.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</key>
+		<key>AF79F613-0859-4A7A-BC05-E6FC6821DEA9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Emgeesons/mydailyfitnessguide-ios.git</string>
+	<string>https://github.com/Emgeesons/mydailyfitnessguide-ios</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</string>
+	<string>AF79F613-0859-4A7A-BC05-E6FC6821DEA9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B8D24D29-18BB-47DB-A3A3-7DEBACAF7CFB</string>
+			<string>AF79F613-0859-4A7A-BC05-E6FC6821DEA9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>My Daily Fitness Guide</string>
+			<string>mydailyfitnessguide-ios</string>
 		</dict>
 	</array>
 </dict>
